@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:libadwaita/libadwaita.dart';
 import 'package:libadwaita_window_manager/libadwaita_window_manager.dart';
@@ -52,7 +53,12 @@ class _AdwHomePageState extends State<AdwHomePage> {
 
     return AdwScaffold(
       flapController: _flapController,
-      actions: AdwActions().windowManager,
+      flapStyle: FlapStyle(
+        locked: false,
+        flapWidth: 200,
+        breakpoint: MediaQuery.of(context).size.shortestSide < 600 ? double.infinity : 900,
+      ),
+      actions: AdwActions(),
       start: [
         AdwHeaderButton(
           icon: const Icon(Icons.view_sidebar_outlined, size: 19),
@@ -72,27 +78,16 @@ class _AdwHomePageState extends State<AdwHomePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               AdwButton.flat(
+                padding: AdwButton.defaultButtonPadding.copyWith(
+                  top: 10,
+                  bottom: 10,
+                ),
                 onPressed: () {
-                  counter.value = 0;
-                  Navigator.of(context).pop();
+                  FirebaseAuth.instance.signOut();
+                  Navigator.pushNamedAndRemoveUntil(context, '/sign-in', (route) => false);
                 },
-                padding: AdwButton.defaultButtonPadding.copyWith(
-                  top: 10,
-                  bottom: 10,
-                ),
                 child: const Text(
-                  'Reset Counter',
-                  style: TextStyle(fontSize: 15),
-                ),
-              ),
-              const Divider(),
-              AdwButton.flat(
-                padding: AdwButton.defaultButtonPadding.copyWith(
-                  top: 10,
-                  bottom: 10,
-                ),
-                child: const Text(
-                  'Preferences',
+                  'Sign Out',
                   style: TextStyle(fontSize: 15),
                 ),
               ),

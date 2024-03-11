@@ -1,37 +1,24 @@
 import 'dart:async';
-import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:the_collector/firebase_options.dart';
 import 'package:the_collector/pages/transitory/auto_sign_in_page.dart';
 import 'package:the_collector/theme/theme.dart';
 import 'package:toastification/toastification.dart';
-import 'package:window_manager/window_manager.dart';
+import 'package:universal_io/io.dart';
+
+final providers = [EmailAuthProvider()];
 
 Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
-  await windowManager.ensureInitialized();
-
-  const windowOptions = WindowOptions(
-    size: Size(1000, 600),
-    minimumSize: Size(400, 450),
-    center: true,
-    skipTaskbar: false,
-    backgroundColor: Colors.transparent,
-    titleBarStyle: TitleBarStyle.hidden,
-    alwaysOnTop: true, // remove this later
-    title: '▽',
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  unawaited(
-    windowManager.waitUntilReadyToShow(windowOptions, () async {
-      if (Platform.isLinux || Platform.isMacOS) {
-        await windowManager.setAsFrameless();
-      }
-      await windowManager.show();
-      await windowManager.focus();
-    }),
-  );
-
+  FirebaseUIAuth.configureProviders([...providers]);
   runApp(MyAdwApp());
 }
 
@@ -50,27 +37,42 @@ class MyAdwApp extends StatelessWidget {
     return ValueListenableBuilder<ThemeMode>(
       valueListenable: themeNotifier,
       builder: (_, ThemeMode currentMode, __) {
-        return MaterialApp(
-          builder: (context, child) {
-            final virtualWindowFrame = VirtualWindowFrameInit();
-            return ToastificationConfigProvider(
-              config: const ToastificationConfig(
-                alignment: Alignment.center,
-                itemWidth: 440,
-                animationDuration: Duration(milliseconds: 500),
-              ),
-              child: virtualWindowFrame(context, child),
-            );
-          },
-          darkTheme: MyThemeData.dark(fontFamily: 'akz'),
-          theme: MyThemeData.light(fontFamily: 'akz'),
-          themeAnimationCurve: Curves.fastLinearToSlowEaseIn,
-          debugShowCheckedModeBanner: false,
-          home: AutoSignInPage(
-            themeNotifier: themeNotifier,
-          ),
-          themeMode: currentMode,
-        );
+        if (kIsWeb || Platform.isIOS || Platform.isAndroid) {
+          return ToastificationConfigProvider(
+            config: const ToastificationConfig(
+              alignment: Alignment.center,
+              itemWidth: 440,
+              animationDuration: Duration(milliseconds: 500),
+            ),
+            child: MaterialApp(
+              initialRoute: FirebaseAuth.instance.currentUser == null ? '/sign-in' : '/home',
+              routes: {
+                '/home': (context) {
+                  return AutoSignInPage(
+                    themeNotifier: themeNotifier,
+                  );
+                }, // '/home': (context) => const WelcomePage(),
+                '/sign-in': (context) {
+                  return SignInScreen(
+                    providers: providers,
+                    actions: [
+                      AuthStateChangeAction<SignedIn>((context, state) {
+                        Navigator.pushReplacementNamed(context, '/home');
+                      }),
+                    ],
+                  );
+                },
+              },
+              darkTheme: MyThemeData.dark(fontFamily: 'akz'),
+              theme: MyThemeData.light(fontFamily: 'akz'),
+              themeAnimationCurve: Curves.fastLinearToSlowEaseIn,
+              debugShowCheckedModeBanner: false,
+              themeMode: currentMode,
+            ),
+          );
+        } else {
+          return Container();
+        }
       },
     );
   }

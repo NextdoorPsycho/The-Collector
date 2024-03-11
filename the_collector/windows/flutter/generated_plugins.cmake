@@ -3,7 +3,12 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  cloud_firestore
   desktop_multi_window
+  desktop_webview_auth
+  firebase_auth
+  firebase_core
+  firebase_storage
   screen_retriever
   url_launcher_windows
   window_manager
