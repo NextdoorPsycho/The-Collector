@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:libadwaita/libadwaita.dart';
-import 'package:libadwaita_window_manager/libadwaita_window_manager.dart';
+import 'package:padded/padded.dart';
 import 'package:the_collector/data/user_manager.dart';
 import 'package:the_collector/pages/flap/flap_admin.dart';
 import 'package:the_collector/pages/flap/flap_files.dart';
@@ -58,84 +58,92 @@ class _AdwHomePageState extends State<AdwHomePage> {
         final isAdmin = admin ?? false;
 
         return AdwScaffold(
+          title: const Text('The Collector'),
           flapController: _flapController,
           flapStyle: FlapStyle(
             locked: false,
             flapWidth: 200,
             breakpoint: MediaQuery.of(context).size.shortestSide < 600 ? double.infinity : 900,
           ),
-          actions: AdwActions(),
           start: [
-            AdwHeaderButton(
-              icon: const Icon(Icons.view_sidebar_outlined, size: 19),
-              isActive: _flapController.isOpen,
-              onPressed: () => _flapController.toggle(),
+            PaddingLeft(
+              padding: 8,
+              child: AdwHeaderButton(
+                icon: const Icon(
+                  Icons.view_sidebar_outlined,
+                  size: 19,
+                ),
+                isActive: _flapController.isOpen,
+                onPressed: () => _flapController.toggle(),
+              ),
             ),
             AdwHeaderButton(
               icon: Icon(widget.themeNotifier.value == ThemeMode.light ? Icons.nights_stay_sharp : Icons.wb_sunny_sharp, size: 15),
               onPressed: changeTheme,
             ),
           ],
-          title: const Text('The Collector'),
           end: [
-            GtkPopupMenu(
-              body: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  AdwButton.flat(
-                    padding: AdwButton.defaultButtonPadding.copyWith(
-                      top: 10,
-                      bottom: 10,
+            PaddingRight(
+              padding: 8,
+              child: GtkPopupMenu(
+                body: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    AdwButton.flat(
+                      padding: AdwButton.defaultButtonPadding.copyWith(
+                        top: 10,
+                        bottom: 10,
+                      ),
+                      onPressed: () {
+                        FirebaseAuth.instance.signOut();
+                        Navigator.pushNamedAndRemoveUntil(context, '/sign-in', (route) => false);
+                      },
+                      child: const Text(
+                        'Sign Out',
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ),
-                    onPressed: () {
-                      FirebaseAuth.instance.signOut();
-                      Navigator.pushNamedAndRemoveUntil(context, '/sign-in', (route) => false);
-                    },
-                    child: const Text(
-                      'Sign Out',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  AdwButton.flat(
-                    padding: AdwButton.defaultButtonPadding.copyWith(
-                      top: 10,
-                      bottom: 10,
-                    ),
-                    onPressed: () => showDialog<Widget>(
-                      context: context,
-                      builder: (ctx) => AdwAboutWindow(
-                        issueTrackerLink: 'https://google.com',
-                        appIcon: const Text(
-                          'The Collector',
-                          style: TextStyle(fontSize: 15),
-                        ),
-                        credits: [
-                          AdwPreferencesGroup.creditsBuilder(
-                            title: 'Developers',
-                            itemCount: developers.length,
-                            itemBuilder: (_, index) => AdwActionRow(
-                              title: developers.keys.elementAt(index),
-                              onActivated: () => launchUrl(
-                                Uri.parse(
-                                  'https://github.com/${developers.values.elementAt(index)}',
+                    AdwButton.flat(
+                      padding: AdwButton.defaultButtonPadding.copyWith(
+                        top: 10,
+                        bottom: 10,
+                      ),
+                      onPressed: () => showDialog<Widget>(
+                        context: context,
+                        builder: (ctx) => AdwAboutWindow(
+                          issueTrackerLink: 'https://google.com',
+                          appIcon: const Text(
+                            'The Collector',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          credits: [
+                            AdwPreferencesGroup.creditsBuilder(
+                              title: 'Developers',
+                              itemCount: developers.length,
+                              itemBuilder: (_, index) => AdwActionRow(
+                                title: developers.keys.elementAt(index),
+                                onActivated: () => launchUrl(
+                                  Uri.parse(
+                                    'https://github.com/${developers.values.elementAt(index)}',
+                                  ),
                                 ),
                               ),
                             ),
+                          ],
+                          copyright: 'Free Software Yay!',
+                          license: const Text(
+                            'MIT License',
                           ),
-                        ],
-                        copyright: 'Free Software Yay!',
-                        license: const Text(
-                          'MIT License',
                         ),
                       ),
+                      child: const Text(
+                        'About This App',
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ),
-                    child: const Text(
-                      'About This App',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

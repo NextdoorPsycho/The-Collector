@@ -41,6 +41,8 @@ dependencies:
   intl: ^0.18.1
   cloud_firestore: ^4.15.8
   animated_text_kit: ^4.2.2
+  padded: ^1.0.1
+  flyout: ^1.0.2
 
 dev_dependencies:
   flutter_test:

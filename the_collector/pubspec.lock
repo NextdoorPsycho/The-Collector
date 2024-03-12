@@ -541,6 +541,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flyout:
+    dependency: "direct main"
+    description:
+      name: flyout
+      sha256: "4c3a002320ee6ccdc85aa02f47853b748deffbb1820c2a2589294676fc2a0f63"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   frontend_server_client:
     dependency: transitive
     description:
@@ -706,7 +714,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "808ccd324747517e7e9e74bf0aec1668ca8bccd9"
+      resolved-ref: a3e9a9d8ef3bb1a7b65e78560c82ebf3084558ce
       url: "https://github.com/NextdoorPsycho/libadwaita-io.git"
     source: git
     version: "2.0.2"
@@ -806,6 +814,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  padded:
+    dependency: "direct main"
+    description:
+      name: padded
+      sha256: "7e4b31afb8254f1ec6f6b17ea081031650705f8fa940ceeb7b79708beb09b876"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   path:
     dependency: "direct main"
     description:
