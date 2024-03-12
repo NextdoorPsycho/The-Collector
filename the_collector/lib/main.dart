@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:the_collector/firebase_options.dart';
 import 'package:the_collector/pages/adw_home.dart';
 import 'package:the_collector/pages/screen_templates/template_simple.dart';
+import 'package:the_collector/theme/color.dart';
 import 'package:the_collector/theme/theme.dart';
 import 'package:universal_io/io.dart';
 
@@ -31,43 +32,30 @@ class MyAdwApp extends StatelessWidget {
   final ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(ThemeMode.light);
 
   @override
+  @override
   Widget build(BuildContext context) {
     if (kIsWeb || Platform.isIOS || Platform.isAndroid) {
       return StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ValueListenableBuilder<ThemeMode>(
-              valueListenable: themeNotifier,
-              builder: (_, ThemeMode currentMode, __) {
-                return MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  initialRoute: '/home',
-                  routes: {
-                    '/home': (context) => AdwHomePage(themeNotifier: themeNotifier),
-                  },
-                  darkTheme: MyThemeData.dark(fontFamily: 'akz'),
-                  theme: MyThemeData.light(fontFamily: 'akz'),
-                  themeMode: currentMode,
-                );
-              },
-            );
-          } else {
-            return MaterialApp(
-              initialRoute: '/sign-in',
-              routes: {
-                '/sign-in': (context) => SignInScreen(
-                      providers: providers,
-                      actions: [
-                        AuthStateChangeAction<SignedIn>((context, state) {
-                          Navigator.pushReplacementNamed(context, '/home');
-                        }),
-                      ],
-                    ),
-              },
-              theme: MyThemeData.light(fontFamily: 'akz'),
-            );
-          }
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            initialRoute: snapshot.hasData ? '/home' : '/sign-in',
+            routes: {
+              '/home': (context) => const AdwHomePage(),
+              '/sign-in': (context) => SignInScreen(
+                    providers: providers,
+                    actions: [
+                      AuthStateChangeAction<SignedIn>((context, state) {
+                        Navigator.pushReplacementNamed(context, '/home');
+                      }),
+                    ],
+                  ),
+            },
+            darkTheme: MyThemeData.dark(fontFamily: 'akz'),
+            theme: MyThemeData.light(fontFamily: 'akz'),
+            themeMode: snapshot.hasData ? themeNotifier.value : ThemeMode.light,
+          );
         },
       );
     } else {
@@ -82,13 +70,13 @@ class MyAdwApp extends StatelessWidget {
                 transform: Matrix4.rotationZ(pi),
                 child: const Icon(
                   Icons.change_history_sharp,
-                  color: Colors.black,
+                  color: MyColors.red5,
                   size: 130,
                 ),
               ),
             ),
             title: 'The Collector',
-            description: '',
+            description: 'This app is not supported on this platform.',
           ),
         ),
       );
