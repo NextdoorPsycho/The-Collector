@@ -1,42 +1,37 @@
-name: Flutter Web Deploy
+name: Deploy to GitHub Pages
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - master
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  deploy:
+    runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Setup Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        channel: 'stable'
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '1.19.x' 
+          channel: 'beta' # Required for web
 
-    - name: Enable Web
-      run: flutter config --enable-web
+      - name: Enable Flutter Web
+        run: flutter config --enable-web
 
-    - name: Build Web
-      run: flutter build web --release
+      - name: Download Dependencies
+        run: flutter pub get
 
-    - name: Deploy to GitHub Pages
-      run: |
-        git config --global user.email "actions@github.com"
-        git config --global user.name "GitHub Actions"
-        git branch -f gh-pages
-        git checkout gh-pages
-        git add -f build/web
-        git commit -m "Deploy Flutter web app to GitHub Pages"
-        git push origin gh-pages --force
+      - name: Build
+        run: flutter build web
 
-    - name: Update GitHub Pages Source
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
-        publish_dir: ./build/web
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
+          force_orphan: true
+          user_name: 'github-ci[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'Publish to gh-pages'
