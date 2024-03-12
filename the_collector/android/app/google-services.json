@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "774038668608",
+    "project_id": "the-collector-app",
+    "storage_bucket": "the-collector-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774038668608:android:b5846ed2c5a4c93f68e6a5",
+        "android_client_info": {
+          "package_name": "com.example.model_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoJcFsOTDE0E02-Cy2BZkF4sZh4gMV6MI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
