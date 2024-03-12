@@ -1,8 +1,11 @@
+import 'package:fast_log/fast_log.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:libadwaita/libadwaita.dart';
-import 'package:the_collector/functions/functions_cloud.dart';
-import 'package:the_collector/pages/screen_templates/template_list.dart';
+import 'package:the_collector/functions/functions_toast.dart';
+import 'package:the_collector/pages/screen_templates/template_settings_page.dart';
+
+enum FileVisibility { public, private, either }
 
 class FlapListing extends StatefulWidget {
   const FlapListing({super.key});
@@ -12,63 +15,78 @@ class FlapListing extends StatefulWidget {
 }
 
 class _FlapListingState extends State<FlapListing> {
-  List<Widget> _subpages = [];
+  List<Map<String, dynamic>> userFiles = [];
 
   @override
   void initState() {
     super.initState();
-    _refreshList();
-  }
-
-  Future<void> _refreshList() async {
-    final subpages = await generateSubpages();
-    setState(() {
-      _subpages = subpages;
-    });
-  }
-
-  Future<List<Widget>> generateSubpages() async {
-    final items = await getPublicFiles();
-    final subpages = <Widget>[];
-    for (final item in items.entries) {
-      subpages.add(
-        AdwActionRow(
-          title: item.key,
-          end: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.copy),
-                onPressed: () {
-                  Clipboard.setData(ClipboardData(text: item.value));
-                  debugPrint('Copied the link: ${item.value}');
-                },
-              ),
-              IconButton(
-                icon: const Icon(Icons.delete),
-                onPressed: () async {
-                  _refreshList();
-                },
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-    return subpages;
+    userFiles = FileListBuilder.generateUserFileList('UsernameHere', FileVisibility.either);
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListScreen(
-      title: "Uploaded List",
-      description: "This is a collection of every file uploaded to the cloud bucket specified in settings. Press the button to refresh the list.",
-      footer: AdwActionRow(
-        title: 'Refresh Page',
-        end: const Icon(Icons.refresh),
-        onActivated: () => _refreshList(),
+    return BlankListingPage(groups: [
+      const SizedBox(height: 12),
+      AdwPreferencesGroup(
+        title: 'Files',
+        description: 'Your uploaded files are all stored here. You can manage them here.',
+        children: FileListBuilder.buildFileList(context, userFiles),
       ),
-      subpages: _subpages,
-    );
+    ]);
+  }
+}
+
+class FileListBuilder {
+  static List<Map<String, dynamic>> generateUserFileList(String user, FileVisibility visibility) {
+    // TODO: Replace with actual file list, and get the actual firebase user
+    return [
+      {'name': 'File 1', 'link': 'https://example.com/file1', 'isPublic': false},
+      {'name': 'File 2', 'link': 'https://example.com/file2', 'isPublic': true},
+    ];
+  }
+
+  static List<Widget> buildFileList(BuildContext context, List<Map<String, dynamic>> files) {
+    return files.map((file) {
+      return StatefulBuilder(
+        builder: (context, setState) {
+          return Theme(
+            data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+            child: ExpansionTile(
+              title: Text(file['name']),
+              children: [
+                ListTile(
+                  title: const Text('Is the file public?'),
+                  trailing: AdwSwitch(
+                    value: file['isPublic'],
+                    onChanged: (value) {
+                      setState(() {
+                        file['isPublic'] = value;
+                      });
+                    },
+                  ),
+                ),
+                if (file['isPublic'])
+                  Divider(
+                    color: context.borderColor,
+                    height: 10,
+                  ),
+                if (file['isPublic'])
+                  ListTile(
+                    title: const Text('Copy file link'),
+                    trailing: IconButton(
+                      icon: const Icon(Icons.copy),
+                      onPressed: () {
+                        Clipboard.setData(ClipboardData(text: file['link']));
+                        ToastFunctions.successToast(context, t: "Copied!", st: "Link copied to clipboard.");
+                        info('Link copied: ${file['link']}');
+                      },
+                    ),
+                  ),
+              ],
+            ),
+          );
+        },
+      );
+    }).toList();
   }
 }

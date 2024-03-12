@@ -44,7 +44,15 @@ class _AdwHomePageState extends State<AdwHomePage> {
     super.dispose();
   }
 
-  void changeTheme() => widget.themeNotifier.value = widget.themeNotifier.value == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+  void changeTheme() {
+    if (widget.themeNotifier.value == ThemeMode.light) {
+      widget.themeNotifier.value = ThemeMode.dark;
+      UserManager.updateTheme(isDark: true);
+    } else {
+      widget.themeNotifier.value = ThemeMode.light;
+      UserManager.updateTheme(isDark: false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +86,10 @@ class _AdwHomePageState extends State<AdwHomePage> {
               ),
             ),
             AdwHeaderButton(
-              icon: Icon(widget.themeNotifier.value == ThemeMode.light ? Icons.nights_stay_sharp : Icons.wb_sunny_sharp, size: 15),
+              icon: Icon(
+                widget.themeNotifier.value == ThemeMode.light ? Icons.nights_stay_sharp : Icons.wb_sunny_sharp,
+                size: 15,
+              ),
               onPressed: changeTheme,
             ),
           ],
