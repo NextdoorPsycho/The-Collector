@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_collector/functions/functions_cloud.dart';
-import 'package:the_collector/pages/screen_templates/template_dual_simp.dart';
+import 'package:the_collector/pages/screen_templates/template_dual_simple.dart';
 
 class FlapUpload extends StatefulWidget {
   const FlapUpload({

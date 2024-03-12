@@ -67,18 +67,17 @@ class _AutoSignInPageState extends State<AutoSignInPage> with SingleTickerProvid
                   color: theme.colorScheme.background,
                   child: SimpleScreen(
                     image: Padding(
-                      padding: const EdgeInsets.only(top: 87),
+                      padding: const EdgeInsets.only(top: 65),
                       child: Transform(
                         alignment: Alignment.center,
                         transform: Matrix4.rotationZ(pi), // Rotate 180 degrees
                         child: const Icon(
                           Icons.change_history_sharp,
-                          color: Colors.black,
                           size: 130, // Set the icon size
                         ),
                       ),
                     ),
-                    title: 'The Collector',
+                    title: '',
                     description: '',
                   ),
                 ),

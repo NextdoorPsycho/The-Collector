@@ -4,7 +4,7 @@ import 'package:libadwaita/libadwaita.dart';
 import 'package:libadwaita_window_manager/libadwaita_window_manager.dart';
 import 'package:the_collector/data/user_manager.dart';
 import 'package:the_collector/pages/flap/flap_admin.dart';
-import 'package:the_collector/pages/flap/flap_lists.dart';
+import 'package:the_collector/pages/flap/flap_files.dart';
 import 'package:the_collector/pages/flap/flap_settings.dart';
 import 'package:the_collector/pages/flap/flap_upload.dart';
 import 'package:the_collector/pages/flap/flap_welcome.dart';

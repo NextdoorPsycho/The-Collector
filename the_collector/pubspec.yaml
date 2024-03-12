@@ -12,7 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
   adwaita: ^1.1.0
-  libadwaita: ^2.0.2
+  libadwaita:
+    git: https://github.com/NextdoorPsycho/libadwaita-io.git
   libadwaita_window_manager: ^0.5.4+1
   toxic: ^1.0.5
   confetti: ^0.7.0
@@ -39,6 +40,7 @@ dependencies:
   firebase_auth: ^4.16.0
   intl: ^0.18.1
   cloud_firestore: ^4.15.8
+  animated_text_kit: ^4.2.2
 
 dev_dependencies:
   flutter_test:
