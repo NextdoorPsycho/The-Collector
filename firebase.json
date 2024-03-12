@@ -1,0 +1,13 @@
+{
+    "hosting": {
+      "public": "the_collector/build/web",
+      "predeploy": [
+          "cd the_collector && flutter build web --release"
+      ],
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
+    }
+  }
