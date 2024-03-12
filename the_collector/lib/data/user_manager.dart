@@ -44,7 +44,6 @@ class UserManager {
 }
 
 // fixes the snap data
-// Dont touch it.
 extension XStream<T> on Stream<T> {
   Widget build(Widget Function(T? data) builder) => StreamBuilder<T>(stream: this, builder: (context, snap) => builder(snap.data));
 }
