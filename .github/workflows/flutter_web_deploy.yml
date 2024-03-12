@@ -14,11 +14,14 @@ jobs:
 
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '1.19.x' 
+          flutter-version: '1.19.x'
           channel: 'beta' # Required for web
 
       - name: Enable Flutter Web
         run: flutter config --enable-web
+
+      - name: Navigate to project directory
+        run: cd the-collector
 
       - name: Download Dependencies
         run: flutter pub get
