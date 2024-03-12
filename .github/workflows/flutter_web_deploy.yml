@@ -30,16 +30,18 @@ jobs:
         run: ls -la
 
       - name: Download Dependencies
+        working-directory: the_collector
         run: flutter pub get
 
       - name: Build
+        working-directory: the_collector
         run: flutter build web
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/web
+          publish_dir: ./the_collector/build/web
           force_orphan: true
           user_name: 'github-ci[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
