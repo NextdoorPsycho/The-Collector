@@ -20,8 +20,11 @@ jobs:
       - name: Enable Flutter Web
         run: flutter config --enable-web
 
-      - name: Navigate to project directory
-        run: cd the_collector
+      - name: Print current directory
+        run: pwd
+
+      - name: List files in current directory
+        run: ls -la
 
       - name: Download Dependencies
         run: flutter pub get
