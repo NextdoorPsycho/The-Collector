@@ -26,6 +26,7 @@ class _AdwHomePageState extends State<AdwHomePage> {
   late ScrollController listController;
   late ScrollController settingsController;
   late FlapController _flapController;
+  late ThemeMode _initialThemeMode;
 
   @override
   void initState() {
@@ -35,6 +36,14 @@ class _AdwHomePageState extends State<AdwHomePage> {
     _flapController = FlapController();
 
     _flapController.addListener(() => setState(() {}));
+
+    // Get the initial theme mode
+    UserManager.streamTheme().first.then((isDark) {
+      setState(() {
+        _initialThemeMode = isDark ? ThemeMode.dark : ThemeMode.light;
+        widget.themeNotifier.value = _initialThemeMode;
+      });
+    });
   }
 
   @override

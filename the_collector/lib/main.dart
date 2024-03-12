@@ -6,10 +6,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:the_collector/data/user_manager.dart';
 import 'package:the_collector/firebase_options.dart';
+import 'package:the_collector/pages/adw_home.dart';
 import 'package:the_collector/pages/screen_templates/template_simple.dart';
-import 'package:the_collector/pages/screen_templates/template_splash.dart';
 import 'package:the_collector/theme/theme.dart';
 import 'package:universal_io/io.dart';
 
@@ -38,25 +37,18 @@ class MyAdwApp extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return StreamBuilder<bool>(
-              stream: UserManager.streamTheme(),
-              initialData: false,
-              builder: (context, themeSnapshot) {
-                final isDark = themeSnapshot.data ?? false;
-                themeNotifier.value = isDark ? ThemeMode.dark : ThemeMode.light;
-                return ValueListenableBuilder<ThemeMode>(
-                  valueListenable: themeNotifier,
-                  builder: (_, ThemeMode currentMode, __) {
-                    return MaterialApp(
-                      initialRoute: '/home',
-                      routes: {
-                        '/home': (context) => AutoSignInPage(themeNotifier: themeNotifier),
-                      },
-                      darkTheme: MyThemeData.dark(fontFamily: 'akz'),
-                      theme: MyThemeData.light(fontFamily: 'akz'),
-                      themeMode: currentMode,
-                    );
+            return ValueListenableBuilder<ThemeMode>(
+              valueListenable: themeNotifier,
+              builder: (_, ThemeMode currentMode, __) {
+                return MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  initialRoute: '/home',
+                  routes: {
+                    '/home': (context) => AdwHomePage(themeNotifier: themeNotifier),
                   },
+                  darkTheme: MyThemeData.dark(fontFamily: 'akz'),
+                  theme: MyThemeData.light(fontFamily: 'akz'),
+                  themeMode: currentMode,
                 );
               },
             );
