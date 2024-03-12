@@ -21,7 +21,7 @@ jobs:
         run: flutter config --enable-web
 
       - name: Navigate to project directory
-        run: cd the-collector
+        run: cd the_collector
 
       - name: Download Dependencies
         run: flutter pub get
