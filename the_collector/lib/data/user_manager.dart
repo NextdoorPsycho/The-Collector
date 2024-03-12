@@ -29,8 +29,8 @@ class UserManager {
   static Future<void> updateTheme({required bool isDark}) async {
     String? uid = FirebaseAuth.instance.currentUser?.uid;
     if (uid != null) {
-      throttle("theme_switch", () async {
-        await FirebaseFirestore.instance.collection('user').doc(uid).set({'isDark': isDark});
+      throttle("theme_switch", () {
+        FirebaseFirestore.instance.collection('user').doc(uid).set({'isDark': isDark});
       }, leaky: true, cooldown: const Duration(seconds: 1));
     }
   }
