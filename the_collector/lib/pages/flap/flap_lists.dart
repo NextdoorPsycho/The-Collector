@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:libadwaita/libadwaita.dart';
-import 'package:the_collector/functions/cloud_functions.dart';
-import 'package:the_collector/pages/transitory/list_screen.dart';
+import 'package:the_collector/functions/functions_cloud.dart';
+import 'package:the_collector/pages/screen_templates/template_list.dart';
 
-class ListPage extends StatefulWidget {
-  const ListPage({super.key});
+class FlapListing extends StatefulWidget {
+  const FlapListing({super.key});
 
   @override
-  _ListPageState createState() => _ListPageState();
+  _FlapListingState createState() => _FlapListingState();
 }
 
-class _ListPageState extends State<ListPage> {
+class _FlapListingState extends State<FlapListing> {
   List<Widget> _subpages = [];
 
   @override
@@ -28,7 +28,7 @@ class _ListPageState extends State<ListPage> {
   }
 
   Future<List<Widget>> generateSubpages() async {
-    final items = await generateMapFromBucket();
+    final items = await getPublicFiles();
     final subpages = <Widget>[];
     for (final item in items.entries) {
       subpages.add(
@@ -47,7 +47,6 @@ class _ListPageState extends State<ListPage> {
               IconButton(
                 icon: const Icon(Icons.delete),
                 onPressed: () async {
-                  await deleteFileFromBucket(context, objectName: item.key);
                   _refreshList();
                 },
               ),

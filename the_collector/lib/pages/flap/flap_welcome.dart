@@ -2,14 +2,14 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:the_collector/data/user_manager.dart';
-import 'package:the_collector/pages/transitory/simple_screen.dart';
+import 'package:the_collector/pages/screen_templates/template_simple.dart';
 
-class WelcomePage extends StatelessWidget {
-  const WelcomePage({super.key});
+class FlapWelcome extends StatelessWidget {
+  const FlapWelcome({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return UserManager.streamUploaderStatus().build((uploader) => SimpleScreen(
+    return UserManager.streamUploaderStatus().build((uploader) => UserManager.streamAdminStatus().build((admin) => SimpleScreen(
           image: Transform(
             alignment: Alignment.center,
             transform: Matrix4.rotationZ(pi), // Rotate 180 degrees
@@ -19,7 +19,8 @@ class WelcomePage extends StatelessWidget {
             ),
           ),
           title: 'The Collector',
-          description: 'Status: ${(uploader ?? false) ? 'Uploader' : 'Poor Person'}',
-        ));
+          description: 'Status: ${(uploader ?? false) ? 'Curator' : 'Deriver'}\n'
+              'Title: ${(admin ?? false) ? 'Director' : 'Edifier'}',
+        )));
   }
 }
