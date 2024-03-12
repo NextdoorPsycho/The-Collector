@@ -4,7 +4,6 @@ import 'package:fast_log/fast_log.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:the_collector/functions/functions_toast.dart';
 
 //Uploads a file to the users Public Folder
 // User/{user}/public/{file}
@@ -13,7 +12,6 @@ Future<bool> uploadToPublic(BuildContext context, {required File uploadedFile}) 
     final fileContent = await uploadedFile.readAsBytes();
   } catch (e) {
     error("Firebase Upload Error $e");
-    ToastFunctions.errorToast(context, t: "Firebase Upload Error", st: e.toString());
   }
   return false;
 }
@@ -25,7 +23,6 @@ Future<bool> uploadToPrivate(BuildContext context, {required File uploadedFile})
     final fileContent = await uploadedFile.readAsBytes();
   } catch (e) {
     error("Firebase Upload Error $e");
-    ToastFunctions.errorToast(context, t: "Firebase Upload Error", st: e.toString());
   }
   return false;
 }
@@ -54,7 +51,6 @@ enum UploadType {
 Future<void> uploadFiles({required BuildContext context, required UploadType uploadType}) async {
   FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: true);
   if (result != null) {
-    ToastFunctions.warning(context, t: "Uploading Files", st: "One second please!");
     final prefs = await SharedPreferences.getInstance();
     info('Bucket Name: ${prefs.getString("bucketName") ?? 'some_bucket_name'}');
 

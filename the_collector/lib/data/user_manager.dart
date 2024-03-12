@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:throttled/throttled.dart';
 
 class UserManager {
   // Check if the user is able to upload files
@@ -28,7 +29,9 @@ class UserManager {
   static Future<void> updateTheme({required bool isDark}) async {
     String? uid = FirebaseAuth.instance.currentUser?.uid;
     if (uid != null) {
-      await FirebaseFirestore.instance.collection('user').doc(uid).set({'isDark': isDark});
+      throttle("theme_switch", () {
+        FirebaseFirestore.instance.collection('user').doc(uid).set({'isDark': isDark});
+      }, leaky: true, cooldown: const Duration(seconds: 1));
     }
   }
 

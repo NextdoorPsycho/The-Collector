@@ -29,7 +29,6 @@ dependencies:
   googleapis_auth: ^1.5.0
   file_picker: ^6.2.0
   googleapis: ^12.0.0
-  toastification: ^1.2.1
   flutter_launcher_icons: ^0.13.1
   path: ^1.9.0
   universal_io: ^2.2.2
@@ -43,6 +42,7 @@ dependencies:
   animated_text_kit: ^4.2.2
   padded: ^1.0.1
   flyout: ^1.0.2
+  throttled: ^1.0.1
 
 dev_dependencies:
   flutter_test:
@@ -77,3 +77,13 @@ flutter:
     - family: akz
       fonts:
         - asset: "fonts/Berthold-akzidenz-grotesk-be-regular.ttf"
+
+scripts:
+  deploy-web: cd .. && firebase deploy --only hosting
+  build-runner: flutter pub run build_runner build --delete-conflicting-outputs
+  measure_android_size: flutter build apk --analyze-size --target-platform android-arm64
+  android_signatures:
+    script: ./gradlew signingReport
+    directory: android
+  build_appbundle_release: flutter build appbundle --release
+  build_apk_release: flutter build apk --release

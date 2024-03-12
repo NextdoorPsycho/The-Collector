@@ -11,7 +11,6 @@ import 'package:the_collector/firebase_options.dart';
 import 'package:the_collector/pages/screen_templates/template_simple.dart';
 import 'package:the_collector/pages/screen_templates/template_splash.dart';
 import 'package:the_collector/theme/theme.dart';
-import 'package:toastification/toastification.dart';
 import 'package:universal_io/io.dart';
 
 final providers = [EmailAuthProvider()];
@@ -27,13 +26,8 @@ Future<void> main(List<String> args) async {
   runApp(MyAdwApp());
 }
 
-String googleCloudToken = '';
-bool enableGoogleCloud = false;
-
 class MyAdwApp extends StatelessWidget {
-  MyAdwApp({
-    super.key,
-  });
+  MyAdwApp({super.key});
 
   final ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(ThemeMode.light);
 
@@ -44,53 +38,42 @@ class MyAdwApp extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return UserManager.streamTheme().build((isDark) {
-              themeNotifier.value = isDark ?? false ? ThemeMode.dark : ThemeMode.light;
-              return ValueListenableBuilder<ThemeMode>(
-                valueListenable: themeNotifier,
-                builder: (_, ThemeMode currentMode, __) {
-                  return ToastificationConfigProvider(
-                    config: const ToastificationConfig(
-                      alignment: Alignment.center,
-                      itemWidth: 440,
-                      animationDuration: Duration(milliseconds: 500),
-                    ),
-                    child: MaterialApp(
+            return StreamBuilder<bool>(
+              stream: UserManager.streamTheme(),
+              initialData: false,
+              builder: (context, themeSnapshot) {
+                final isDark = themeSnapshot.data ?? false;
+                themeNotifier.value = isDark ? ThemeMode.dark : ThemeMode.light;
+                return ValueListenableBuilder<ThemeMode>(
+                  valueListenable: themeNotifier,
+                  builder: (_, ThemeMode currentMode, __) {
+                    return MaterialApp(
                       initialRoute: '/home',
                       routes: {
-                        '/home': (context) {
-                          return AutoSignInPage(
-                            themeNotifier: themeNotifier,
-                          );
-                        },
+                        '/home': (context) => AutoSignInPage(themeNotifier: themeNotifier),
                       },
                       darkTheme: MyThemeData.dark(fontFamily: 'akz'),
                       theme: MyThemeData.light(fontFamily: 'akz'),
-                      themeAnimationCurve: Curves.fastLinearToSlowEaseIn,
-                      debugShowCheckedModeBanner: false,
                       themeMode: currentMode,
-                    ),
-                  );
-                },
-              );
-            });
+                    );
+                  },
+                );
+              },
+            );
           } else {
             return MaterialApp(
               initialRoute: '/sign-in',
               routes: {
-                '/sign-in': (context) {
-                  return SignInScreen(
-                    providers: providers,
-                    actions: [
-                      AuthStateChangeAction<SignedIn>((context, state) {
-                        Navigator.pushReplacementNamed(context, '/home');
-                      }),
-                    ],
-                  );
-                },
+                '/sign-in': (context) => SignInScreen(
+                      providers: providers,
+                      actions: [
+                        AuthStateChangeAction<SignedIn>((context, state) {
+                          Navigator.pushReplacementNamed(context, '/home');
+                        }),
+                      ],
+                    ),
               },
               theme: MyThemeData.light(fontFamily: 'akz'),
-              debugShowCheckedModeBanner: false,
             );
           }
         },
@@ -104,11 +87,11 @@ class MyAdwApp extends StatelessWidget {
               padding: const EdgeInsets.only(top: 87),
               child: Transform(
                 alignment: Alignment.center,
-                transform: Matrix4.rotationZ(pi), // Rotate 180 degrees
+                transform: Matrix4.rotationZ(pi),
                 child: const Icon(
                   Icons.change_history_sharp,
                   color: Colors.black,
-                  size: 130, // Set the icon size
+                  size: 130,
                 ),
               ),
             ),

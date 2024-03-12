@@ -2,7 +2,6 @@ import 'package:fast_log/fast_log.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:libadwaita/libadwaita.dart';
-import 'package:the_collector/functions/functions_toast.dart';
 import 'package:the_collector/pages/screen_templates/template_settings_page.dart';
 
 enum FileVisibility { public, private, either }
@@ -77,7 +76,6 @@ class FileListBuilder {
                       icon: const Icon(Icons.copy),
                       onPressed: () {
                         Clipboard.setData(ClipboardData(text: file['link']));
-                        ToastFunctions.successToast(context, t: "Copied!", st: "Link copied to clipboard.");
                         info('Link copied: ${file['link']}');
                       },
                     ),

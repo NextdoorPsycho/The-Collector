@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:the_collector/data/user_manager.dart';
 import 'package:the_collector/pages/adw_home.dart';
 import 'package:the_collector/pages/screen_templates/template_simple.dart';
 
@@ -23,7 +24,7 @@ class _AutoSignInPageState extends State<AutoSignInPage> with SingleTickerProvid
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 1000),
     );
     _opacityAnimation = Tween<double>(begin: 2.0, end: 0.0).animate(_animationController);
     _autoSignIn();
@@ -36,6 +37,8 @@ class _AutoSignInPageState extends State<AutoSignInPage> with SingleTickerProvid
   }
 
   Future<void> _autoSignIn() async {
+    changeTheme();
+
     // Simulate a delay to show the loading screen
     await Future.delayed(const Duration(milliseconds: 500));
 
@@ -46,6 +49,16 @@ class _AutoSignInPageState extends State<AutoSignInPage> with SingleTickerProvid
     setState(() {
       _showLoadingScreen = false;
     });
+  }
+
+  void changeTheme() {
+    if (widget.themeNotifier.value == ThemeMode.light) {
+      widget.themeNotifier.value = ThemeMode.dark;
+      UserManager.updateTheme(isDark: true);
+    } else {
+      widget.themeNotifier.value = ThemeMode.light;
+      UserManager.updateTheme(isDark: false);
+    }
   }
 
   @override
