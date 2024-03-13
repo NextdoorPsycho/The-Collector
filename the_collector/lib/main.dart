@@ -8,6 +8,7 @@ import 'package:the_collector/data/user_manager.dart';
 import 'package:the_collector/firebase_options.dart';
 import 'package:the_collector/pages/adw_home.dart';
 import 'package:the_collector/theme/theme.dart';
+import 'package:toastification/toastification.dart';
 import 'package:universal_io/io.dart';
 
 final providers = [EmailAuthProvider()];
@@ -79,6 +80,13 @@ class _MyAdwAppState extends State<MyAdwApp> {
   }
 
   Widget _buildMainApp() {
-    return AdwHomePage(themeNotifier: themeNotifier);
+    return ToastificationConfigProvider(
+      config: const ToastificationConfig(
+        alignment: Alignment.center,
+        itemWidth: 440,
+        animationDuration: Duration(milliseconds: 500),
+      ),
+      child: AdwHomePage(themeNotifier: themeNotifier),
+    );
   }
 }

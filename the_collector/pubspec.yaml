@@ -45,6 +45,7 @@ dependencies:
   throttled: ^1.0.1
   phoenix_native: ^0.0.2
   uuid: ^4.3.3
+  toastification: ^1.2.1
 
 dev_dependencies:
   flutter_test:

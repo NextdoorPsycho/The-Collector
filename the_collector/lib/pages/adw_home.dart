@@ -3,6 +3,7 @@ import 'package:libadwaita/libadwaita.dart';
 import 'package:padded/padded.dart';
 import 'package:the_collector/data/user_manager.dart';
 import 'package:the_collector/main.dart';
+import 'package:the_collector/pages/flap/fake_settings.dart';
 import 'package:the_collector/pages/flap/flap_admin.dart';
 import 'package:the_collector/pages/flap/flap_files.dart';
 import 'package:the_collector/pages/flap/flap_settings.dart';
@@ -188,6 +189,10 @@ class _AdwHomePageState extends State<AdwHomePage> {
                 const AdwSidebarItem(
                   label: 'Admin',
                 ),
+              if (isAdmin)
+                const AdwSidebarItem(
+                  label: 'Design System',
+                ),
             ],
             onSelected: (index) => setState(() => _currentIndex = index),
           ),
@@ -199,6 +204,7 @@ class _AdwHomePageState extends State<AdwHomePage> {
               if (isUploader) const FlapUpload(),
               if (isUploader) const FlapListing(),
               const FlapSettings(),
+              if (isAdmin) const FakeSettings(),
               if (isAdmin) const FlapAdmin(),
             ],
           ),
