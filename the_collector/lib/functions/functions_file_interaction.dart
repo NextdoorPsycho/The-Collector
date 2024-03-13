@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:the_collector/data/math_stuff.dart';
 import 'package:the_collector/theme/toastification.dart';
 import 'package:universal_io/io.dart';
 
@@ -52,6 +53,7 @@ Future<bool> uploadToPublic(BuildContext context, String path, String hint, {Str
   }
 }
 
+// Updated uploadFiles function with UploadType parameter
 Future<void> uploadFiles({required BuildContext context, required UploadType uploadType}) async {
   FilePicker.platform
       .pickFiles(
@@ -71,6 +73,7 @@ Future<void> uploadFiles({required BuildContext context, required UploadType upl
   });
 }
 
+// Updated getPublicFiles function to return a Map<String, String>
 Future<Map<String, String>> getPublicFiles() async {
   try {
     final ref = FirebaseStorage.instance.ref("user/$uid/${UploadType.public.name}/");
@@ -87,6 +90,7 @@ Future<Map<String, String>> getPublicFiles() async {
   }
 }
 
+// Updated getPrivateFiles function to return a Map<String, String>
 Future<Map<String, String>> getPrivateFiles() async {
   try {
     final ref = FirebaseStorage.instance.ref("user/$uid/${UploadType.private.name}/");
@@ -103,6 +107,7 @@ Future<Map<String, String>> getPrivateFiles() async {
   }
 }
 
+// Updated moveFile function to return a Future<bool>
 Future<bool> moveFile(BuildContext context, String sourcePath, String destinationPath) async {
   try {
     final sourceRef = FirebaseStorage.instance.ref(sourcePath);
@@ -120,6 +125,7 @@ Future<bool> moveFile(BuildContext context, String sourcePath, String destinatio
   }
 }
 
+// Updated deleteFile function to return a Future<bool>
 Future<bool> deleteFile(BuildContext context, String filePath) async {
   try {
     final ref = FirebaseStorage.instance.ref(filePath);
@@ -130,6 +136,26 @@ Future<bool> deleteFile(BuildContext context, String filePath) async {
     error("Firebase Delete Error: $e");
     return false;
   }
+}
+
+// Updated Calculate the size of a file
+Future<int> calculateFileSize(String filePath) async {
+  final Reference ref = FirebaseStorage.instance.ref(filePath);
+  final FullMetadata metadata = await ref.getMetadata();
+  info('Size of $filePath: ${metadata.size} [${MathStuff.humanReadableStorage(metadata.size ?? 1, StorageUnit.MB)}]');
+  return metadata.size ?? 1;
+}
+
+//updated calculate size of folder given path
+Future<int> calculateFolderSize(String path) async {
+  final Reference ref = FirebaseStorage.instance.ref(path);
+  final ListResult listResult = await ref.listAll();
+  final List<int> fileSizes = await Future.wait(
+    listResult.items.map((item) => calculateFileSize(item.fullPath)),
+  );
+  int totalSize = fileSizes.fold(0, (prev, element) => prev + element);
+  success('Total size of $path: $totalSize [${MathStuff.humanReadableStorage(totalSize, StorageUnit.GB)}]');
+  return totalSize;
 }
 
 enum UploadType {

@@ -5,6 +5,7 @@ import 'package:libadwaita/libadwaita.dart';
 import 'package:padded/padded.dart';
 import 'package:the_collector/functions/functions_file_interaction.dart';
 import 'package:the_collector/pages/screen_templates/template_settings_page.dart';
+import 'package:the_collector/theme/animation/spinning_triangle.dart';
 import 'package:the_collector/theme/color.dart';
 import 'package:the_collector/theme/toastification.dart';
 
@@ -55,9 +56,10 @@ class _FlapListingState extends State<FlapListing> {
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
+      return Scaffold(
+          body: Center(
+        child: SpinningTriangle(iconColor: context.textColor),
+      ));
     }
 
     return Scaffold(

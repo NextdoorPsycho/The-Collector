@@ -37,7 +37,7 @@ class AnimatedSimpleScreen extends StatelessWidget {
           children: [
             if (image != null) ...[
               image!,
-              const SizedBox(height: 30),
+              const SizedBox(height: 50),
             ],
             Text(
               title,
@@ -78,6 +78,7 @@ class AnimatedSimpleScreen extends StatelessWidget {
               SizedBox(height: secondDescription != null ? 20 : 40),
               footer!,
             ],
+            const SizedBox(height: 200),
           ],
         ),
       ),
