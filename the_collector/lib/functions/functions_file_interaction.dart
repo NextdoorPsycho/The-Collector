@@ -9,6 +9,8 @@ import 'package:the_collector/theme/toastification.dart';
 import 'package:universal_io/io.dart';
 
 String get uid => FirebaseAuth.instance.currentUser!.uid;
+const int DEFAULT_BYTES_ALLOWED = 250 * 1024 * 1024; // 250MB in bytes
+
 Map<String, String> mimes = {
   "jpg": "image/jpeg",
   "jpeg": "image/jpeg",
@@ -158,7 +160,12 @@ Future<int> calculateFolderSize(String path) async {
   return totalSize;
 }
 
-enum UploadType {
-  public,
-  private,
+Future<int> calculateTotalUsed() async {
+  int publicSize = await calculateFolderSize("user/$uid/${UploadType.public.name}/");
+  int privateSize = await calculateFolderSize("user/$uid/${UploadType.private.name}/");
+  int totalSize = publicSize + privateSize;
+  success('Total data used: $totalSize [${MathStuff.humanReadableStorage(totalSize, StorageUnit.GB)}]');
+  return totalSize;
 }
+
+enum UploadType { public, private, either }

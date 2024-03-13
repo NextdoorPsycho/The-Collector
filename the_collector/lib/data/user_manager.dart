@@ -2,9 +2,71 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fast_log/fast_log.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:the_collector/functions/functions_file_interaction.dart';
 import 'package:throttled/throttled.dart';
 
 class UserManager {
+  // Stream the user storage value (int)
+  // User/uid/restricted/perms/{allocated}
+  static Stream<int> streamStorage() {
+    String? uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid == null) {
+      error("User is not authenticated. Returning Stream.value(0) for storage.");
+      return Stream.value(0);
+    }
+    return FirebaseFirestore.instance.collection('user').doc(uid).collection("restricted").doc("perms").snapshots().map((event) {
+      int storage = event['allocated'] ?? 0;
+      verbose("User storage: $storage");
+      return storage;
+    });
+  }
+
+  // Stream the user storage usage value (int)
+  // User/uid/restricted/perms/{allocated}
+  static Stream<int> streamStorageUsage() {
+    String? uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid == null) {
+      error("User is not authenticated. Returning Stream.value(0) for storage usage.");
+      return Stream.value(0);
+    }
+    return FirebaseFirestore.instance.collection('user').doc(uid).collection("restricted").doc("perms").snapshots().asyncMap((event) async {
+      int allocatedStorage = event['allocated'] ?? 0;
+      int totalUsed = await calculateTotalUsed();
+      verbose("User storage: $allocatedStorage, Total used: $totalUsed");
+      return totalUsed;
+    });
+  }
+
+  // Stream the user storage usage percentage (double)
+  // User/uid/restricted/perms/{allocated}
+  static Stream<double> streamStorageUsagePercentage() {
+    String? uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid == null) {
+      error("User is not authenticated. Returning Stream.value(0.0) for storage usage percentage.");
+      return Stream.value(0.0);
+    }
+    return FirebaseFirestore.instance.collection('user').doc(uid).collection("restricted").doc("perms").snapshots().asyncMap((event) async {
+      int allocatedStorage = event['allocated'] ?? 0;
+      int totalUsed = await calculateTotalUsed();
+      double usagePercentage = (totalUsed / allocatedStorage);
+      verbose("User storage usage: ${(usagePercentage * 100).toStringAsFixed(2)}%");
+      return usagePercentage;
+    });
+  }
+
+  // Calculate the total storage used everyone
+  //
+  static Future<int> calculateTotalUsed() async {
+    String? uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid == null) {
+      error("User is not authenticated. Returning 0 for total storage used.");
+      return 0;
+    }
+    int allSizes = await calculateFolderSize("user/");
+    verbose("Total data used: $allSizes");
+    return allSizes;
+  }
+
   // Check if the user is able to upload files
   // User/uid/restricted/perms/{uploader}
   static Stream<bool> streamUploaderStatus() {

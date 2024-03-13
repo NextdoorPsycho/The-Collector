@@ -16,35 +16,25 @@ dependencies:
     git: https://github.com/NextdoorPsycho/libadwaita-io.git
   libadwaita_window_manager: ^0.5.4+1
   toxic: ^1.0.5
-  confetti: ^0.7.0
   provider: ^6.1.2
-  shared_preferences: ^2.2.2
   build_runner: ^2.4.8
   fast_log: ^1.0.7
   image: ^4.1.7
-  desktop_multi_window: ^0.2.0
   url_launcher: ^6.2.5
-  device_info_plus: ^9.1.2
-  gcloud: ^0.8.12
-  googleapis_auth: ^1.5.0
   file_picker: ^6.2.0
-  googleapis: ^12.0.0
   flutter_launcher_icons: ^0.13.1
-  path: ^1.9.0
   universal_io: ^2.2.2
   app_rename: ^0.0.1  # flutter pub run app_rename:main all="the_collector"
   firebase_storage: ^11.6.0
   firebase_core: ^2.24.2
   firebase_ui_auth: ^1.13.0
   firebase_auth: ^4.16.0
-  intl: ^0.18.1
   cloud_firestore: ^4.15.8
   animated_text_kit: ^4.2.2
   padded: ^1.0.1
   flyout: ^1.0.2
   throttled: ^1.0.1
   phoenix_native: ^0.0.2
-  uuid: ^4.3.3
   toastification: ^1.2.1
   loading_animation_widget: ^1.2.1
 
@@ -52,6 +42,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.1
+  dependency_validator: ^3.2.3
 
 flutter_launcher_icons:
   android: "launcher_icon"
@@ -91,3 +82,4 @@ scripts:
     directory: android
   build_appbundle_release: flutter build appbundle --release
   build_apk_release: flutter build apk --release
+  validate_dependencies: flutter pub run dependency_validator

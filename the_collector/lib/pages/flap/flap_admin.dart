@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flyout/flyout.dart';
 import 'package:libadwaita/libadwaita.dart';
+import 'package:the_collector/data/user_manager.dart';
 import 'package:the_collector/pages/flap/subpage/admin_users.dart';
 import 'package:the_collector/pages/screen_templates/template_settings_page.dart';
 import 'package:the_collector/theme/color.dart';
@@ -25,16 +26,19 @@ class _FlapAdminState extends State<FlapAdmin> {
     return BlankListingPage(groups: [
       AdwPreferencesGroup(
         children: [
-          AdwActionRow(
-            start: const Icon(Icons.people),
-            title: 'Users',
-            onActivated: () => flyout(
-              context,
-              invisibleBackground: true,
-              barrierColor: MyColors.dark5.withOpacity(0.5),
-              () => const UserFlyout(),
-            ),
-          ),
+          UserManager.streamStorageUsage().build((totalUsed) {
+            return AdwActionRow(
+              start: const Icon(Icons.people),
+              title: 'Users',
+              subtitle: 'Total Storage Used: ${totalUsed ?? 0} bytes',
+              onActivated: () => flyout(
+                context,
+                invisibleBackground: true,
+                barrierColor: MyColors.dark5.withOpacity(0.5),
+                () => const UserFlyout(),
+              ),
+            );
+          }),
           AdwActionRow(start: const Icon(Icons.people), title: 'Users', onActivated: () => flyout(context, invisibleBackground: true, barrierColor: MyColors.dark4, () => const UserFlyout())),
           AdwActionRow(
             start: const Icon(Icons.storage),
