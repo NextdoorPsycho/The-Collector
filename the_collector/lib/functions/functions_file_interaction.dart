@@ -44,6 +44,7 @@ Future<bool> uploadToPublic(BuildContext context, String path, String hint, {Str
       await ref.putFile(File(uploadedFile), SettableMetadata(contentType: mime));
     }
     verbose('Finished upload of $uploadPath');
+    Toast.successToast(context, "File uploaded", "View in your Files page");
     return true;
   } catch (e) {
     error("Firebase Upload Error $e");

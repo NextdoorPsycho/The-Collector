@@ -180,7 +180,7 @@ class _AdwHomePageState extends State<AdwHomePage> {
                 ),
               if (isUploader)
                 const AdwSidebarItem(
-                  label: 'Lists',
+                  label: 'My Files',
                 ),
               const AdwSidebarItem(
                 label: 'Settings',

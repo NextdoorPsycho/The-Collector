@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_collector/theme/color.dart';
 import 'package:toastification/toastification.dart';
 
 class Toast {
@@ -23,8 +24,8 @@ class Toast {
           child: child,
         );
       },
-      primaryColor: theme.primaryColor,
-      backgroundColor: theme.focusColor,
+      primaryColor: MyColors.dark4,
+      backgroundColor: theme.colorScheme.background,
       borderRadius: BorderRadius.circular(4.0),
       boxShadow: lowModeShadow,
       showProgressBar: true,
@@ -66,36 +67,20 @@ class Toast {
     );
   }
 
-  static void permatoast(BuildContext context, String title, String description) {
+  static void successToast(BuildContext context, String title, String description) {
     toastification.show(
       context: context,
-      type: ToastificationType.info,
+      type: ToastificationType.success,
       style: ToastificationStyle.flatColored,
       title: Text(title),
       description: Text(description),
       alignment: Alignment.topCenter,
-      autoCloseDuration: const Duration(seconds: 10),
-      animationBuilder: (
-        context,
-        animation,
-        alignment,
-        child,
-      ) {
-        return FadeTransition(
-          opacity: animation,
-          child: child,
-        );
-      },
-      primaryColor: const Color(0xff5d8cb0),
-      backgroundColor: const Color(0xffffffff),
-      icon: const Icon(
-        Icons.insert_drive_file_sharp,
-      ),
+      autoCloseDuration: const Duration(seconds: 2),
       borderRadius: BorderRadius.circular(4.0),
       boxShadow: lowModeShadow,
-      showProgressBar: true,
+      backgroundColor: MyColors.green01,
+      foregroundColor: MyColors.green3,
       dragToClose: true,
-      pauseOnHover: false,
       applyBlurEffect: true,
     );
   }

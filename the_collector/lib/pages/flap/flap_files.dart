@@ -40,6 +40,18 @@ class _FlapListingState extends State<FlapListing> {
     });
   }
 
+  void removePublicFile(String key) {
+    setState(() {
+      publicFiles.remove(key);
+    });
+  }
+
+  void removePrivateFile(String key) {
+    setState(() {
+      privateFiles.remove(key);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
@@ -67,7 +79,7 @@ class _FlapListingState extends State<FlapListing> {
                     ),
                   )),
                 ]
-              : FileListBuilder.buildFileList(context, publicFiles, true),
+              : FileListBuilder.buildFileList(context, publicFiles, true, removePublicFile),
         ),
         const Divider(),
         AdwPreferencesGroup(
@@ -86,7 +98,7 @@ class _FlapListingState extends State<FlapListing> {
                     ),
                   )),
                 ]
-              : FileListBuilder.buildFileList(context, privateFiles, false),
+              : FileListBuilder.buildFileList(context, privateFiles, false, removePrivateFile),
         ),
       ]),
     );
@@ -105,64 +117,61 @@ class FileListBuilder {
     }
   }
 
-  static List<Widget> buildFileList(BuildContext context, Map<String, String> files, bool isPublic) {
+  static List<Widget> buildFileList(
+    BuildContext context,
+    Map<String, String> files,
+    bool isPublic,
+    Function(String) onDelete,
+  ) {
     return files.entries.map((entry) {
-      return StatefulBuilder(
-        builder: (context, setState) {
-          return Theme(
-            data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-            child: ExpansionTile(
-              title: Text(entry.key),
-              children: [
-                if (isPublic)
-                  ListTile(
-                    title: AdwButton(
-                      onPressed: () async {
-                        Clipboard.setData(ClipboardData(text: entry.value));
-                        Toast.infoToast(context, "Link Copied", "Link Copied: ${entry.value}");
-                      },
-                      child: const Text('Copy Link'),
-                    ),
-                    trailing: AdwButton(
-                      backgroundColor: MyColors.red4,
-                      onPressed: () async {
-                        deleteFile(context, "user/$uid/${UploadType.public.name}/${entry.key}").then((value) {
-                          setState(() {
-                            files.remove(entry.key);
-                          });
-                        });
-                        Toast.scaryToast(context, "File deleted", 'Deleted ${entry.key}');
-                      },
-                      child: const Text('Delete File'),
-                    ),
-                  ),
-                if (!isPublic)
-                  ListTile(
-                    title: AdwButton(
-                      onPressed: () async {
-                        Clipboard.setData(ClipboardData(text: entry.value));
-                        info('Link Copied: ${entry.value}');
-                        Toast.infoToast(context, "Link Copied", "Link Copied: ${entry.value}");
-                      },
-                      child: const Text('Copy Link'),
-                    ),
-                    trailing: AdwButton(
-                      backgroundColor: MyColors.red4,
-                      onPressed: () async {
-                        deleteFile(context, "user/$uid/${UploadType.private.name}/${entry.key}").then((value) {
-                          setState(() {
-                            files.remove(entry.key);
-                          });
-                        });
-                        Toast.scaryToast(context, "File deleted", 'Deleted ${entry.key}');
-                      },
-                      child: const Text('Delete File'),
-                    ),
-                  ),
-              ],
-            ),
-          );
-        },
+      return Theme(
+        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+        child: ExpansionTile(
+          title: Text(entry.key),
+          children: [
+            if (isPublic)
+              ListTile(
+                title: AdwButton(
+                  onPressed: () async {
+                    Clipboard.setData(ClipboardData(text: entry.value));
+                    Toast.infoToast(context, "Link Copied", "Straight to your clipboard!");
+                  },
+                  child: const Text('Copy Link'),
+                ),
+                trailing: AdwButton(
+                  backgroundColor: MyColors.red4,
+                  onPressed: () async {
+                    deleteFile(context, "user/$uid/${UploadType.public.name}/${entry.key}").then((value) {
+                      onDelete(entry.key);
+                    });
+                    Toast.scaryToast(context, "File deleted", 'Deleted ${entry.key}');
+                  },
+                  child: const Text('Delete File'),
+                ),
+              ),
+            if (!isPublic)
+              ListTile(
+                title: AdwButton(
+                  onPressed: () async {
+                    Clipboard.setData(ClipboardData(text: entry.value));
+                    info('Link Copied: ${entry.value}');
+                    Toast.infoToast(context, "Link Copied", "Straight to your clipboard!");
+                  },
+                  child: const Text('Copy Link'),
+                ),
+                trailing: AdwButton(
+                  backgroundColor: MyColors.red4,
+                  onPressed: () async {
+                    deleteFile(context, "user/$uid/${UploadType.private.name}/${entry.key}").then((value) {
+                      onDelete(entry.key);
+                    });
+                    Toast.scaryToast(context, "File deleted", 'Deleted ${entry.key}');
+                  },
+                  child: const Text('Delete File'),
+                ),
+              ),
+          ],
+        ),
       );
     }).toList();
   }
