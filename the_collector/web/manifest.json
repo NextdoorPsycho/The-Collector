@@ -1,11 +1,11 @@
 {
-     "name": "the_collector",
-     "short_name": "the_collector",
+     "name": "The Collector",
+     "short_name": "The Collector",
      "start_url": ".",
      "display": "standalone",
      "background_color": "#000000",
      "theme_color": "#ffffff",
-     "description": "A new Flutter project.",
+     "description": "The Collector of Everything.",
      "orientation": "portrait-primary",
      "prefer_related_applications": false,
      "icons": [
