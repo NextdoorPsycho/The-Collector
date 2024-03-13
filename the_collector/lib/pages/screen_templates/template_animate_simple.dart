@@ -47,6 +47,7 @@ class AnimatedSimpleScreen extends StatelessWidget {
             AnimatedTextKit(
               animatedTexts: [
                 TypewriterAnimatedText(
+                  cursor: '|',
                   description,
                   textAlign: TextAlign.left,
                   speed: const Duration(milliseconds: 50),

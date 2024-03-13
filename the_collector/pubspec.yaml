@@ -43,6 +43,8 @@ dependencies:
   padded: ^1.0.1
   flyout: ^1.0.2
   throttled: ^1.0.1
+  phoenix_native: ^0.0.2
+  uuid: ^4.3.3
 
 dev_dependencies:
   flutter_test:

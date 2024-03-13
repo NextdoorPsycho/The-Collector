@@ -1,78 +1,84 @@
-import 'dart:io';
-
 import 'package:fast_log/fast_log.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/foundation.dart';
+import 'package:universal_io/io.dart';
+import 'package:uuid/uuid.dart';
 
-//Uploads a file to the users Public Folder
-// User/{user}/public/{file}
-Future<bool> uploadToPublic(BuildContext context, {required File uploadedFile}) async {
+String get uid => FirebaseAuth.instance.currentUser!.uid;
+Map<String, String> mimes = {
+  "jpg": "image/jpeg",
+  "jpeg": "image/jpeg",
+  "png": "image/png",
+  "gif": "image/gif",
+  "bmp": "image/bmp",
+  "webp": "image/webp",
+  "tiff": "image/tiff",
+  "tif": "image/tiff",
+  "svg": "image/svg+xml",
+  "pdf": "application/pdf",
+  "zip": "application/zip",
+  "rar": "application/x-rar-compressed",
+  "7z": "application/x-7z-compressed",
+  "tar": "application/x-tar",
+  "mp3": "audio/mpeg",
+  "wav": "audio/wav",
+  "ogg": "audio/ogg",
+  "m4a": "audio/mp4",
+  "mp4": "video/mp4",
+  "mkv": "video/x-matroska",
+  "webm": "video/webm",
+  "avi": "video/x-msvideo",
+  "mov": "video/quicktime",
+  "txt": "text/plain",
+  "csv": "text/csv",
+  "json": "application/json",
+  "xml": "application/xml",
+  "html": "text/html",
+  "css": "text/css",
+  "js": "application/javascript",
+  "dart": "application/dart",
+  "exe": "application/x-msdownload",
+  "iso": "application/x-iso9660-image",
+  "img": "application/x-iso9660-image",
+  "bin": "application/octet-stream",
+  "sh": "application/x-sh",
+  "bat": "application/x-msdownload",
+};
+
+Future<bool> uploadToPublic(BuildContext context, String path, String hint, {String? uploadedFile, Uint8List? uploadedBytes}) async {
+  String mime = mimes[hint] ?? "application/octet-stream";
   try {
-    final fileContent = await uploadedFile.readAsBytes();
+    final ref = FirebaseStorage.instance.ref(path);
+    if (kIsWeb && uploadedBytes != null) {
+      await ref.putData(uploadedBytes, SettableMetadata(contentType: mime));
+    } else {
+      await ref.putFile(File(path), SettableMetadata(contentType: mime));
+    }
+    return true;
   } catch (e) {
     error("Firebase Upload Error $e");
+    return false;
   }
-  return false;
 }
 
-//Uploads a file to the users Private Folder
-// User/{user}/private/{file}
-Future<bool> uploadToPrivate(BuildContext context, {required File uploadedFile}) async {
-  try {
-    final fileContent = await uploadedFile.readAsBytes();
-  } catch (e) {
-    error("Firebase Upload Error $e");
-  }
-  return false;
-}
-
-//Delete a file from the users Public Folder
-Future<void> deleteFileFromPublic(BuildContext context, {required String objectName}) async {}
-
-//Delete a file from the users Private Folder
-Future<void> deleteFileFromPrivate(BuildContext context, {required String objectName}) async {}
-
-//Get a list of all the files in the users Public Folder
-Future<Map<String, String>> getPublicFiles() async {
-  return {};
-}
-
-//Get a list of all the files in the users Private Folder
-Future<Map<String, String>> getPrivateFiles() async {
-  return {};
+Future<void> uploadFiles({required BuildContext context, required UploadType uploadType}) async {
+  FilePicker.platform
+      .pickFiles(
+    withData: kIsWeb,
+    allowMultiple: true,
+  )
+      .then((value) {
+    if (value != null) {
+      return Future.wait(value.files.map((e) => kIsWeb ? uploadToPublic(context, "user/$uid/${uploadType.name}/${const Uuid().v4()}", e.name.split('.').last, uploadedBytes: e.bytes) : uploadToPublic(context, "user/$uid/${uploadType.name}/${const Uuid().v4()}", e.name.split('.').last, uploadedFile: e.path)));
+    }
+    return Future.value();
+  });
 }
 
 enum UploadType {
   public,
   private,
-}
-
-Future<void> uploadFiles({required BuildContext context, required UploadType uploadType}) async {
-  FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: true);
-  if (result != null) {
-    final prefs = await SharedPreferences.getInstance();
-    info('Bucket Name: ${prefs.getString("bucketName") ?? 'some_bucket_name'}');
-
-    List<File> files = result.paths.map((path) => File(path!)).toList();
-    List<Future> uploadTasks = [];
-
-    for (File file in files) {
-      if (uploadType == UploadType.public) {
-        uploadTasks.add(uploadToPublic(context, uploadedFile: file));
-      } else {
-        uploadTasks.add(uploadToPrivate(context, uploadedFile: file));
-      }
-    }
-
-    List<dynamic> uploadResults = await Future.wait(uploadTasks);
-
-    //check if the updates are all true if not then spit an error
-    bool allUploadsSuccessful = uploadResults.every((result) => result == true);
-    if (allUploadsSuccessful) {
-      info("All files uploaded successfully");
-    } else {
-      error("One or more file uploads failed");
-    }
-  }
 }

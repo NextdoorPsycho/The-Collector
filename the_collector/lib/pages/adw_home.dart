@@ -1,8 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:libadwaita/libadwaita.dart';
 import 'package:padded/padded.dart';
 import 'package:the_collector/data/user_manager.dart';
+import 'package:the_collector/main.dart';
 import 'package:the_collector/pages/flap/flap_admin.dart';
 import 'package:the_collector/pages/flap/flap_files.dart';
 import 'package:the_collector/pages/flap/flap_settings.dart';
@@ -116,8 +116,7 @@ class _AdwHomePageState extends State<AdwHomePage> {
                         bottom: 10,
                       ),
                       onPressed: () {
-                        FirebaseAuth.instance.signOut();
-                        Navigator.pushNamedAndRemoveUntil(context, '/sign-in', (route) => false);
+                        SignOutManager.signOut(context);
                       },
                       child: const Text(
                         'Sign Out',

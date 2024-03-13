@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fast_log/fast_log.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:throttled/throttled.dart';
@@ -9,9 +10,15 @@ class UserManager {
   static Stream<bool> streamUploaderStatus() {
     String? uid = FirebaseAuth.instance.currentUser?.uid;
     if (uid == null) {
+      info("User is not authenticated. Returning Stream.value(false) for uploader status.");
       return Stream.value(false);
     }
-    return FirebaseFirestore.instance.collection('user').doc(uid).collection("restricted").doc("perms").snapshots().map((event) => event['uploader'] == true);
+    info("Streaming uploader status for user with uid: $uid");
+    return FirebaseFirestore.instance.collection('user').doc(uid).collection("restricted").doc("perms").snapshots().map((event) {
+      bool isUploader = event['uploader'] == true;
+      info("User uploader status: ${isUploader ? 'Uploader' : 'Not an uploader'}");
+      return isUploader;
+    });
   }
 
   // Check if the user is an 'admin'
@@ -19,9 +26,15 @@ class UserManager {
   static Stream<bool> streamAdminStatus() {
     String? uid = FirebaseAuth.instance.currentUser?.uid;
     if (uid == null) {
+      info("User is not authenticated. Returning Stream.value(false) for admin status.");
       return Stream.value(false);
     }
-    return FirebaseFirestore.instance.collection('user').doc(uid).collection("restricted").doc("perms").snapshots().map((event) => event['admin'] == true);
+    info("Streaming admin status for user with uid: $uid");
+    return FirebaseFirestore.instance.collection('user').doc(uid).collection("restricted").doc("perms").snapshots().map((event) {
+      bool isAdmin = event['admin'] == true;
+      info("User admin status: ${isAdmin ? 'Admin' : 'Not an admin'}");
+      return isAdmin;
+    });
   }
 
   // Update the value of Light or Dark Mode
@@ -29,9 +42,13 @@ class UserManager {
   static Future<void> updateTheme({required bool isDark}) async {
     String? uid = FirebaseAuth.instance.currentUser?.uid;
     if (uid != null) {
+      info("Updating theme for user with uid: $uid");
       throttle("theme_switch", () {
         FirebaseFirestore.instance.collection('user').doc(uid).set({'isDark': isDark});
+        info("Theme updated to: ${isDark ? 'Dark Mode' : 'Light Mode'}");
       }, leaky: true, cooldown: const Duration(seconds: 1));
+    } else {
+      info("User is not authenticated. Theme update skipped.");
     }
   }
 
@@ -40,13 +57,28 @@ class UserManager {
   static Stream<bool> streamTheme() {
     String? uid = FirebaseAuth.instance.currentUser?.uid;
     if (uid == null) {
+      info("User is not authenticated. Returning Stream.value(false) for theme (default to light theme).");
       return Stream.value(false); // Default to light theme if user is not signed in
     }
-    return FirebaseFirestore.instance.collection('user').doc(uid).snapshots().map((event) => event['isDark'] == true);
+    info("Streaming theme for user with uid: $uid");
+    return FirebaseFirestore.instance.collection('user').doc(uid).snapshots().map((event) {
+      bool isDarkMode = event['isDark'] == true;
+      info("User theme: ${isDarkMode ? 'Dark Mode' : 'Light Mode'}");
+      return isDarkMode;
+    });
   }
 }
 
 // fixes the snap data
 extension XStream<T> on Stream<T> {
-  Widget build(Widget Function(T? data) builder) => StreamBuilder<T>(stream: this, builder: (context, snap) => builder(snap.data));
+  Widget build(Widget Function(T? data) builder) {
+    info("Building StreamBuilder for Stream<$T>");
+    return StreamBuilder<T>(
+      stream: this,
+      builder: (context, snap) {
+        info("StreamBuilder data: ${snap.data}");
+        return builder(snap.data);
+      },
+    );
+  }
 }
