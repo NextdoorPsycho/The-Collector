@@ -5,6 +5,8 @@ import 'package:libadwaita/libadwaita.dart';
 import 'package:padded/padded.dart';
 import 'package:the_collector/functions/functions_file_interaction.dart';
 import 'package:the_collector/pages/screen_templates/template_settings_page.dart';
+import 'package:the_collector/theme/color.dart';
+import 'package:the_collector/theme/toastification.dart';
 
 enum FileVisibility { public, private, either }
 
@@ -16,53 +18,75 @@ class FlapListing extends StatefulWidget {
 }
 
 class _FlapListingState extends State<FlapListing> {
-  List<Map<String, dynamic>> userFiles = [];
-  bool isLoading = true; // Added flag to track loading state
+  Map<String, String> publicFiles = {};
+  Map<String, String> privateFiles = {};
+  bool isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    loadUserFiles(); // Trigger async operation to load files
+    loadUserFiles();
   }
 
   Future<void> loadUserFiles() async {
-    // Asynchronously load user files and update the state
-    userFiles = await FileListBuilder.generateUserFileList(FileVisibility.either);
+    Map<String, String> loadedPublicFiles = await FileListBuilder.generateUserFileList(FileVisibility.public);
+    Map<String, String> loadedPrivateFiles = await FileListBuilder.generateUserFileList(FileVisibility.private);
+    info('Public files: $loadedPublicFiles');
+    info('Private files: $loadedPrivateFiles');
     setState(() {
-      isLoading = false; // Update loading flag when done
+      publicFiles = loadedPublicFiles;
+      privateFiles = loadedPrivateFiles;
+      isLoading = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // Display loading indicator while data is loading
     if (isLoading) {
       return const Scaffold(
         body: Center(child: CircularProgressIndicator()),
       );
     }
 
-    // Once data is loaded, display your actual UI
     return Scaffold(
       body: BlankListingPage(groups: [
         const SizedBox(height: 12),
         AdwPreferencesGroup(
-          title: 'Files',
-          description: 'Your uploaded files are all stored here. You can manage them here.',
-          children: userFiles.isEmpty
+          title: 'Public Files',
+          description: 'Your public files are accessible to everyone.',
+          children: publicFiles.isEmpty
               ? [
                   const Center(
                       child: PaddingAll(
                     padding: 10,
                     child: Text(
-                      'You have no files in storage, please upload some!',
+                      'You have no public files in storage.',
                       style: TextStyle(
                         fontSize: 16,
                       ),
                     ),
                   )),
                 ]
-              : FileListBuilder.buildFileList(context, userFiles),
+              : FileListBuilder.buildFileList(context, publicFiles, true),
+        ),
+        const Divider(),
+        AdwPreferencesGroup(
+          title: 'Private Files',
+          description: 'Your private files are only accessible to you.',
+          children: privateFiles.isEmpty
+              ? [
+                  const Center(
+                      child: PaddingAll(
+                    padding: 10,
+                    child: Text(
+                      'You have no private files in storage.',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  )),
+                ]
+              : FileListBuilder.buildFileList(context, privateFiles, false),
         ),
       ]),
     );
@@ -70,78 +94,69 @@ class _FlapListingState extends State<FlapListing> {
 }
 
 class FileListBuilder {
-  static Future<List<Map<String, dynamic>>> generateUserFileList(FileVisibility visibility) async {
-    if (visibility == FileVisibility.either) {
-      Map<String, String> publicFiles = await getPublicFiles();
-      Map<String, String> privateFiles = await getPrivateFiles();
-
-      List<Map<String, dynamic>> files = [];
-
-      for (var entry in publicFiles.entries) {
-        files.add({'name': entry.key, 'isPublic': true, 'link': entry.value});
-      }
-
-      for (var entry in privateFiles.entries) {
-        files.add({'name': entry.key, 'isPublic': false, 'link': entry.value});
-      }
-
-      return files;
-    } else if (visibility == FileVisibility.public) {
-      Map<String, String> publicFiles = await getPublicFiles();
-
-      return publicFiles.entries.map((entry) {
-        return {'name': entry.key, 'isPublic': true, 'link': entry.value};
-      }).toList();
-    } else if (visibility == FileVisibility.private) {
-      Map<String, String> publicFiles = await getPublicFiles();
-
-      return publicFiles.entries.map((entry) {
-        return {'name': entry.key, 'isPublic': false, 'link': entry.value};
-      }).toList();
-    } else {
-      Map<String, String> privateFiles = await getPrivateFiles();
-
-      return privateFiles.entries.map((entry) {
-        return {'name': entry.key, 'isPublic': false, 'link': entry.value};
-      }).toList();
+  static Future<Map<String, String>> generateUserFileList(FileVisibility visibility) async {
+    switch (visibility) {
+      case FileVisibility.public:
+        return await getPublicFiles();
+      case FileVisibility.private:
+        return await getPrivateFiles();
+      default:
+        return {};
     }
   }
 
-  static List<Widget> buildFileList(BuildContext context, List<Map<String, dynamic>> files) {
-    return files.map((file) {
+  static List<Widget> buildFileList(BuildContext context, Map<String, String> files, bool isPublic) {
+    return files.entries.map((entry) {
       return StatefulBuilder(
         builder: (context, setState) {
           return Theme(
             data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
             child: ExpansionTile(
-              title: Text(file['name']),
+              title: Text(entry.key),
               children: [
-                ListTile(
-                  title: const Text('Is the file public?'),
-                  trailing: AdwSwitch(
-                    value: file['isPublic'],
-                    onChanged: (value) {
-                      // Update the state of the file on Firebase
-                      setState(() {
-                        file['isPublic'] = value;
-                      });
-                    },
-                  ),
-                ),
-                if (file['isPublic'])
-                  Divider(
-                    color: context.borderColor,
-                    height: 10,
-                  ),
-                if (file['isPublic'])
+                if (isPublic)
                   ListTile(
-                    title: const Text('Copy file link'),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.copy),
+                    title: AdwButton(
                       onPressed: () async {
-                        Clipboard.setData(ClipboardData(text: file['link']));
-                        info('Link copied: ${file['link']}');
+                        Clipboard.setData(ClipboardData(text: entry.value));
+                        Toast.infoToast(context, "Link Copied", "Link Copied: ${entry.value}");
                       },
+                      child: const Text('Copy Link'),
+                    ),
+                    trailing: AdwButton(
+                      backgroundColor: MyColors.red4,
+                      onPressed: () async {
+                        deleteFile(context, "user/$uid/${UploadType.public.name}/${entry.key}").then((value) {
+                          setState(() {
+                            files.remove(entry.key);
+                          });
+                        });
+                        Toast.scaryToast(context, "File deleted", 'Deleted ${entry.key}');
+                      },
+                      child: const Text('Delete File'),
+                    ),
+                  ),
+                if (!isPublic)
+                  ListTile(
+                    title: AdwButton(
+                      onPressed: () async {
+                        Clipboard.setData(ClipboardData(text: entry.value));
+                        info('Link Copied: ${entry.value}');
+                        Toast.infoToast(context, "Link Copied", "Link Copied: ${entry.value}");
+                      },
+                      child: const Text('Copy Link'),
+                    ),
+                    trailing: AdwButton(
+                      backgroundColor: MyColors.red4,
+                      onPressed: () async {
+                        deleteFile(context, "user/$uid/${UploadType.private.name}/${entry.key}").then((value) {
+                          setState(() {
+                            files.remove(entry.key);
+                          });
+                        });
+                        Toast.scaryToast(context, "File deleted", 'Deleted ${entry.key}');
+                      },
+                      child: const Text('Delete File'),
                     ),
                   ),
               ],

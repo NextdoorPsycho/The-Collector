@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:the_collector/data/user_manager.dart';
 import 'package:the_collector/pages/adw_home.dart';
 import 'package:the_collector/pages/screen_templates/template_simple.dart';
+import 'package:toastification/toastification.dart';
 
 class AutoSignInPage extends StatefulWidget {
   const AutoSignInPage({super.key, required this.themeNotifier});
@@ -70,7 +71,13 @@ class _AutoSignInPageState extends State<AutoSignInPage> with SingleTickerProvid
       body: Stack(
         children: [
           // Load the actual app behind the screen
-          AdwHomePage(themeNotifier: widget.themeNotifier),
+          ToastificationConfigProvider(
+            config: const ToastificationConfig(
+              itemWidth: 500,
+              animationDuration: Duration(milliseconds: 500),
+            ),
+            child: AdwHomePage(themeNotifier: widget.themeNotifier),
+          ),
           // Conditionally show the loading screen based on the flag
           if (_showLoadingScreen)
             FadeTransition(

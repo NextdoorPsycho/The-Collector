@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:the_collector/functions/functions_upload.dart';
+import 'package:the_collector/functions/functions_file_interaction.dart';
 import 'package:the_collector/pages/screen_templates/template_dual_simple.dart';
+import 'package:the_collector/theme/toastification.dart';
 
 class FlapUpload extends StatefulWidget {
   const FlapUpload({
@@ -23,6 +24,7 @@ class _FlapUploadState extends State<FlapUpload> {
           footer: TextButton(
             onPressed: () {
               uploadFiles(context: context, uploadType: UploadType.private);
+              Toast.infoToast(context, "Select your file, and wait!", "You can select multiple!");
             },
             child: const Text('Upload (PRIVATE)'),
           ),
@@ -30,6 +32,7 @@ class _FlapUploadState extends State<FlapUpload> {
           secondTitle: 'Public Upload',
           secondFooter: TextButton(
             onPressed: () {
+              Toast.infoToast(context, "Select your file, and wait!", "You can select multiple!");
               uploadFiles(context: context, uploadType: UploadType.public);
             },
             child: const Text('Upload (PUBLIC)'),
