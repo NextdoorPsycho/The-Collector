@@ -3,7 +3,8 @@ import 'package:the_collector/theme/color.dart';
 import 'package:toastification/toastification.dart';
 
 class Toast {
-  static void infoToast(BuildContext context, String title, String description) {
+  static void infoToast(
+      BuildContext context, String title, String description) {
     ThemeData theme = Theme.of(context);
     toastification.show(
       context: context,
@@ -35,7 +36,8 @@ class Toast {
     );
   }
 
-  static void warningToast(BuildContext context, String title, String description) {
+  static void warningToast(
+      BuildContext context, String title, String description) {
     toastification.show(
       context: context,
       type: ToastificationType.warning,
@@ -51,7 +53,8 @@ class Toast {
     );
   }
 
-  static void scaryToast(BuildContext context, String title, String description) {
+  static void scaryToast(
+      BuildContext context, String title, String description) {
     toastification.show(
       context: context,
       type: ToastificationType.error,
@@ -67,7 +70,8 @@ class Toast {
     );
   }
 
-  static void successToast(BuildContext context, String title, String description) {
+  static void successToast(
+      BuildContext context, String title, String description) {
     toastification.show(
       context: context,
       type: ToastificationType.success,

@@ -13,7 +13,8 @@ class FlapWelcome extends StatefulWidget {
   _FlapWelcomeState createState() => _FlapWelcomeState();
 }
 
-class _FlapWelcomeState extends State<FlapWelcome> with SingleTickerProviderStateMixin {
+class _FlapWelcomeState extends State<FlapWelcome>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
   bool _isAnimating = false;

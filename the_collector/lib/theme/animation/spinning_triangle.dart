@@ -16,7 +16,8 @@ class SpinningTriangle extends StatefulWidget {
   _SpinningTriangleState createState() => _SpinningTriangleState();
 }
 
-class _SpinningTriangleState extends State<SpinningTriangle> with SingleTickerProviderStateMixin {
+class _SpinningTriangleState extends State<SpinningTriangle>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
 

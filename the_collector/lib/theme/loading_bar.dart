@@ -100,7 +100,8 @@ class _CupertinoProgressBarRenderObjectWidget extends LeafRenderObjectWidget {
   }
 
   @override
-  void updateRenderObject(BuildContext context, _RenderCupertinoProgressBar renderObject) {
+  void updateRenderObject(
+      BuildContext context, _RenderCupertinoProgressBar renderObject) {
     renderObject
       ..value = value
       ..valueColor = valueColor
@@ -157,6 +158,7 @@ class _RenderCupertinoProgressBar extends RenderBox {
 
   Color? get valueColor => _valueColor;
   Color? _valueColor;
+
   set valueColor(Color? value) {
     if (value == _valueColor) return;
     _valueColor = value;
@@ -165,6 +167,7 @@ class _RenderCupertinoProgressBar extends RenderBox {
 
   Color? get trackColor => _trackColor;
   Color? _trackColor;
+
   set trackColor(Color? value) {
     if (value == _trackColor) return;
     _trackColor = value;
@@ -173,6 +176,7 @@ class _RenderCupertinoProgressBar extends RenderBox {
 
   TextDirection get textDirection => _textDirection;
   TextDirection _textDirection;
+
   set textDirection(TextDirection value) {
     if (_textDirection == value) return;
     _textDirection = value;
@@ -180,7 +184,9 @@ class _RenderCupertinoProgressBar extends RenderBox {
   }
 
   double get _trackLeft => _kPadding;
+
   double get _trackRight => size.width - _kPadding;
+
   double? get _thumbCenter {
     double? visualPosition;
     switch (textDirection) {
@@ -223,12 +229,18 @@ class _RenderCupertinoProgressBar extends RenderBox {
 
     if (visualPosition > 0.0 && rightColor != null) {
       final Paint paint = Paint()..color = rightColor;
-      canvas.drawRRect(RRect.fromLTRBXY(trackLeft, trackTop, trackActive, trackBottom, 1.0, 1.0), paint);
+      canvas.drawRRect(
+          RRect.fromLTRBXY(
+              trackLeft, trackTop, trackActive, trackBottom, 1.0, 1.0),
+          paint);
     }
 
     if (visualPosition < 1.0 && leftColor != null) {
       final Paint paint = Paint()..color = leftColor;
-      canvas.drawRRect(RRect.fromLTRBXY(trackActive, trackTop, trackRight, trackBottom, 1.0, 1.0), paint);
+      canvas.drawRRect(
+          RRect.fromLTRBXY(
+              trackActive, trackTop, trackRight, trackBottom, 1.0, 1.0),
+          paint);
     }
   }
 }

@@ -15,7 +15,8 @@ class AutoSignInPage extends StatefulWidget {
   State<AutoSignInPage> createState() => _AutoSignInPageState();
 }
 
-class _AutoSignInPageState extends State<AutoSignInPage> with SingleTickerProviderStateMixin {
+class _AutoSignInPageState extends State<AutoSignInPage>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _opacityAnimation;
   bool _showLoadingScreen = true;
@@ -27,7 +28,8 @@ class _AutoSignInPageState extends State<AutoSignInPage> with SingleTickerProvid
       vsync: this,
       duration: const Duration(milliseconds: 1000),
     );
-    _opacityAnimation = Tween<double>(begin: 2.0, end: 0.0).animate(_animationController);
+    _opacityAnimation =
+        Tween<double>(begin: 2.0, end: 0.0).animate(_animationController);
     _autoSignIn();
   }
 

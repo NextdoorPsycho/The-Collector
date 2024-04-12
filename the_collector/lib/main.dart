@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:phoenix_native/phoenix_native.dart';
+import 'package:restart_app/restart_app.dart';
 import 'package:the_collector/data/user_manager.dart';
 import 'package:the_collector/firebase_options.dart';
 import 'package:the_collector/pages/adw_home.dart';
@@ -31,7 +31,7 @@ class MyAdwApp extends StatefulWidget {
 class SignOutManager {
   static void signOut(BuildContext context) {
     FirebaseAuth.instance.signOut();
-    PhoenixNative.restartApp();
+    Restart.restartApp();
   }
 }
 
@@ -54,7 +54,8 @@ class _MyAdwAppState extends State<MyAdwApp> {
               builder: (_, ThemeMode currentMode, __) {
                 return MaterialApp(
                   debugShowCheckedModeBanner: false,
-                  home: snapshot.hasData ? _buildMainApp() : _buildSignInScreen(),
+                  home:
+                      snapshot.hasData ? _buildMainApp() : _buildSignInScreen(),
                   darkTheme: MyThemeData.dark(fontFamily: 'akz'),
                   theme: MyThemeData.light(fontFamily: 'akz'),
                   themeMode: currentMode,

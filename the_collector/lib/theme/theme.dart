@@ -28,7 +28,8 @@ class MyThemeData {
     brightness: Brightness.dark,
   );
 
-  static ShapeBorder getDialogShape([Color color = Colors.white]) => RoundedRectangleBorder(
+  static ShapeBorder getDialogShape([Color color = Colors.white]) =>
+      RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(6),
         side: BorderSide(color: color.withOpacity(0.2)),
       );
@@ -190,7 +191,9 @@ class MyThemeData {
           ),
         ),
         bottomAppBarTheme: BottomAppBarTheme(color: _darkColorScheme.surface),
-        colorScheme: _darkColorScheme.copyWith(background: _darkColorScheme.background).copyWith(error: _darkColorScheme.error),
+        colorScheme: _darkColorScheme
+            .copyWith(background: _darkColorScheme.background)
+            .copyWith(error: _darkColorScheme.error),
       );
 
   // Special casing some widgets to get the desired Adwaita look
