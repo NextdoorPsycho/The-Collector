@@ -1,6 +1,8 @@
+import 'dart:io';
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart';
-import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
 
 class OCRUtilities {
@@ -11,8 +13,6 @@ class OCRUtilities {
       multipleObjects: true,
     ),
   );
-  final TextRecognizer textRecognizer =
-      TextRecognizer(script: TextRecognitionScript.latin);
 
   Future<List<DetectedObject>> processImageObjects(
       InputImage inputImage) async {
@@ -21,71 +21,84 @@ class OCRUtilities {
     return objects;
   }
 
-  Future<String> processTextRecognition(InputImage inputImage) async {
-    final recognizedText = await textRecognizer.processImage(inputImage);
-    return recognizedText.text;
-  }
-
   Future<void> pickAndProcessImage(BuildContext context) async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       final InputImage inputImage = InputImage.fromFilePath(image.path);
       final objects = await processImageObjects(inputImage);
-      final Map<String, String> objectTexts = {};
-      int objectId = 1;
-
-      for (var object in objects) {
-        final cropRect = Rect.fromLTWH(
-          object.boundingBox.left,
-          object.boundingBox.top,
-          object.boundingBox.width,
-          object.boundingBox.height,
-        );
-        final croppedInputImage = InputImage.fromFilePath(
-          image.path,
-          inputImageData: InputImageData(
-            size: Size(object.boundingBox.width, object.boundingBox.height),
-            inputImageFormat: InputImageFormat.raw,
-            imageRotation: InputImageRotation.rotation0deg,
-          ),
-          region: cropRect,
-        );
-        final text = await processTextRecognition(croppedInputImage);
-        objectTexts['ob$objectId'] = text;
-        objectId++;
-      }
-
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => DisplayTextsScreen(objectTexts: objectTexts),
+          builder: (context) =>
+              DisplayPictureScreen(imagePath: image.path, objects: objects),
         ),
       );
     }
   }
 }
 
-class DisplayTextsScreen extends StatelessWidget {
-  final Map<String, String> objectTexts;
+class DisplayPictureScreen extends StatelessWidget {
+  final String imagePath;
+  final List<DetectedObject> objects;
 
-  const DisplayTextsScreen({Key? key, required this.objectTexts})
+  const DisplayPictureScreen(
+      {Key? key, required this.imagePath, required this.objects})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Detected Texts')),
-      body: ListView.builder(
-        itemCount: objectTexts.length,
-        itemBuilder: (context, index) {
-          String key = objectTexts.keys.elementAt(index);
-          return ListTile(
-            title: Text(key),
-            subtitle: Text(objectTexts[key] ?? 'No text detected'),
-          );
+      appBar: AppBar(title: Text('Detected Objects')),
+      body: FutureBuilder<ui.Image>(
+        future: loadImage(File(imagePath)),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done &&
+              snapshot.hasData) {
+            return Center(
+              child: CustomPaint(
+                foregroundPainter: ObjectPainter(snapshot.data!, objects),
+                child: Image.file(File(imagePath), fit: BoxFit.contain),
+              ),
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
         },
       ),
     );
   }
+
+  Future<ui.Image> loadImage(File image) async {
+    final data = await image.readAsBytes();
+    return await decodeImageFromList(data);
+  }
+}
+
+class ObjectPainter extends CustomPainter {
+  final ui.Image image;
+  final List<DetectedObject> objects;
+
+  ObjectPainter(this.image, this.objects);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.red
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2.0;
+
+    for (var object in objects) {
+      final rect = Rect.fromLTWH(
+        object.boundingBox.left * size.width / image.width,
+        object.boundingBox.top * size.height / image.height,
+        object.boundingBox.width * size.width / image.width,
+        object.boundingBox.height * size.height / image.height,
+      );
+      canvas.drawRect(rect, paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
