@@ -6,6 +6,7 @@ import 'package:the_collector/data/user_manager.dart';
 import 'package:the_collector/main.dart';
 import 'package:the_collector/pages/flap/fake_settings.dart';
 import 'package:the_collector/pages/flap/flap_admin.dart';
+import 'package:the_collector/pages/flap/flap_card.dart';
 import 'package:the_collector/pages/flap/flap_collection.dart';
 import 'package:the_collector/pages/flap/flap_scan_collection.dart';
 import 'package:the_collector/pages/flap/flap_welcome.dart';
@@ -182,6 +183,9 @@ class _AdwHomePageState extends State<AdwHomePage> {
             const AdwSidebarItem(
               label: 'Card Collection',
             ),
+            const AdwSidebarItem(
+              label: 'Card',
+            ),
             if (isAdmin)
               const AdwSidebarItem(
                 label: 'Settings Breakdown',
@@ -200,6 +204,7 @@ class _AdwHomePageState extends State<AdwHomePage> {
             const FlapWelcome(), // landing page
             if (!kIsWeb) const FlapScanCollection(),
             const FlapCollection(),
+            const FlapCard(),
             if (isAdmin) const FakeSettings(),
             if (isAdmin) const FlapAdmin(),
           ],
