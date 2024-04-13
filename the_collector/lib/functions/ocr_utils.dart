@@ -183,15 +183,13 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
   }
 
   Future<List<MtgCard>> _processCards(List<File> croppedImages) async {
-    List<MtgCard> cards = [];
-    for (var image in croppedImages) {
+    final cardFutures = croppedImages.map((image) async {
       final extractedLines = await _performTextOCR(image);
-      final card = await CardSearch.searchMostConfidentCard(extractedLines);
-      if (card != null) {
-        cards.add(card);
-      }
-    }
-    return cards;
+      return CardSearch.searchMostConfidentCard(extractedLines);
+    });
+
+    final cards = await Future.wait(cardFutures);
+    return cards.whereType<MtgCard>().toList();
   }
 
   Future<List<String>> _performTextOCR(File image) async {
@@ -218,9 +216,7 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
   Future<List<File>> cropImages(
       File image, List<DetectedObject> objects) async {
     final ui.Image originalImage = await loadImage(image);
-    final croppedImages = <File>[];
-
-    for (var object in objects) {
+    final croppedImageFutures = objects.map((object) async {
       final rect = Rect.fromLTWH(
         object.boundingBox.left,
         object.boundingBox.top,
@@ -244,13 +240,13 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
           await croppedImage.toByteData(format: ui.ImageByteFormat.png);
       final tempDir = await getTemporaryDirectory();
       final file =
-          await File('${tempDir.path}/cropped_${croppedImages.length}.png')
+          await File('${tempDir.path}/cropped_${objects.indexOf(object)}.png')
               .create();
       await file.writeAsBytes(byteData!.buffer.asUint8List());
-      croppedImages.add(file);
-    }
+      return file;
+    });
 
-    return croppedImages;
+    return Future.wait(croppedImageFutures);
   }
 
   Future<ui.Image> loadImage(File image) async {
