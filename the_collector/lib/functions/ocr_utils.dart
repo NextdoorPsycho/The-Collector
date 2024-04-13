@@ -50,8 +50,7 @@ class DisplayPictureScreen extends StatefulWidget {
   final List<DetectedObject> objects;
 
   const DisplayPictureScreen(
-      {Key? key, required this.imagePath, required this.objects})
-      : super(key: key);
+      {super.key, required this.imagePath, required this.objects});
 
   @override
   _DisplayPictureScreenState createState() => _DisplayPictureScreenState();
@@ -59,7 +58,7 @@ class DisplayPictureScreen extends StatefulWidget {
 
 class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
   List<MtgCard> _cardList = [];
-  List<MtgCard> _selectedCards = [];
+  final List<MtgCard> _selectedCards = [];
   Future<List<MtgCard>>? _cardsFuture;
 
   @override
@@ -74,13 +73,14 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
     return _processCards(croppedImages);
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cards Found'),
         actions: [
           Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 30, 0),
+              padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
               child: AdwButton(
                 child: Text('Selected (${_selectedCards.length})'),
               ))
@@ -122,7 +122,7 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
                               color: Colors.black.withOpacity(0.1),
                               spreadRadius: 1,
                               blurRadius: 6,
-                              offset: Offset(0, 2),
+                              offset: const Offset(0, 2),
                             ),
                           ],
                         ),
@@ -262,7 +262,7 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
 class CardDetailsScreen extends StatelessWidget {
   final List<String> lines;
 
-  const CardDetailsScreen({Key? key, required this.lines}) : super(key: key);
+  const CardDetailsScreen({super.key, required this.lines});
 
   @override
   Widget build(BuildContext context) {

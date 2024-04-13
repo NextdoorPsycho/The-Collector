@@ -49,6 +49,7 @@ dependencies:
   xl: ^0.9.1
   foil: ^0.9.0+1
   sensors_plus: ^1.4.1
+  infinite_carousel: ^1.1.1
 
 
 dev_dependencies:
