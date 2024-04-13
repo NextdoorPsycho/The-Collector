@@ -858,11 +858,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: HEAD
-      resolved-ref: "2dc7a87b2c6d61db03751b8b926658624c2c9411"
+      ref: master
+      resolved-ref: "2128cfc5a5968f4e8fd66c98c054fc75279f3c9d"
       url: "https://github.com/ArcaneArts/magic_card.git"
     source: git
-    version: "1.0.0"
+    version: "1.0.1+dev.2"
   matcher:
     dependency: transitive
     description:

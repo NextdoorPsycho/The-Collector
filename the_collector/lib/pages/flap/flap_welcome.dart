@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:libadwaita/libadwaita.dart';
 import 'package:the_collector/data/user_manager.dart';
+import 'package:the_collector/functions/ocr_utils.dart';
 import 'package:the_collector/pages/screen_templates/template_animate_simple.dart';
 import 'package:the_collector/theme/color.dart';
 
@@ -56,30 +57,45 @@ class _FlapWelcomeState extends State<FlapWelcome>
     }
   }
 
+  getCards() async {
+    // final mostConfidentCard = await CardSearch.searchMostConfidentCard(
+    //     List.of(['Rotat', 'firepl', 'TIME', 'number']));
+    // info('Most Confident Card: ${mostConfidentCard?.name}');
+
+    OCRUtilities().pickAndProcessImage(context);
+    //should be
+  }
+
   @override
   Widget build(BuildContext context) {
     return UserManager.streamAdminStatus().build((admin) {
       final iconColor = admin == true ? MyColors.red5 : context.textColor;
-      return AnimatedSimpleScreen(
-        image: GestureDetector(
-          onTap: _startAnimation,
-          child: AnimatedBuilder(
-            animation: _animation,
-            builder: (context, child) {
-              return Transform(
-                alignment: const Alignment(0, 0.23),
-                transform: Matrix4.rotationZ(_animation.value + pi),
-                child: Icon(
-                  Icons.change_history_sharp,
-                  size: 200,
-                  color: iconColor,
-                ),
-              );
-            },
-          ),
+      return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: getCards,
+          child: const Icon(Icons.play_arrow),
         ),
-        title: 'The Collector',
-        description: 'Store Everything.',
+        body: AnimatedSimpleScreen(
+          image: GestureDetector(
+            onTap: _startAnimation,
+            child: AnimatedBuilder(
+              animation: _animation,
+              builder: (context, child) {
+                return Transform(
+                  alignment: const Alignment(0, 0.23),
+                  transform: Matrix4.rotationZ(_animation.value + pi),
+                  child: Icon(
+                    Icons.change_history_sharp,
+                    size: 200,
+                    color: iconColor,
+                  ),
+                );
+              },
+            ),
+          ),
+          title: 'The Collector',
+          description: 'Store Everything.',
+        ),
       );
     });
   }

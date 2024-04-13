@@ -4,8 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fast_log/fast_log.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:magic_card/magic_card.dart';
 import 'package:scryfall_api/scryfall_api.dart';
-import 'package:the_collector/functions/scryfall_card_tools.dart';
 import 'package:throttled/throttled.dart';
 
 class UserManager {
@@ -77,9 +77,6 @@ class UserManager {
       return Stream.value({});
     }
 
-    final scryfall =
-        Scryfall(ScryfallApiClient()); // Create an instance of Scryfall
-
     return FirebaseFirestore.instance
         .collection('user')
         .doc(uid)
@@ -95,8 +92,8 @@ class UserManager {
 
         if (quantity > 0) {
           try {
-            MtgCard? card = await scryfall
-                .getCardByID(cardId); // Use the instance to call the method
+            MtgCard? card = await CardSearch.getCardByID(
+                cardId); // Use the instance to call the method
             if (card != null) {
               cardCountMap[card] = quantity; // Map the card to its count
             }

@@ -14,7 +14,9 @@ dependencies:
   libadwaita:
     git: https://github.com/NextdoorPsycho/libadwaita-io.git
   magic_card:
-    git: https://github.com/ArcaneArts/magic_card.git
+    git:
+      url: https://github.com/ArcaneArts/magic_card.git
+      ref: master
   toxic: ^1.1.0
   provider: ^6.1.2
   build_runner: ^2.4.8
