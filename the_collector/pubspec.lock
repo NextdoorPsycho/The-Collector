@@ -1112,7 +1112,7 @@ packages:
     source: hosted
     version: "2.0.0"
   sensors_plus:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: sensors_plus
       sha256: "362c8f4f001838b90dd5206b898bbad941bc0142479eab9a3415f0f79e622908"

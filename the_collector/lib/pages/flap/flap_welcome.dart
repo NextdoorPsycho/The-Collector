@@ -58,12 +58,7 @@ class _FlapWelcomeState extends State<FlapWelcome>
   }
 
   getCards() async {
-    // final mostConfidentCard = await CardSearch.searchMostConfidentCard(
-    //     List.of(['Rotat', 'firepl', 'TIME', 'number']));
-    // info('Most Confident Card: ${mostConfidentCard?.name}');
-
     OCRUtilities().pickAndProcessImage(context);
-    //should be
   }
 
   @override
