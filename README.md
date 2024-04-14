@@ -1,4 +1,4 @@
 # The Collector
-This app is designed to upload and contain the files you want to manage.
-Check it out:
-[https://the-collector-app.web.app/#/home](https://the-collector-app.web.app/)https://the-collector-app.web.app/
+This app is designed to hopefully be a multi-purpose MTG/TCG app for managing a collection, and being what all the other shitty apps do, but better!
+
+[image](https://storage.googleapis.com/psycho_upload/ShareX/2024/04/Vysor_Dd4ItMGnIU.png)
