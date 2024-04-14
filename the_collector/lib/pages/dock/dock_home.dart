@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:the_collector/pages/screen_templates/template_animate_simple.dart';
 import 'package:the_collector/theme/color.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
-import 'package:the_collector/utils/functions/ocr_utils.dart';
 
 class FlapWelcome extends StatefulWidget {
   const FlapWelcome({super.key});
@@ -54,10 +53,6 @@ class _FlapWelcomeState extends State<FlapWelcome>
       });
       _animationController.forward(from: 0);
     }
-  }
-
-  getCards() async {
-    OCRUtilities().pickAndProcessImage(context);
   }
 
   @override
