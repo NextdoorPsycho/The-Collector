@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:the_collector/pages/adw_home.dart';
-import 'package:the_collector/pages/screen_templates/template_simple.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
 import 'package:toastification/toastification.dart';
 
@@ -26,7 +23,7 @@ class _AutoSignInPageState extends State<AutoSignInPage>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1),
     );
     _opacityAnimation =
         Tween<double>(begin: 2.0, end: 0.0).animate(_animationController);
@@ -41,9 +38,6 @@ class _AutoSignInPageState extends State<AutoSignInPage>
 
   Future<void> _autoSignIn() async {
     changeTheme();
-
-    // Simulate a delay to show the loading screen
-    await Future.delayed(const Duration(milliseconds: 500));
 
     // Start the fade-out animation
     await _animationController.forward();
@@ -80,31 +74,6 @@ class _AutoSignInPageState extends State<AutoSignInPage>
             ),
             child: TheCollectorHomePage(themeNotifier: widget.themeNotifier),
           ),
-          // Conditionally show the loading screen based on the flag
-          if (_showLoadingScreen)
-            FadeTransition(
-              opacity: _opacityAnimation,
-              child: Center(
-                child: Container(
-                  color: theme.colorScheme.background,
-                  child: SimpleScreen(
-                    image: Padding(
-                      padding: const EdgeInsets.only(top: 65),
-                      child: Transform(
-                        alignment: Alignment.center,
-                        transform: Matrix4.rotationZ(pi), // Rotate 180 degrees
-                        child: const Icon(
-                          Icons.change_history_sharp,
-                          size: 130, // Set the icon size
-                        ),
-                      ),
-                    ),
-                    title: '',
-                    description: '',
-                  ),
-                ),
-              ),
-            ),
         ],
       ),
     );
