@@ -71,19 +71,16 @@ class _AppHomeState extends State<AppHome> {
           ],
           buttonData: [
             PandaBarButtonData(
-              id: '0',
-              icon: Icons.style_outlined,
-              title: 'Cards',
-            ),
+                id: '0', icon: Icons.style_outlined, title: 'Collection'),
             PandaBarButtonData(
               id: '1',
-              icon: Icons.import_export,
-              title: 'Prices',
+              icon: Icons.games_outlined,
+              title: 'Dice',
             ),
             PandaBarButtonData(
               id: '2',
-              icon: Icons.inbox_outlined,
-              title: 'Decks',
+              icon: Icons.menu_book_outlined,
+              title: 'Rules',
             ),
             PandaBarButtonData(
               id: '3',

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_collector/pages/dock/collection/collection_home.dart';
+import 'package:the_collector/pages/collection/collection_home.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
 import 'package:toastification/toastification.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pandabar/main.view.dart';
 import 'package:pandabar/model.dart';
-import 'package:the_collector/pages/dock/collection/collection_landing.dart';
+import 'package:the_collector/pages/collection/collection_landing.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
 
 class CollectionHomePage extends StatefulWidget {
@@ -73,12 +73,12 @@ class _CollectionHomePageState extends State<CollectionHomePage> {
             PandaBarButtonData(
               id: '1',
               icon: Icons.add_circle_outline,
-              title: '+Cards',
+              title: 'Cards',
             ),
             PandaBarButtonData(
               id: '2',
-              icon: Icons.input_outlined,
-              title: 'Import',
+              icon: Icons.inbox_outlined,
+              title: 'Decks',
             ),
             PandaBarButtonData(
               id: '3',
