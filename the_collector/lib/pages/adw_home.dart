@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pandabar/main.view.dart';
 import 'package:pandabar/model.dart';
 import 'package:the_collector/pages/dock/dock_home.dart';
-import 'package:the_collector/pages/dock/dock_settings.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
-import 'package:the_collector/utils/functions/ocr_utils.dart';
 
 class TheCollectorHomePage extends StatefulWidget {
   const TheCollectorHomePage({super.key, required this.themeNotifier});
@@ -46,22 +44,22 @@ class _MaterialHomePageState extends State<TheCollectorHomePage> {
   @override
   Widget build(BuildContext context) {
     return UserManager.streamAdminStatus().build((admin) {
+      final isAdmin = admin ?? false;
+
       return Scaffold(
         body: IndexedStack(
           index: _currentIndex,
-          children: [
-            const FlapWelcome(),
-            const FlapWelcome(),
-            const FlapWelcome(),
-            DockSettings(themeNotifier: widget.themeNotifier),
+          children: const [
+            FlapWelcome(),
+            FlapWelcome(),
+            FlapWelcome(),
+            FlapWelcome(),
           ],
         ),
         bottomNavigationBar: PandaBar(
-          onFabButtonPressed: () async {
-            OCRUtilities().pickAndProcessImage(context);
-          },
+          onFabButtonPressed: () async {},
           fabIcon: Icon(
-            Icons.document_scanner_outlined,
+            Icons.add_card_sharp,
             color: Theme.of(context).colorScheme.surface,
           ),
           fabColors: [
@@ -76,8 +74,8 @@ class _MaterialHomePageState extends State<TheCollectorHomePage> {
             ),
             PandaBarButtonData(
               id: '1',
-              icon: Icons.import_export,
-              title: 'Prices',
+              icon: Icons.document_scanner_outlined,
+              title: 'Scan-In',
             ),
             PandaBarButtonData(
               id: '2',
