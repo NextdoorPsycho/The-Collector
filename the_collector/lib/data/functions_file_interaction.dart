@@ -35,6 +35,22 @@ class CardFunctions {
 
       await collectionRef.set({'quantity': FieldValue.increment(quantity)},
           SetOptions(merge: true));
+      await collectionRef.set({'set-id': card.set}, SetOptions(merge: true));
+      await collectionRef.set({'name': card.name}, SetOptions(merge: true));
+      await collectionRef.set({'foil': card.foil}, SetOptions(merge: true));
+      await collectionRef
+          .set({'image': card.imageUris!.normal}, SetOptions(merge: true));
+      await collectionRef.set({'rarity': card.rarity}, SetOptions(merge: true));
+      await collectionRef.set({'type': card.typeLine}, SetOptions(merge: true));
+      await collectionRef.set({'colors': card.colors}, SetOptions(merge: true));
+      await collectionRef.set({'cmc': card.cmc}, SetOptions(merge: true));
+      await collectionRef
+          .set({'mana-cost': card.manaCost}, SetOptions(merge: true));
+      await collectionRef
+          .set({'oracle-text': card.oracleText}, SetOptions(merge: true));
+      await collectionRef.set({'power': card.power}, SetOptions(merge: true));
+      await collectionRef
+          .set({'toughness': card.toughness}, SetOptions(merge: true));
 
       Toast.successToast(context, "Collection updated",
           "Added $quantity of $card.id to the collection.");

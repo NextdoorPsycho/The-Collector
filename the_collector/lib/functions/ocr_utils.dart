@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui' as ui;
 
+import 'package:fast_log/fast_log.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
@@ -22,18 +23,24 @@ class OCRUtilities {
 
   Future<List<DetectedObject>> _processImageObjects(
       InputImage inputImage) async {
+    Stopwatch stopwatch = Stopwatch()..start();
     final objects = await _objectDetector.processImage(inputImage);
-    debugPrint('Objects found: ${objects.length}');
+    stopwatch.stop();
+    info('Processing time: ${stopwatch.elapsedMilliseconds} ms');
+    info('Objects found: ${objects.length}');
     return objects;
   }
 
   Future<void> pickAndProcessImage(BuildContext context) async {
+    Stopwatch stopwatch = Stopwatch()..start();
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.camera);
     if (image != null) {
       final InputImage inputImage = InputImage.fromFilePath(image.path);
       final objects = await _processImageObjects(inputImage);
       await _objectDetector.close();
+      stopwatch.stop();
+      info('Total operation time: ${stopwatch.elapsedMilliseconds} ms');
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -216,7 +223,9 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
   Future<List<File>> cropImages(
       File image, List<DetectedObject> objects) async {
     final ui.Image originalImage = await loadImage(image);
-    final croppedImageFutures = objects.map((object) async {
+    final tempDir = await getTemporaryDirectory();
+
+    Future<File> cropAndSaveImage(DetectedObject object) async {
       final rect = Rect.fromLTWH(
         object.boundingBox.left,
         object.boundingBox.top,
@@ -238,21 +247,22 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
           await picture.toImage(rect.width.toInt(), rect.height.toInt());
       final byteData =
           await croppedImage.toByteData(format: ui.ImageByteFormat.png);
-      final tempDir = await getTemporaryDirectory();
-      final file =
-          await File('${tempDir.path}/cropped_${objects.indexOf(object)}.png')
-              .create();
+      croppedImage.dispose(); // Dispose of the cropped image to free up memory
+
+      final filePath = '${tempDir.path}/cropped_${objects.indexOf(object)}.png';
+      final file = await File(filePath).create();
       await file.writeAsBytes(byteData!.buffer.asUint8List());
       return file;
-    });
+    }
 
+    final croppedImageFutures = objects.map(cropAndSaveImage);
     return Future.wait(croppedImageFutures);
   }
+}
 
-  Future<ui.Image> loadImage(File image) async {
-    final data = await image.readAsBytes();
-    return await decodeImageFromList(data);
-  }
+Future<ui.Image> loadImage(File image) async {
+  final data = await image.readAsBytes();
+  return await decodeImageFromList(data);
 }
 
 class CardDetailsScreen extends StatelessWidget {
@@ -274,7 +284,7 @@ class CardDetailsScreen extends StatelessWidget {
                 child: CardView(
                   id: card.id,
                   flat: true,
-                  size: ImageVersion.normal,
+                  size: ImageVersion.small,
                   foil: false,
                 ),
               );

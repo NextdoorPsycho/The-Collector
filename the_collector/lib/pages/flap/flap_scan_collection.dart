@@ -1,8 +1,8 @@
 import 'package:fast_log/fast_log.dart';
 import 'package:flutter/material.dart';
 import 'package:scryfall_api/scryfall_api.dart';
+import 'package:the_collector/data/functions_file_interaction.dart';
 import 'package:the_collector/data/user_manager.dart';
-import 'package:the_collector/functions/functions_file_interaction.dart';
 
 class FlapScanCollection extends StatefulWidget {
   const FlapScanCollection({
