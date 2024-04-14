@@ -3,18 +3,17 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:the_collector/nav_util.dart';
 import 'package:the_collector/pages/screen_templates/template_animate_simple.dart';
-import 'package:the_collector/theme/color.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
 import 'package:the_collector/utils/functions/ocr_utils.dart';
 
-class FlapWelcome extends StatefulWidget {
-  const FlapWelcome({super.key});
+class AdminZone extends StatefulWidget {
+  const AdminZone({super.key});
 
   @override
-  _FlapWelcomeState createState() => _FlapWelcomeState();
+  _AdminZoneState createState() => _AdminZoneState();
 }
 
-class _FlapWelcomeState extends State<FlapWelcome>
+class _AdminZoneState extends State<AdminZone>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
@@ -40,7 +39,7 @@ class _FlapWelcomeState extends State<FlapWelcome>
         });
         bool isAdmin = await UserManager.streamAdminStatus().first;
         if (isAdmin) {
-          Nav.goToAdmin(context);
+          Nav.goToHome(context);
         }
       }
     });
@@ -68,9 +67,7 @@ class _FlapWelcomeState extends State<FlapWelcome>
   @override
   Widget build(BuildContext context) {
     return UserManager.streamAdminStatus().build((admin) {
-      final iconColor = admin == true
-          ? MyColors.red4
-          : Theme.of(context).textTheme.bodyLarge!.color;
+      final iconColor = Theme.of(context).textTheme.bodyLarge!.color;
       return Scaffold(
         body: AnimatedSimpleScreen(
           image: GestureDetector(
@@ -90,8 +87,8 @@ class _FlapWelcomeState extends State<FlapWelcome>
               },
             ),
           ),
-          title: 'The Collector',
-          description: 'Store Everything.',
+          title: 'The Director',
+          description: 'Manage Everything',
         ),
       );
     });
