@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:libadwaita/libadwaita.dart';
 
 class BlankListingPage extends StatefulWidget {
   final List<Widget> groups;
@@ -13,9 +12,13 @@ class BlankListingPage extends StatefulWidget {
 class _BlankListingPageState extends State<BlankListingPage> {
   @override
   Widget build(BuildContext context) {
-    return AdwClamp.scrollable(
-      child: Column(
-        children: widget.groups,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: widget.groups,
+        ),
       ),
     );
   }

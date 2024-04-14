@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:libadwaita/libadwaita.dart';
-import 'package:the_collector/theme/loading_bar.dart';
 
 class SimpleDualPercentScreen extends StatelessWidget {
   const SimpleDualPercentScreen({
@@ -26,10 +24,10 @@ class SimpleDualPercentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: AdwClamp.scrollable(
-        child: ListView(
-          shrinkWrap: true,
+    return SingleChildScrollView(
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             _buildSection(
               context,
@@ -38,10 +36,11 @@ class SimpleDualPercentScreen extends StatelessWidget {
               description,
               footer,
             ),
-            CupertinoProgressBar(
-              valueColor: context.textColor,
-              trackColor: context.borderColor,
+            LinearProgressIndicator(
               value: percent ?? 0.01,
+              backgroundColor: Theme.of(context).dividerColor,
+              valueColor: AlwaysStoppedAnimation<Color>(
+                  Theme.of(context).textTheme.bodyText1!.color!),
             ),
             _buildSection(
               context,
@@ -76,11 +75,16 @@ class SimpleDualPercentScreen extends StatelessWidget {
           if (title != null)
             Text(
               title,
-              style: Theme.of(context).textTheme.displayLarge,
+              style: Theme.of(context).textTheme.headlineLarge,
+              textAlign: TextAlign.center,
             ),
           if (description != null) ...[
             const SizedBox(height: 15),
-            Text(description, textAlign: TextAlign.center),
+            Text(
+              description,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
           ],
           if (footer != null) ...[
             SizedBox(height: description != null ? 20 : 40),

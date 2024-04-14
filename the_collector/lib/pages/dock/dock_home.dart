@@ -1,11 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:libadwaita/libadwaita.dart';
-import 'package:the_collector/data/user_manager.dart';
-import 'package:the_collector/functions/ocr_utils.dart';
 import 'package:the_collector/pages/screen_templates/template_animate_simple.dart';
 import 'package:the_collector/theme/color.dart';
+import 'package:the_collector/utils/data/user_manager.dart';
+import 'package:the_collector/utils/functions/ocr_utils.dart';
 
 class FlapWelcome extends StatefulWidget {
   const FlapWelcome({super.key});
@@ -64,12 +63,10 @@ class _FlapWelcomeState extends State<FlapWelcome>
   @override
   Widget build(BuildContext context) {
     return UserManager.streamAdminStatus().build((admin) {
-      final iconColor = admin == true ? MyColors.red5 : context.textColor;
+      final iconColor = admin == true
+          ? MyColors.red4
+          : Theme.of(context).textTheme.bodyLarge!.color;
       return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: getCards,
-          child: const Icon(Icons.play_arrow),
-        ),
         body: AnimatedSimpleScreen(
           image: GestureDetector(
             onTap: _startAnimation,

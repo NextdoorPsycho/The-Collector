@@ -5,7 +5,7 @@ import 'dart:ui';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
-import 'package:the_collector/pages/flap/subpage/ocr/coordinate_translator.dart';
+import 'package:the_collector/utils/ocr/coordinate_translator.dart';
 
 class TextRecognizerPainter extends CustomPainter {
   TextRecognizerPainter(

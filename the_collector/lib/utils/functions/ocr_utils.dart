@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:libadwaita/libadwaita.dart';
 import 'package:magic_card/magic_card.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:scryfall_api/scryfall_api.dart';
@@ -87,10 +86,12 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
         title: const Text('Cards Found'),
         actions: [
           Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
-              child: AdwButton(
-                child: Text('Selected (${_selectedCards.length})'),
-              ))
+            padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
+            child: TextButton(
+              onPressed: () {},
+              child: Text('Selected (${_selectedCards.length})'),
+            ),
+          ),
         ],
       ),
       body: FutureBuilder<List<MtgCard>>(
@@ -100,7 +101,7 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
               cardSnapshot.hasData) {
             _cardList = cardSnapshot.data!;
             return GridView.builder(
-              padding: const EdgeInsets.only(top: 5, bottom: 5),
+              padding: const EdgeInsets.only(top: 8, bottom: 8),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 0.85,
@@ -108,7 +109,7 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
               itemCount: _cardList.length,
               itemBuilder: (context, index) {
                 final card = _cardList[index];
-                return InkWell(
+                return GestureDetector(
                   onTap: () {
                     setState(() {
                       if (_selectedCards.contains(card)) {
@@ -118,42 +119,35 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
                       }
                     });
                   },
-                  child: Stack(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              spreadRadius: 1,
-                              blurRadius: 6,
-                              offset: const Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: CardView(
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    elevation: 2,
+                    child: Stack(
+                      children: [
+                        CardView(
                           id: card.id,
                           flat: false,
                           size: ImageVersion.normal,
                           foil: false,
                         ),
-                      ),
-                      if (_selectedCards.contains(card))
-                        const Positioned(
-                          top: 8,
-                          right: 8,
-                          child: Icon(Icons.check_circle, color: Colors.green),
-                        ),
-                    ],
+                        if (_selectedCards.contains(card))
+                          const Positioned(
+                            top: 8,
+                            right: 8,
+                            child:
+                                Icon(Icons.check_circle, color: Colors.green),
+                          ),
+                      ],
+                    ),
                   ),
                 );
               },
             );
           } else {
-            return Center(
-              child: SpinningTriangle(iconColor: context.textColor),
+            return const Center(
+              child: CircularProgressIndicator(),
             );
           }
         },
@@ -295,7 +289,9 @@ class CardDetailsScreen extends StatelessWidget {
             }
           } else {
             return Center(
-              child: SpinningTriangle(iconColor: context.textColor),
+              child: SpinningTriangle(
+                iconColor: Theme.of(context).textTheme.bodyLarge!.color!,
+              ),
             );
           }
         },

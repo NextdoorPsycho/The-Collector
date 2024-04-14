@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:libadwaita/libadwaita.dart';
 
 class ListScreen extends StatelessWidget {
   const ListScreen({
@@ -28,21 +27,45 @@ class ListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AdwClamp.scrollable(
+    return SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 12),
-          AdwPreferencesGroup(
-            title: title,
-            description: description,
-            children: [
-              footer ?? const SizedBox(),
-            ],
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    description,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  if (footer != null) ...[
+                    const SizedBox(height: 16),
+                    footer!,
+                  ],
+                ],
+              ),
+            ),
           ),
           const Divider(),
-          AdwPreferencesGroup(
-            children: subpages.isNotEmpty ? subpages : [const SizedBox()],
-          ),
+          if (subpages.isNotEmpty)
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: subpages,
+                ),
+              ),
+            ),
         ],
       ),
     );

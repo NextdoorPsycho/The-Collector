@@ -4,10 +4,10 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:restart_app/restart_app.dart';
-import 'package:the_collector/data/user_manager.dart';
 import 'package:the_collector/firebase_options.dart';
 import 'package:the_collector/pages/adw_home.dart';
 import 'package:the_collector/theme/theme.dart';
+import 'package:the_collector/utils/data/user_manager.dart';
 import 'package:universal_io/io.dart';
 
 final providers = [EmailAuthProvider()];
@@ -56,8 +56,10 @@ class _MyAdwAppState extends State<MyAdwApp> {
                   debugShowCheckedModeBanner: false,
                   home:
                       snapshot.hasData ? _buildMainApp() : _buildSignInScreen(),
-                  darkTheme: MyThemeData.dark(fontFamily: 'akz'),
-                  theme: MyThemeData.light(fontFamily: 'akz'),
+                  darkTheme: MyThemeData.themeData(
+                      Brightness.dark), // Use themeData with Brightness.dark
+                  theme: MyThemeData.themeData(
+                      Brightness.light), // Use themeData with Brightness.light
                   themeMode: currentMode,
                 );
               },
@@ -80,6 +82,6 @@ class _MyAdwAppState extends State<MyAdwApp> {
   }
 
   Widget _buildMainApp() {
-    return AdwHomePage(themeNotifier: themeNotifier);
+    return TheCollectorHomePage(themeNotifier: themeNotifier);
   }
 }

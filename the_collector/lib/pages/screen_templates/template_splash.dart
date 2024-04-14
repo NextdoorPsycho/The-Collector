@@ -1,9 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:the_collector/data/user_manager.dart';
 import 'package:the_collector/pages/adw_home.dart';
 import 'package:the_collector/pages/screen_templates/template_simple.dart';
+import 'package:the_collector/utils/data/user_manager.dart';
 import 'package:toastification/toastification.dart';
 
 class AutoSignInPage extends StatefulWidget {
@@ -78,7 +78,7 @@ class _AutoSignInPageState extends State<AutoSignInPage>
               itemWidth: 500,
               animationDuration: Duration(milliseconds: 500),
             ),
-            child: AdwHomePage(themeNotifier: widget.themeNotifier),
+            child: TheCollectorHomePage(themeNotifier: widget.themeNotifier),
           ),
           // Conditionally show the loading screen based on the flag
           if (_showLoadingScreen)

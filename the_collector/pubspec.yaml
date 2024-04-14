@@ -11,8 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  libadwaita:
-    git: https://github.com/NextdoorPsycho/libadwaita-io.git
   magic_card:
     git:
       url: https://github.com/ArcaneArts/magic_card.git
@@ -49,7 +47,10 @@ dependencies:
   xl: ^0.9.1
   foil: ^0.9.0+1
   sensors_plus: ^1.4.1
-  infinite_carousel: ^1.1.1
+  flutter_minimalist: ^0.0.2
+  carousel_slider: ^4.2.1
+  pandabar: ^0.1.2
+
 
 
 dev_dependencies:

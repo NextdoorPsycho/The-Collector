@@ -1,5 +1,3 @@
-library foil_demo;
-
 import 'package:flutter/material.dart';
 import 'package:xl/xl.dart';
 
@@ -10,6 +8,7 @@ class TradingCard extends StatelessWidget {
     this.width,
     this.height,
     this.padding = const EdgeInsets.all(75.0),
+    this.borderRadius = 10.0,
   }) : super(key: key);
 
   /// A `String` representing a url leading to an image.
@@ -22,10 +21,13 @@ class TradingCard extends StatelessWidget {
   /// in the gradient shader to accommodate this widget's [XL] as it transforms.
   final EdgeInsets padding;
 
+  /// The border radius of the rounded corners.
+  final double borderRadius;
+
   @override
   Widget build(BuildContext context) {
     final image = Image.network(
-      card, // This frameBuilder simply fades in the photo when it loads.
+      card,
       frameBuilder: (_, child, currentFrame, wasSynchronouslyLoaded) {
         if (wasSynchronouslyLoaded) return child;
         return AnimatedOpacity(
@@ -53,7 +55,12 @@ class TradingCard extends StatelessWidget {
               xRotation: 1,
               yRotation: 0.6,
               zRotationByX: 0.5,
-              child: Center(child: image),
+              child: Center(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(borderRadius),
+                  child: image,
+                ),
+              ),
             )
           ],
         ),

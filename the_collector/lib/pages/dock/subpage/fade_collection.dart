@@ -1,10 +1,10 @@
 import 'dart:typed_data';
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:infinite_carousel/infinite_carousel.dart';
 import 'package:magic_card/magic_card.dart';
 import 'package:scryfall_api/scryfall_api.dart';
-import 'package:the_collector/data/user_manager.dart';
+import 'package:the_collector/utils/data/user_manager.dart';
 
 class FlapCollection extends StatefulWidget {
   const FlapCollection({super.key});
@@ -14,31 +14,24 @@ class FlapCollection extends StatefulWidget {
 }
 
 class _FlapCollectionState extends State<FlapCollection> {
-  late InfiniteScrollController _carouselController;
+  late CarouselController _carouselController;
 
   @override
   void initState() {
     super.initState();
-    _carouselController = InfiniteScrollController();
-  }
-
-  @override
-  void dispose() {
-    _carouselController.dispose();
-    super.dispose();
+    _carouselController = CarouselController();
   }
 
   Widget buildCarousel(List<Widget> cardWidgets) {
-    return SizedBox(
-      height: 225,
-      child: InfiniteCarousel.builder(
-        itemCount: cardWidgets.length,
-        itemExtent: 150,
-        loop: true,
-        center: true,
-        physics: const InfiniteScrollPhysics(),
-        controller: _carouselController,
-        itemBuilder: (context, itemIndex, realIndex) => cardWidgets[realIndex],
+    return CarouselSlider(
+      items: cardWidgets,
+      carouselController: _carouselController,
+      options: CarouselOptions(
+        autoPlay: false,
+        enlargeCenterPage: true,
+        viewportFraction: 0.8,
+        aspectRatio: 2.0,
+        initialPage: 2,
       ),
     );
   }

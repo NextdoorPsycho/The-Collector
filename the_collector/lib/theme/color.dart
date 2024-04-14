@@ -60,33 +60,33 @@ class MyColors {
 
   ///Light shades
   static const Color light1 = Color(0xFFffffff);
-  static const Color light2 = Color(0xFFf6f5f4);
-  static const Color light3 = Color(0xFFdeddda);
-  static const Color light4 = Color(0xFFc0bfbc);
-  static const Color light5 = Color(0xFF9a9996);
+  static const Color light2 = Color(0xfff4f4f6);
+  static const Color light3 = Color(0xffdadbde);
+  static const Color light4 = Color(0xffbcbdc0);
+  static const Color light5 = Color(0xff96979a);
 
   ///Dark shades
-  static const Color dark1 = Color(0xFF77767b);
-  static const Color dark2 = Color(0xFF5e5c64);
-  static const Color dark3 = Color(0xFF3d3846);
-  static const Color dark4 = Color(0xFF241f31);
+  static const Color dark1 = Color(0xff76777b);
+  static const Color dark2 = Color(0xff5c5d64);
+  static const Color dark3 = Color(0xff383a46);
+  static const Color dark4 = Color(0xff1f2231);
   static const Color dark5 = Color(0xFF000000);
 
   ///Background color
-  static const Color backgroundColor = Color(0xFFfafafa);
+  static const Color backgroundColor = Color(0xffffffff);
 
   ///Background dark color
-  static const Color darkBackgroundColor = Color(0xFF1B1B1B);
+  static const Color darkBackgroundColor = Color(0xFF000000);
 
   ///Card background color
-  static const Color cardBackground = Color(0xFFFFFFFF);
+  static const Color cardBackground = Color(0xFFF1F0F0);
 
   ///Card dark background color
 
-  static const Color darkCardBackground = Color(0xFF2B2B2B);
+  static const Color darkCardBackground = Color(0xFF181818);
 
   ///Header bar background color
-  static const Color headerBarBackground = Color(0xFFebebeb);
+  static const Color headerBarBackground = Color(0xffe1e1e1);
 
   ///Header bar foreground color
   static const Color headerBarForeground = Color(0x52000000);
@@ -102,7 +102,7 @@ class MyColors {
 
   ///View dark color
 
-  static const Color darkViewForeground = Color(0xFFBFBFBF);
+  static const Color darkViewForeground = Color(0xFFE8E8E8);
 
   ///Button color
   static Color button = viewForeground.withAlpha(25);

@@ -27,12 +27,14 @@ class _FlapCardState extends State<FlapCard> {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else {
           final randomCard = snapshot.data!;
-          return CardView(
-            id: randomCard.id,
-            back: false,
-            foil: true,
-            interactive3D: false,
-            interactive: false,
+          return Center(
+            child: CardView(
+              id: randomCard.id,
+              back: false,
+              foil: true,
+              interactive3D: false,
+              interactive: false,
+            ),
           );
         }
       },

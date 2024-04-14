@@ -1,8 +1,8 @@
 import 'package:fast_log/fast_log.dart';
 import 'package:flutter/material.dart';
 import 'package:scryfall_api/scryfall_api.dart';
-import 'package:the_collector/data/functions_file_interaction.dart';
-import 'package:the_collector/data/user_manager.dart';
+import 'package:the_collector/utils/data/functions_file_interaction.dart';
+import 'package:the_collector/utils/data/user_manager.dart';
 
 class FlapScanCollection extends StatefulWidget {
   const FlapScanCollection({
@@ -68,18 +68,6 @@ class _FlapScanCollectionState extends State<FlapScanCollection> {
                   );
                 },
               ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            MtgCard card = await ScryfallApiClient().getRandomCard();
-            info('Adding card to collection: $card');
-            CardFunctions.addCardToCollection(
-              quantity: 1,
-              card: card,
-              context: context,
-            );
-          },
-          child: const Icon(Icons.add),
-        ),
       );
     });
   }

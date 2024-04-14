@@ -177,6 +177,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.3"
+  carousel_slider:
+    dependency: "direct main"
+    description:
+      name: carousel_slider
+      sha256: "9c695cc963bf1d04a47bd6021f68befce8970bcd61d24938e1fb0918cf5d9c42"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.1"
   characters:
     dependency: transitive
     description:
@@ -289,14 +297,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.6"
-  dbus:
-    dependency: transitive
-    description:
-      name: dbus
-      sha256: "365c771ac3b0e58845f39ec6deebc76e3276aa9922b0cc60840712094d9047ac"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.10"
   dependency_validator:
     dependency: "direct dev"
     description:
@@ -547,6 +547,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_minimalist:
+    dependency: "direct main"
+    description:
+      name: flutter_minimalist
+      sha256: b467d71d6f3bdd1a2e2473fd04eb7740a105ea3e94ef688f222f359a25de46ed
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -637,14 +645,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
-  gsettings:
-    dependency: transitive
-    description:
-      name: gsettings
-      sha256: "1b0ce661f5436d2db1e51f3c4295a49849f03d304003a7ba177d01e3a858249c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.8"
   http:
     dependency: transitive
     description:
@@ -749,14 +749,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1+1"
-  infinite_carousel:
-    dependency: "direct main"
-    description:
-      name: infinite_carousel
-      sha256: "572967b028f4803e5f4be9adee5760b6c4834eb6912b0f2292f2d93a51912ba0"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.1"
   intl:
     dependency: transitive
     description:
@@ -813,23 +805,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
-  libadwaita:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: a3e9a9d8ef3bb1a7b65e78560c82ebf3084558ce
-      url: "https://github.com/NextdoorPsycho/libadwaita-io.git"
-    source: git
-    version: "2.0.2"
-  libadwaita_core:
-    dependency: transitive
-    description:
-      name: libadwaita_core
-      sha256: "1a7689e4130e96be4b0ec615863fded25cd86c2b95a682e7cec9659d420de37c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.4"
   lints:
     dependency: transitive
     description:
@@ -919,22 +894,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
-  package_info_plus:
-    dependency: transitive
-    description:
-      name: package_info_plus
-      sha256: "7e76fad405b3e4016cd39d08f455a4eb5199723cf594cd1b8916d47140d93017"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.2.0"
-  package_info_plus_platform_interface:
-    dependency: transitive
-    description:
-      name: package_info_plus_platform_interface
-      sha256: "9bc8ba46813a4cc42c66ab781470711781940780fd8beddd0c3da62506d3a6c6"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
   padded:
     dependency: "direct main"
     description:
@@ -943,6 +902,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  pandabar:
+    dependency: "direct main"
+    description:
+      name: pandabar
+      sha256: bb5f394bc1c1c6779af042c3b3edc09a2610b146a0b3e06a9f1f67bd35bd33c0
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.2"
   path:
     dependency: "direct main"
     description:
@@ -1055,14 +1022,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
-  popover_gtk:
-    dependency: transitive
-    description:
-      name: popover_gtk
-      sha256: c293bfa3bcb9436fe189f20f6397199ce996ba40d4b081e26793adcf3ceac45b
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.6+3"
   provider:
     dependency: "direct main"
     description:

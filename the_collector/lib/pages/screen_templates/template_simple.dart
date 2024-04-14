@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:libadwaita/libadwaita.dart';
 
 class SimpleScreen extends StatelessWidget {
   const SimpleScreen({
@@ -30,32 +29,42 @@ class SimpleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: AdwClamp.scrollable(
-        child: Column(
-          children: [
-            if (image != null) ...[
-              image!,
-              const SizedBox(height: 30),
-            ],
-            Text(
-              title,
-              style: Theme.of(context).textTheme.displayLarge,
-            ),
-            const SizedBox(height: 15),
-            Text(description, textAlign: TextAlign.center),
-            if (secondDescription != null) ...[
-              const SizedBox(height: 20),
+    return SingleChildScrollView(
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (image != null) ...[
+                image!,
+                const SizedBox(height: 30),
+              ],
               Text(
-                secondDescription!,
-                style: Theme.of(context).textTheme.displayMedium,
+                title,
+                style: Theme.of(context).textTheme.headlineLarge,
+                textAlign: TextAlign.center,
               ),
+              const SizedBox(height: 15),
+              Text(
+                description,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              if (secondDescription != null) ...[
+                const SizedBox(height: 20),
+                Text(
+                  secondDescription!,
+                  style: Theme.of(context).textTheme.headlineMedium,
+                  textAlign: TextAlign.center,
+                ),
+              ],
+              if (footer != null) ...[
+                SizedBox(height: secondDescription != null ? 20 : 40),
+                footer!,
+              ],
             ],
-            if (footer != null) ...[
-              SizedBox(height: secondDescription != null ? 20 : 40),
-              footer!,
-            ],
-          ],
+          ),
         ),
       ),
     );
