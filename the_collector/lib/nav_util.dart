@@ -12,4 +12,8 @@ class Nav {
   static void goToAdmin(BuildContext context) {
     Navigator.of(context).pushReplacementNamed('/admin');
   }
+
+  static void goToCollection(BuildContext context) {
+    Navigator.of(context).pushNamed('/collection');
+  }
 }

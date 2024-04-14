@@ -30,41 +30,39 @@ class SimpleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (image != null) ...[
-                image!,
-                const SizedBox(height: 30),
-              ],
-              Text(
-                title,
-                style: Theme.of(context).textTheme.headlineLarge,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 15),
-              Text(
-                description,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-              if (secondDescription != null) ...[
-                const SizedBox(height: 20),
-                Text(
-                  secondDescription!,
-                  style: Theme.of(context).textTheme.headlineMedium,
-                  textAlign: TextAlign.center,
-                ),
-              ],
-              if (footer != null) ...[
-                SizedBox(height: secondDescription != null ? 20 : 40),
-                footer!,
-              ],
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (image != null) ...[
+              image!,
+              const SizedBox(height: 30),
             ],
-          ),
+            Text(
+              title,
+              style: Theme.of(context).textTheme.headlineLarge,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 15),
+            Text(
+              description,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            if (secondDescription != null) ...[
+              const SizedBox(height: 20),
+              Text(
+                secondDescription!,
+                style: Theme.of(context).textTheme.headlineMedium,
+                textAlign: TextAlign.center,
+              ),
+            ],
+            if (footer != null) ...[
+              SizedBox(height: secondDescription != null ? 20 : 40),
+              footer!,
+            ],
+          ],
         ),
       ),
     );

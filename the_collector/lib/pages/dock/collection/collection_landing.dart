@@ -6,14 +6,14 @@ import 'package:the_collector/pages/screen_templates/template_animate_simple.dar
 import 'package:the_collector/utils/data/user_manager.dart';
 import 'package:the_collector/utils/functions/ocr_utils.dart';
 
-class AdminHome extends StatefulWidget {
-  const AdminHome({super.key});
+class CollectionZone extends StatefulWidget {
+  const CollectionZone({super.key});
 
   @override
-  _AdminHomeState createState() => _AdminHomeState();
+  _CollectionZoneState createState() => _CollectionZoneState();
 }
 
-class _AdminHomeState extends State<AdminHome>
+class _CollectionZoneState extends State<CollectionZone>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
@@ -69,26 +69,19 @@ class _AdminHomeState extends State<AdminHome>
     return UserManager.streamAdminStatus().build((admin) {
       final iconColor = Theme.of(context).textTheme.bodyLarge!.color;
       return Scaffold(
-        body: AnimatedSimpleScreen(
-          image: GestureDetector(
-            onTap: _startAnimation,
-            child: AnimatedBuilder(
-              animation: _animation,
-              builder: (context, child) {
-                return Transform(
-                  alignment: const Alignment(0, 0.23),
-                  transform: Matrix4.rotationZ(_animation.value + pi),
-                  child: Icon(
-                    Icons.change_history_sharp,
-                    size: 200,
-                    color: iconColor,
-                  ),
-                );
-              },
-            ),
+        // add a back arrow in the app bar
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
-          title: 'The Director',
-          description: 'Manage Everything',
+          title: const Text('Leave Collections'),
+        ),
+        body: const AnimatedSimpleScreen(
+          title: 'The Placeholder',
+          description: 'Im ready to die!',
         ),
       );
     });

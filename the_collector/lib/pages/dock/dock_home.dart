@@ -1,8 +1,8 @@
 import 'dart:math';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:the_collector/nav_util.dart';
-import 'package:the_collector/pages/screen_templates/template_animate_simple.dart';
 import 'package:the_collector/theme/color.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
 import 'package:the_collector/utils/functions/ocr_utils.dart';
@@ -72,26 +72,79 @@ class _FlapWelcomeState extends State<FlapWelcome>
           ? MyColors.red4
           : Theme.of(context).textTheme.bodyLarge!.color;
       return Scaffold(
-        body: AnimatedSimpleScreen(
-          image: GestureDetector(
-            onTap: _startAnimation,
-            child: AnimatedBuilder(
-              animation: _animation,
-              builder: (context, child) {
-                return Transform(
-                  alignment: const Alignment(0, 0.23),
-                  transform: Matrix4.rotationZ(_animation.value + pi),
-                  child: Icon(
-                    Icons.change_history_sharp,
-                    size: 200,
-                    color: iconColor,
-                  ),
-                );
-              },
+        body: Stack(
+          alignment: Alignment.center,
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 65, 16, 0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 180,
+                      child: GestureDetector(
+                        onTap: _startAnimation,
+                        child: AnimatedBuilder(
+                          animation: _animation,
+                          builder: (context, child) {
+                            return Transform(
+                              alignment: const Alignment(0, 0.23),
+                              transform:
+                                  Matrix4.rotationZ(_animation.value + pi),
+                              child: Icon(
+                                Icons.change_history_sharp,
+                                size: 200,
+                                color: iconColor,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 50),
+                    Text(
+                      'The Collector',
+                      style: Theme.of(context).textTheme.headlineLarge,
+                    ),
+                    const SizedBox(height: 15),
+                    AnimatedTextKit(
+                      animatedTexts: [
+                        TypewriterAnimatedText(
+                          'Collect Everything.',
+                          cursor: '|',
+                          textAlign: TextAlign.left,
+                          speed: const Duration(milliseconds: 50),
+                        ),
+                      ],
+                      totalRepeatCount: 1,
+                      pause: const Duration(milliseconds: 1000),
+                      displayFullTextOnTap: true,
+                      stopPauseOnTap: true,
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
-          title: 'The Collector',
-          description: 'Store Everything.',
+            Positioned(
+              bottom: 90,
+              child: MaterialButton(
+                color: Theme.of(context).colorScheme.onBackground,
+                onPressed: () {
+                  //Navigate to the collection page
+                  Nav.goToCollection(context);
+                },
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  "See Collection",
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.background),
+                ),
+              ),
+            ),
+          ],
         ),
       );
     });

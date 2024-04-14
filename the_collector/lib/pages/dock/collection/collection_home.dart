@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:pandabar/main.view.dart';
 import 'package:pandabar/model.dart';
-import 'package:the_collector/pages/admin/admin_landing.dart';
+import 'package:the_collector/pages/dock/collection/collection_landing.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
 
-class TheAdminZonePage extends StatefulWidget {
-  const TheAdminZonePage({super.key, required this.themeNotifier});
+class CollectionHomePage extends StatefulWidget {
+  const CollectionHomePage({super.key, required this.themeNotifier});
 
   final ValueNotifier<ThemeMode> themeNotifier;
 
   @override
-  State<TheAdminZonePage> createState() => _TheAdminZonePageState();
+  State<CollectionHomePage> createState() => _CollectionHomePageState();
 }
 
-class _TheAdminZonePageState extends State<TheAdminZonePage> {
+class _CollectionHomePageState extends State<CollectionHomePage> {
   int _currentIndex = 0;
 
   late ThemeMode _initialThemeMode;
@@ -48,16 +48,16 @@ class _TheAdminZonePageState extends State<TheAdminZonePage> {
         body: IndexedStack(
           index: _currentIndex,
           children: const [
-            AdminHome(),
-            AdminHome(),
-            AdminHome(),
-            AdminHome(),
+            CollectionZone(),
+            CollectionZone(),
+            CollectionZone(),
+            CollectionZone(),
           ],
         ),
         bottomNavigationBar: PandaBar(
           onFabButtonPressed: () async {},
           fabIcon: Icon(
-            Icons.shield_outlined,
+            Icons.style_outlined,
             color: Theme.of(context).colorScheme.surface,
           ),
           fabColors: [
@@ -67,23 +67,23 @@ class _TheAdminZonePageState extends State<TheAdminZonePage> {
           buttonData: [
             PandaBarButtonData(
               id: '0',
-              icon: Icons.admin_panel_settings_outlined,
-              title: 'Admin',
+              icon: Icons.view_array_outlined,
+              title: 'Collection',
             ),
             PandaBarButtonData(
               id: '1',
-              icon: Icons.admin_panel_settings_outlined,
-              title: 'Admin',
+              icon: Icons.add_circle_outline,
+              title: '+Cards',
             ),
             PandaBarButtonData(
               id: '2',
-              icon: Icons.admin_panel_settings_outlined,
-              title: 'Admin',
+              icon: Icons.input_outlined,
+              title: 'Import',
             ),
             PandaBarButtonData(
               id: '3',
-              icon: Icons.admin_panel_settings_outlined,
-              title: 'Admin',
+              icon: Icons.output_outlined,
+              title: 'Export',
             ),
           ],
           onChange: (id) {

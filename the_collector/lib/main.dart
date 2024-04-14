@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:the_collector/firebase_options.dart';
 import 'package:the_collector/pages/admin/admin_home.dart';
 import 'package:the_collector/pages/adw_home.dart';
+import 'package:the_collector/pages/dock/collection/collection_home.dart';
 import 'package:the_collector/theme/theme.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
 import 'package:universal_io/io.dart';
@@ -55,8 +56,10 @@ class _MyAdwAppState extends State<MyAdwApp> {
                   routes: {
                     '/login': (context) => _buildSignInScreen(),
                     '/home': (context) => _buildMainApp(),
+                    '/collection': (context) =>
+                        CollectionHomePage(themeNotifier: themeNotifier),
                     '/admin': (context) =>
-                        TheAdminHomePage(themeNotifier: themeNotifier),
+                        TheAdminZonePage(themeNotifier: themeNotifier),
                   },
                   onGenerateRoute: (settings) {
                     switch (settings.name) {
@@ -66,10 +69,14 @@ class _MyAdwAppState extends State<MyAdwApp> {
                       case '/home':
                         return MaterialPageRoute(
                             builder: (_) => _buildMainApp());
+                      case '/collection':
+                        return MaterialPageRoute(
+                            builder: (_) => CollectionHomePage(
+                                themeNotifier: themeNotifier));
                       case '/admin':
                         return MaterialPageRoute(
                             builder: (_) =>
-                                TheAdminHomePage(themeNotifier: themeNotifier));
+                                TheAdminZonePage(themeNotifier: themeNotifier));
                       default:
                         return MaterialPageRoute(
                             builder: (_) => _buildSignInScreen());
@@ -96,7 +103,7 @@ class _MyAdwAppState extends State<MyAdwApp> {
   }
 
   Widget _buildMainApp() {
-    return TheCollectorHomePage(themeNotifier: themeNotifier);
+    return AppHome(themeNotifier: themeNotifier);
   }
 }
 
