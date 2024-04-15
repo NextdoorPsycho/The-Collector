@@ -1,19 +1,19 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:the_collector/nav_util.dart';
-import 'package:the_collector/pages/screen_templates/template_animate_simple.dart';
+import 'package:the_collector/pages/nav_util.dart';
+import 'package:the_collector/theme/screen_templates/template_animate_simple.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
 import 'package:the_collector/utils/functions/ocr_utils.dart';
 
-class AdminHome extends StatefulWidget {
-  const AdminHome({super.key});
+class AdminUsers extends StatefulWidget {
+  const AdminUsers({super.key});
 
   @override
-  _AdminHomeState createState() => _AdminHomeState();
+  _AdminUsersState createState() => _AdminUsersState();
 }
 
-class _AdminHomeState extends State<AdminHome>
+class _AdminUsersState extends State<AdminUsers>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;

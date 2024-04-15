@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:pandabar/main.view.dart';
 import 'package:pandabar/model.dart';
-import 'package:the_collector/pages/collection/collection_landing.dart';
+import 'package:the_collector/pages/collection/collection_cards.dart';
+import 'package:the_collector/pages/collection/collection_decks.dart';
+import 'package:the_collector/pages/collection/collection_prices.dart';
+import 'package:the_collector/pages/collection/collection_shops.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
+import 'package:the_collector/utils/functions/ocr_utils.dart';
 
-class CollectionHomePage extends StatefulWidget {
-  const CollectionHomePage({super.key, required this.themeNotifier});
+class CollectionHub extends StatefulWidget {
+  const CollectionHub({super.key, required this.themeNotifier});
 
   final ValueNotifier<ThemeMode> themeNotifier;
 
   @override
-  State<CollectionHomePage> createState() => _CollectionHomePageState();
+  State<CollectionHub> createState() => _CollectionHubState();
 }
 
-class _CollectionHomePageState extends State<CollectionHomePage> {
+class _CollectionHubState extends State<CollectionHub> {
   int _currentIndex = 0;
 
   late ThemeMode _initialThemeMode;
@@ -48,16 +52,18 @@ class _CollectionHomePageState extends State<CollectionHomePage> {
         body: IndexedStack(
           index: _currentIndex,
           children: const [
-            CollectionZone(),
-            CollectionZone(),
-            CollectionZone(),
-            CollectionZone(),
+            CollectionCards(),
+            CollectionDecks(),
+            CollectionPrices(),
+            CollectionShops(),
           ],
         ),
         bottomNavigationBar: PandaBar(
-          onFabButtonPressed: () async {},
+          onFabButtonPressed: () async {
+            OCRUtilities().pickAndProcessImage(context);
+          },
           fabIcon: Icon(
-            Icons.style_outlined,
+            Icons.sensor_window_outlined,
             color: Theme.of(context).colorScheme.surface,
           ),
           fabColors: [
@@ -67,23 +73,23 @@ class _CollectionHomePageState extends State<CollectionHomePage> {
           buttonData: [
             PandaBarButtonData(
               id: '0',
-              icon: Icons.view_array_outlined,
-              title: 'Collection',
-            ),
-            PandaBarButtonData(
-              id: '1',
-              icon: Icons.add_circle_outline,
+              icon: Icons.style_outlined,
               title: 'Cards',
             ),
             PandaBarButtonData(
-              id: '2',
+              id: '1',
               icon: Icons.inbox_outlined,
               title: 'Decks',
             ),
             PandaBarButtonData(
+              id: '2',
+              icon: Icons.attach_money_outlined,
+              title: 'Prices',
+            ),
+            PandaBarButtonData(
               id: '3',
-              icon: Icons.output_outlined,
-              title: 'Export',
+              icon: Icons.add_business_outlined,
+              title: 'Shops',
             ),
           ],
           onChange: (id) {

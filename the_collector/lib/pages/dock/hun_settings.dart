@@ -3,16 +3,16 @@ import 'package:the_collector/main.dart';
 import 'package:the_collector/theme/color.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
 
-class DockSettings extends StatefulWidget {
+class HubSettings extends StatefulWidget {
   final ValueNotifier<ThemeMode> themeNotifier;
 
-  const DockSettings({super.key, required this.themeNotifier});
+  const HubSettings({super.key, required this.themeNotifier});
 
   @override
-  _DockSettingsState createState() => _DockSettingsState();
+  _HubSettingsState createState() => _HubSettingsState();
 }
 
-class _DockSettingsState extends State<DockSettings> {
+class _HubSettingsState extends State<HubSettings> {
   late ThemeMode _initialThemeMode;
 
   @override

@@ -4,16 +4,16 @@ import 'package:scryfall_api/scryfall_api.dart';
 import 'package:the_collector/utils/data/functions_file_interaction.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
 
-class FlapScanCollection extends StatefulWidget {
-  const FlapScanCollection({
+class HubDice extends StatefulWidget {
+  const HubDice({
     super.key,
   });
 
   @override
-  _FlapScanCollectionState createState() => _FlapScanCollectionState();
+  _HubDiceState createState() => _HubDiceState();
 }
 
-class _FlapScanCollectionState extends State<FlapScanCollection> {
+class _HubDiceState extends State<HubDice> {
   @override
   Widget build(BuildContext c) {
     return UserManager.streamCollection().build((collection) {

@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:pandabar/main.view.dart';
 import 'package:pandabar/model.dart';
-import 'package:the_collector/pages/dock/dock_card.dart';
-import 'package:the_collector/pages/dock/dock_home.dart';
-import 'package:the_collector/pages/dock/dock_settings.dart';
+import 'package:the_collector/pages/admin/admin_users.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
-import 'package:the_collector/utils/functions/ocr_utils.dart';
 
-class AppHome extends StatefulWidget {
-  const AppHome({super.key, required this.themeNotifier});
+class AdminHub extends StatefulWidget {
+  const AdminHub({super.key, required this.themeNotifier});
 
   final ValueNotifier<ThemeMode> themeNotifier;
 
   @override
-  State<AppHome> createState() => _AppHomeState();
+  State<AdminHub> createState() => _AdminHubState();
 }
 
-class _AppHomeState extends State<AppHome> {
+class _AdminHubState extends State<AdminHub> {
   int _currentIndex = 0;
 
   late ThemeMode _initialThemeMode;
@@ -50,19 +47,17 @@ class _AppHomeState extends State<AppHome> {
       return Scaffold(
         body: IndexedStack(
           index: _currentIndex,
-          children: [
-            const FlapWelcome(),
-            const FlapCard(),
-            const FlapCard(),
-            DockSettings(themeNotifier: widget.themeNotifier)
+          children: const [
+            AdminUsers(),
+            AdminUsers(),
+            AdminUsers(),
+            AdminUsers(),
           ],
         ),
         bottomNavigationBar: PandaBar(
-          onFabButtonPressed: () async {
-            OCRUtilities().pickAndProcessImage(context);
-          },
+          onFabButtonPressed: () async {},
           fabIcon: Icon(
-            Icons.document_scanner_outlined,
+            Icons.shield_outlined,
             color: Theme.of(context).colorScheme.surface,
           ),
           fabColors: [
@@ -71,21 +66,24 @@ class _AppHomeState extends State<AppHome> {
           ],
           buttonData: [
             PandaBarButtonData(
-                id: '0', icon: Icons.style_outlined, title: 'Collection'),
+              id: '0',
+              icon: Icons.admin_panel_settings_outlined,
+              title: 'Admin',
+            ),
             PandaBarButtonData(
               id: '1',
-              icon: Icons.games_outlined,
-              title: 'Dice',
+              icon: Icons.admin_panel_settings_outlined,
+              title: 'Admin',
             ),
             PandaBarButtonData(
               id: '2',
-              icon: Icons.menu_book_outlined,
-              title: 'Rules',
+              icon: Icons.admin_panel_settings_outlined,
+              title: 'Admin',
             ),
             PandaBarButtonData(
               id: '3',
-              icon: Icons.settings_outlined,
-              title: 'Settings',
+              icon: Icons.admin_panel_settings_outlined,
+              title: 'Admin',
             ),
           ],
           onChange: (id) {

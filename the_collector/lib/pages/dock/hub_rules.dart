@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:magic_card/magic_card.dart';
 import 'package:scryfall_api/scryfall_api.dart';
 
-class FlapCard extends StatefulWidget {
-  const FlapCard({super.key});
+class HubRules extends StatefulWidget {
+  const HubRules({super.key});
 
   @override
-  _FlapCardState createState() => _FlapCardState();
+  _HubRulesState createState() => _HubRulesState();
 }
 
-class _FlapCardState extends State<FlapCard> {
+class _HubRulesState extends State<HubRules> {
   final apiClient = ScryfallApiClient();
 
   Future<MtgCard> getRandomCard() async {

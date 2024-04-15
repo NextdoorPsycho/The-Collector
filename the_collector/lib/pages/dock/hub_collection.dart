@@ -2,19 +2,19 @@ import 'dart:math';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:the_collector/nav_util.dart';
+import 'package:the_collector/pages/nav_util.dart';
 import 'package:the_collector/theme/color.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
 import 'package:the_collector/utils/functions/ocr_utils.dart';
 
-class FlapWelcome extends StatefulWidget {
-  const FlapWelcome({super.key});
+class HubCollection extends StatefulWidget {
+  const HubCollection({super.key});
 
   @override
-  _FlapWelcomeState createState() => _FlapWelcomeState();
+  _HubCollectionState createState() => _HubCollectionState();
 }
 
-class _FlapWelcomeState extends State<FlapWelcome>
+class _HubCollectionState extends State<HubCollection>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;

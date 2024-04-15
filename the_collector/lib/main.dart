@@ -4,9 +4,9 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:the_collector/firebase_options.dart';
-import 'package:the_collector/pages/admin/admin_home.dart';
-import 'package:the_collector/pages/adw_home.dart';
-import 'package:the_collector/pages/collection/collection_home.dart';
+import 'package:the_collector/pages/admin/admin.dart';
+import 'package:the_collector/pages/collection/collection.dart';
+import 'package:the_collector/pages/dock/hub.dart';
 import 'package:the_collector/theme/theme.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
 import 'package:universal_io/io.dart';
@@ -57,9 +57,9 @@ class _MyAdwAppState extends State<MyAdwApp> {
                     '/login': (context) => _buildSignInScreen(),
                     '/home': (context) => _buildMainApp(),
                     '/collection': (context) =>
-                        CollectionHomePage(themeNotifier: themeNotifier),
+                        CollectionHub(themeNotifier: themeNotifier),
                     '/admin': (context) =>
-                        TheAdminZonePage(themeNotifier: themeNotifier),
+                        AdminHub(themeNotifier: themeNotifier),
                   },
                   onGenerateRoute: (settings) {
                     switch (settings.name) {
@@ -71,12 +71,12 @@ class _MyAdwAppState extends State<MyAdwApp> {
                             builder: (_) => _buildMainApp());
                       case '/collection':
                         return MaterialPageRoute(
-                            builder: (_) => CollectionHomePage(
-                                themeNotifier: themeNotifier));
+                            builder: (_) =>
+                                CollectionHub(themeNotifier: themeNotifier));
                       case '/admin':
                         return MaterialPageRoute(
                             builder: (_) =>
-                                TheAdminZonePage(themeNotifier: themeNotifier));
+                                AdminHub(themeNotifier: themeNotifier));
                       default:
                         return MaterialPageRoute(
                             builder: (_) => _buildSignInScreen());
@@ -103,7 +103,7 @@ class _MyAdwAppState extends State<MyAdwApp> {
   }
 
   Widget _buildMainApp() {
-    return AppHome(themeNotifier: themeNotifier);
+    return CollectorHub(themeNotifier: themeNotifier);
   }
 }
 

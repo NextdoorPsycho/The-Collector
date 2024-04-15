@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_collector/pages/collection/collection_home.dart';
+import 'package:the_collector/pages/collection/collection.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
 import 'package:toastification/toastification.dart';
 
@@ -72,7 +72,7 @@ class _AutoSignInPageState extends State<AutoSignInPage>
               itemWidth: 500,
               animationDuration: Duration(milliseconds: 500),
             ),
-            child: CollectionHomePage(themeNotifier: widget.themeNotifier),
+            child: CollectionHub(themeNotifier: widget.themeNotifier),
           ),
         ],
       ),
