@@ -31,8 +31,9 @@ Manage app settings to suit your preferences for various features, As you can se
 ![Settings Image](https://storage.googleapis.com/psycho_upload/ShareX/2024/04/Vysor_eq6h2lP34O.png)
 
 ### Admin Zone (Restricted) *assuming you are an admin of the app, (you likely wont be), This is what the admin pannel would look like. you get here by just tapping the icon*
+Admin controls for app management and user oversight. Only accessible to the app owner, ie ME, or anyone who i set to be that.
+
 ![Admin Zone Image](https://storage.googleapis.com/psycho_upload/ShareX/2024/04/Vysor_rf1R7KhioU.gif)
-Admin controls for app management and user oversight. Only accessible to the app owner.
 
 ## Contributors
 <table>
