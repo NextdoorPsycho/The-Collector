@@ -10,7 +10,8 @@ The Collector is a versatile app designed for TCG-Players and collectors. It enc
 *if i needed a "buisness lingo-style description, this is it ^*
 But all and all its a pocket companion.
 
-## Features
+### Home Page
+![Home Page](https://storage.googleapis.com/psycho_upload/ShareX/2024/04/Vysor_OEegXmurqL.png)
 
 ### Collection Zone
 - **Cards**: View and manage your entire card collection in one place.
