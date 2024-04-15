@@ -11,6 +11,7 @@ The Collector is a versatile app designed for TCG-Players and collectors. It enc
 But all and all its a pocket companion.
 
 ### Home Page
+
 ![Home Page](https://storage.googleapis.com/psycho_upload/ShareX/2024/04/Vysor_OEegXmurqL.png)
 
 ### Collection Zone
@@ -18,6 +19,7 @@ But all and all its a pocket companion.
 - **Decks**: Construct and customize your decks.
 - **Prices/Trends**: Stay updated with the latest market trends and card prices.
 - **TCG Shops**: Locate card shops and see their offerings.
+
 ![Collection Zone Image](https://storage.googleapis.com/psycho_upload/ShareX/2024/04/Vysor_Jxqs6CNJk7.png)
 
 ### Dice
@@ -25,6 +27,7 @@ But all and all its a pocket companion.
 - **Rolling**: A digital dice roller to support your gaming needs.
 - **Wireless**: Connect and synchronize the app across multiple devices.
 - **Settings**: Customize your dice rolling experience.
+
 ![Dice Image](link-to-dice-image) [no image yet!]
 
 ### Settings
