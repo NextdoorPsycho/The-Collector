@@ -15,8 +15,7 @@ class CollectionCards extends StatefulWidget {
 
 class _CollectionCardsState extends State<CollectionCards> {
   TextEditingController searchController = TextEditingController();
-  Map<MtgCard, int> cardCountMap =
-      {}; // Ensure you initialize this map appropriately
+  Map<MtgCard, int> cardCountMap = {};
 
   @override
   void initState() {
@@ -25,8 +24,6 @@ class _CollectionCardsState extends State<CollectionCards> {
   }
 
   void loadInitialData() async {
-    // Load your cards into cardCountMap
-    // Example:
     UserManager.streamCollection().listen((data) {
       setState(() {
         cardCountMap = data;
