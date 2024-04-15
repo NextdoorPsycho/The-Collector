@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fast_log/fast_log.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:scryfall_api/scryfall_api.dart';
 import 'package:the_collector/theme/toastification.dart';
 
@@ -23,6 +24,7 @@ Map<String, String> mimes = {
 class CardFunctions {
   static Future<void> _add(
       BuildContext context, MtgCard card, int quantity) async {
+    SystemChannels.platform.invokeMethod<void>('HapticFeedback.vibrate');
     info(card.name);
     info(card.id);
     try {
@@ -38,16 +40,9 @@ class CardFunctions {
       await collectionRef.set({'set-id': card.set}, SetOptions(merge: true));
       await collectionRef.set({'name': card.name}, SetOptions(merge: true));
       await collectionRef.set({'foil': card.foil}, SetOptions(merge: true));
-      await collectionRef
-          .set({'image': card.imageUris!.normal}, SetOptions(merge: true));
-      await collectionRef.set({'rarity': card.rarity}, SetOptions(merge: true));
       await collectionRef.set({'type': card.typeLine}, SetOptions(merge: true));
-      await collectionRef.set({'colors': card.colors}, SetOptions(merge: true));
-      await collectionRef.set({'cmc': card.cmc}, SetOptions(merge: true));
       await collectionRef
           .set({'mana-cost': card.manaCost}, SetOptions(merge: true));
-      await collectionRef
-          .set({'oracle-text': card.oracleText}, SetOptions(merge: true));
       await collectionRef.set({'power': card.power}, SetOptions(merge: true));
       await collectionRef
           .set({'toughness': card.toughness}, SetOptions(merge: true));
@@ -97,6 +92,7 @@ class CardFunctions {
     required BuildContext context,
     required int quantity,
   }) async {
+    SystemChannels.platform.invokeMethod<void>('HapticFeedback.vibrate');
     if (quantity <= 0) {
       Toast.infoToast(context, "No changes made", "Quantity must be positive.");
       return;

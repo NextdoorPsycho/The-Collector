@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:magic_card/magic_card.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:scryfall_api/scryfall_api.dart';
+import 'package:the_collector/pages/nav_util.dart';
 import 'package:the_collector/theme/animation/spinning_triangle.dart';
 import 'package:the_collector/utils/data/functions_file_interaction.dart';
 
@@ -181,7 +182,7 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
                       card: card, context: context, quantity: 1);
                   success('Card added to collection: ${card.name}');
                 }
-                Navigator.of(context).pop();
+                Nav.goToCollection(context);
               },
             ),
           ],
