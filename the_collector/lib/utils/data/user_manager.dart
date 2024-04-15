@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:magic_card/magic_card.dart';
 import 'package:scryfall_api/scryfall_api.dart';
+import 'package:the_collector/utils/data/deck_tools.dart';
 import 'package:throttled/throttled.dart';
 
 class UserManager {
@@ -28,6 +29,71 @@ class UserManager {
       bool isAdmin = event['admin'] == true;
       verbose("User admin status: ${isAdmin ? 'Admin' : 'Not an admin'}");
       return isAdmin;
+    });
+  }
+
+  static Stream<List<Deck>> streamDecks() {
+    String? uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid == null) {
+      error("User is not authenticated. Returning an empty Stream for decks.");
+      return Stream.value([]);
+    }
+
+    return FirebaseFirestore.instance
+        .collection('user')
+        .doc(uid)
+        .collection('decks')
+        .snapshots()
+        .map((snapshot) {
+      List<Deck> decks = snapshot.docs.map((doc) {
+        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+        List<MtgCard> cards = (data['cards'] as List)
+            .map((card) => MtgCard.fromJson(card))
+            .toList();
+
+        return Deck(
+          name: data['name'],
+          cards: cards,
+        );
+      }).toList();
+
+      verbose("Retrieved ${decks.length} decks");
+      return decks;
+    });
+  }
+
+  static Stream<Deck?> streamDeckById(String deckId) {
+    String? uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid == null) {
+      error(
+          "User is not authenticated. Returning null for deck with ID $deckId.");
+      return Stream.value(null);
+    }
+
+    return FirebaseFirestore.instance
+        .collection('user')
+        .doc(uid)
+        .collection('decks')
+        .doc(deckId)
+        .snapshots()
+        .map((snapshot) {
+      if (snapshot.exists) {
+        Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+        List<MtgCard> cards = (data['cards'] as List)
+            .map((card) => MtgCard.fromJson(card))
+            .toList();
+
+        Deck deck = Deck(
+          name: data['name'],
+          cards: cards,
+        );
+
+        verbose("Retrieved deck with ID $deckId: ${deck.name}");
+        return deck;
+      } else {
+        error("Deck with ID $deckId not found.");
+        return null;
+      }
     });
   }
 

@@ -7,38 +7,49 @@ import 'package:scryfall_api/scryfall_api.dart';
 import 'package:the_collector/theme/toastification.dart';
 import 'package:uuid/uuid.dart';
 
-//await DeckFunctions.createDeck(
-//   name: "My Fun Deck",
-//   cards: cardsList,
-//   color: "Red",
-//   context: context,
-// );
-//
-// DeckFunctions.exportDeckSimple(deck: myFunDeck, context: context);
-// DeckFunctions.exportDeckDetailed(deck: myFunDeck, context: context);
-
 class Deck {
   String id;
   String name;
-  String? color;
   List<MtgCard> cards;
-  String? coverImage;
 
-  Deck({required this.name, this.color, required this.cards, this.coverImage})
+  Deck({required this.name, required this.cards})
       : id = const Uuid().v4(); // Generates a unique identifier for each deck
 }
 
 class DeckFunctions {
-  static Future<void> createDeck({
+  static Future<List<Deck>> getAllDecksByUserId() async {
+    String userId = FirebaseAuth.instance.currentUser!.uid;
+    List<Deck> decks = [];
+    try {
+      QuerySnapshot snapshot = await FirebaseFirestore.instance
+          .collection('user')
+          .doc(userId)
+          .collection('decks')
+          .get();
+
+      decks = snapshot.docs.map((doc) {
+        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+        List<MtgCard> cards = (data['cards'] as List)
+            .map((card) => MtgCard.fromJson(card))
+            .toList();
+
+        return Deck(
+          name: data['name'],
+          cards: cards,
+        );
+      }).toList();
+    } catch (e) {
+      error("Error fetching decks: $e");
+    }
+    return decks;
+  }
+
+  static Future<bool> createDeck({
     required String name,
     required List<MtgCard> cards,
-    String? color,
-    String? coverImage,
-    required BuildContext context,
   }) async {
     try {
-      Deck newDeck =
-          Deck(name: name, cards: cards, color: color, coverImage: coverImage);
+      Deck newDeck = Deck(name: name, cards: cards);
       String userId = FirebaseAuth.instance.currentUser!.uid;
       DocumentReference deckRef = FirebaseFirestore.instance
           .collection('user')
@@ -48,17 +59,13 @@ class DeckFunctions {
 
       await deckRef.set({
         'name': newDeck.name,
-        'color': newDeck.color,
-        'coverImage': newDeck.coverImage,
-        'cards': newDeck.cards.map((card) => card.toJson()).toList(),
+        'cards': newDeck.cards,
       });
 
-      Toast.successToast(
-          context, "Deck Created", "Your new deck '${newDeck.name}' is ready.");
+      return true;
     } catch (e) {
       error("Error creating deck: $e");
-      Toast.scaryToast(
-          context, "Creation Failed", "Could not create the deck.");
+      return false;
     }
   }
 
@@ -77,7 +84,7 @@ class DeckFunctions {
 
       // Atomically add a new card to the 'cards' array field
       await deckRef.update({
-        'cards': FieldValue.arrayUnion([card.toJson()])
+        'cards': FieldValue.arrayUnion([card])
       });
 
       Toast.successToast(
@@ -103,7 +110,7 @@ class DeckFunctions {
 
       // Atomically remove a card from the 'cards' array field
       await deckRef.update({
-        'cards': FieldValue.arrayRemove([card.toJson()])
+        'cards': FieldValue.arrayRemove([card])
       });
 
       Toast.successToast(
@@ -148,25 +155,29 @@ class DeckFunctions {
       Toast.scaryToast(context, "Export Failed", "Could not export deck.");
     }
   }
-}
 
-// Utility function to convert MtgCard to JSON, assuming MtgCard class has this method
-extension on MtgCard {
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'set': set,
-      'type': typeLine,
-      'colors': colors,
-      'cmc': cmc,
-      'manaCost': manaCost,
-      'oracleText': oracleText,
-      'foil': foil,
-      'power': power,
-      'toughness': toughness,
-      'rarity': rarity,
-      'image': imageUris?.normal,
-    };
+  static Future<Map<String, List<MtgCard>>> getCardsFromDeck() async {
+    String userId = FirebaseAuth.instance.currentUser!.uid;
+    Map<String, List<MtgCard>> deckCards = {};
+    try {
+      QuerySnapshot snapshot = await FirebaseFirestore.instance
+          .collection('user')
+          .doc(userId)
+          .collection('decks')
+          .get();
+
+      for (var doc in snapshot.docs) {
+        String deckId = doc.id;
+        Map<String, dynamic>? data = doc.data() as Map<String, dynamic>?;
+        List<MtgCard> cards = (data?['cards'] as List?)
+                ?.map((card) => MtgCard.fromJson(card))
+                .toList() ??
+            [];
+        deckCards[deckId] = cards;
+      }
+    } catch (e) {
+      error("Error fetching cards from decks: $e");
+    }
+    return deckCards;
   }
 }
