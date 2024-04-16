@@ -38,8 +38,7 @@ class _HubCollectionState extends State<HubCollection>
         setState(() {
           _isAnimating = false;
         });
-        bool isAdmin = await UserManager.streamAdminStatus().first;
-        if (isAdmin) {
+        if (await UserManager.streamAdminStatus().first) {
           Nav.goToAdmin(context);
         }
       }

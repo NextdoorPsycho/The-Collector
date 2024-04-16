@@ -47,62 +47,59 @@ class _CollectionHubState extends State<CollectionHub> {
 
   @override
   Widget build(BuildContext context) {
-    return UserManager.streamAdminStatus().build((admin) {
-      return Scaffold(
-        body: IndexedStack(
-          index: _currentIndex,
-          children: const [
-            CollectionCards(),
-            CollectionDecks(),
-            CollectionPrices(),
-            CollectionShops(),
-          ],
+    return Scaffold(
+      body: IndexedStack(
+        index: _currentIndex,
+        children: [
+          CollectionCards(widget.themeNotifier),
+          CollectionDecks(themeNotifier: widget.themeNotifier),
+          CollectionPrices(widget.themeNotifier),
+          CollectionShops(widget.themeNotifier),
+        ],
+      ),
+      bottomNavigationBar: PandaBar(
+        onFabButtonPressed: () async {
+          OCRUtilities().pickAndProcessImage(context);
+        },
+        fabIcon: Icon(
+          Icons.sensor_window_outlined,
+          color: Theme.of(context).colorScheme.surface,
         ),
-        bottomNavigationBar: PandaBar(
-          onFabButtonPressed: () async {
-            OCRUtilities().pickAndProcessImage(context);
-          },
-          fabIcon: Icon(
-            Icons.sensor_window_outlined,
-            color: Theme.of(context).colorScheme.surface,
+        fabColors: [
+          Theme.of(context).colorScheme.onSurface,
+          Theme.of(context).colorScheme.onSurface,
+        ],
+        buttonData: [
+          PandaBarButtonData(
+            id: '0',
+            icon: Icons.style_outlined,
+            title: 'Cards',
           ),
-          fabColors: [
-            Theme.of(context).colorScheme.onSurface,
-            Theme.of(context).colorScheme.onSurface,
-          ],
-          buttonData: [
-            PandaBarButtonData(
-              id: '0',
-              icon: Icons.style_outlined,
-              title: 'Cards',
-            ),
-            PandaBarButtonData(
-              id: '1',
-              icon: Icons.inbox_outlined,
-              title: 'Decks',
-            ),
-            PandaBarButtonData(
-              id: '2',
-              icon: Icons.attach_money_outlined,
-              title: 'Prices',
-            ),
-            PandaBarButtonData(
-              id: '3',
-              icon: Icons.add_business_outlined,
-              title: 'Shops',
-            ),
-          ],
-          onChange: (id) {
-            setState(() {
-              _currentIndex = int.parse(id);
-            });
-          },
-          backgroundColor: Theme.of(context).colorScheme.background,
-          buttonSelectedColor: Theme.of(context).colorScheme.onSurface,
-          buttonColor:
-              Theme.of(context).colorScheme.onSurface.withOpacity(0.40),
-        ),
-      );
-    });
+          PandaBarButtonData(
+            id: '1',
+            icon: Icons.inbox_outlined,
+            title: 'Decks',
+          ),
+          PandaBarButtonData(
+            id: '2',
+            icon: Icons.attach_money_outlined,
+            title: 'Prices',
+          ),
+          PandaBarButtonData(
+            id: '3',
+            icon: Icons.add_business_outlined,
+            title: 'Shops',
+          ),
+        ],
+        onChange: (id) {
+          setState(() {
+            _currentIndex = int.parse(id);
+          });
+        },
+        backgroundColor: Theme.of(context).colorScheme.background,
+        buttonSelectedColor: Theme.of(context).colorScheme.onSurface,
+        buttonColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.40),
+      ),
+    );
   }
 }

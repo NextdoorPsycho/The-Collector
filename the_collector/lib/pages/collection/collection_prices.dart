@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:the_collector/theme/screen_templates/template_animate_simple.dart';
-import 'package:the_collector/utils/data/user_manager.dart';
 
 class CollectionPrices extends StatefulWidget {
-  const CollectionPrices({super.key});
+  const CollectionPrices(ValueNotifier<ThemeMode> themeNotifier, {super.key});
 
   @override
   _CollectionPricesState createState() => _CollectionPricesState();
@@ -22,23 +21,21 @@ class _CollectionPricesState extends State<CollectionPrices> {
 
   @override
   Widget build(BuildContext context) {
-    return UserManager.streamAdminStatus().build((admin) {
-      return Scaffold(
-        // add a back arrow in the app bar
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          title: const Text('Leave Collections'),
+    return Scaffold(
+      // add a back arrow in the app bar
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        body: const AnimatedSimpleScreen(
-          title: 'The Placeholder',
-          description: 'Im ready to die!',
-        ),
-      );
-    });
+        title: const Text('Leave Collections'),
+      ),
+      body: const AnimatedSimpleScreen(
+        title: 'The Placeholder',
+        description: 'Im ready to die!',
+      ),
+    );
   }
 }

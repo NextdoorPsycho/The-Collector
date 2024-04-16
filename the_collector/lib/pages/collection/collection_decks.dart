@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:the_collector/pages/collection/deck/deck.dart';
 import 'package:the_collector/theme/screen_templates/template_animate_simple.dart';
 import 'package:the_collector/theme/toastification.dart';
 import 'package:the_collector/utils/data/deck_tools.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
 
 class CollectionDecks extends StatefulWidget {
-  const CollectionDecks({super.key});
+  const CollectionDecks({super.key, required this.themeNotifier});
+
+  final ValueNotifier<ThemeMode> themeNotifier;
 
   @override
   _CollectionDecksState createState() => _CollectionDecksState();
@@ -27,7 +30,7 @@ class _CollectionDecksState extends State<CollectionDecks> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          TextEditingController _deckNameController = TextEditingController();
+          TextEditingController deckNameController = TextEditingController();
 
           showDialog(
             context: context,
@@ -35,7 +38,7 @@ class _CollectionDecksState extends State<CollectionDecks> {
               return AlertDialog(
                 title: const Text('Create a new deck'),
                 content: TextField(
-                  controller: _deckNameController,
+                  controller: deckNameController,
                   decoration: const InputDecoration(
                     hintText: 'Deck Name',
                   ),
@@ -49,7 +52,7 @@ class _CollectionDecksState extends State<CollectionDecks> {
                   ),
                   TextButton(
                     onPressed: () async {
-                      String deckName = _deckNameController.text;
+                      String deckName = deckNameController.text;
 
                       bool nameExists = false;
                       DeckFunctions.getAllDecksByUserId()
@@ -114,8 +117,14 @@ class _CollectionDecksState extends State<CollectionDecks> {
               Deck deck = decks[index];
               return InkWell(
                 onTap: () {
-                  // Handle deck tap
-                  // Navigate to deck details screen or perform any desired action
+                  var themeNotifier = widget.themeNotifier;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DeckCards(
+                            deckId: deck.id,
+                            themeNotifier: widget.themeNotifier)),
+                  );
                 },
                 child: Container(
                   decoration: BoxDecoration(

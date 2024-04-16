@@ -1,7 +1,7 @@
 name: magic_card
 description: MTG-Card renderer, and utility package.
 repository: https://github.com/ArcaneArts/magic_card
-version: 1.0.1+dev.3
+version: 1.0.1+dev.5
 environment:
   sdk: ^3.3.2
 dependencies:

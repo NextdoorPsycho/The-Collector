@@ -834,10 +834,10 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: "2128cfc5a5968f4e8fd66c98c054fc75279f3c9d"
+      resolved-ref: "936833a1bc57236aa56778debfd81a9015d94acb"
       url: "https://github.com/ArcaneArts/magic_card.git"
     source: git
-    version: "1.0.1+dev.2"
+    version: "1.0.1+dev.5"
   matcher:
     dependency: transitive
     description:

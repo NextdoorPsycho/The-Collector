@@ -111,37 +111,28 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
               itemCount: _cardList.length,
               itemBuilder: (context, index) {
                 final card = _cardList[index];
+                final isSelected = _selectedCards.contains(card);
                 return GestureDetector(
                   onTap: () {
                     setState(() {
-                      if (_selectedCards.contains(card)) {
+                      if (isSelected) {
                         _selectedCards.remove(card);
                       } else {
                         _selectedCards.add(card);
                       }
                     });
                   },
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: isSelected ? Colors.green : Colors.transparent,
+                        width: 2,
+                      ),
                     ),
-                    elevation: 2,
-                    child: Stack(
-                      children: [
-                        CardView(
-                          id: card.id,
-                          flat: false,
-                          size: ImageVersion.normal,
-                          foil: false,
-                        ),
-                        if (_selectedCards.contains(card))
-                          const Positioned(
-                            top: 8,
-                            right: 8,
-                            child:
-                                Icon(Icons.check_circle, color: Colors.green),
-                          ),
-                      ],
+                    child: TradingCard(
+                      card: card.imageUris!.normal.toString(),
+                      height: 30,
+                      padding: const EdgeInsets.all(0),
                     ),
                   ),
                 );

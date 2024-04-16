@@ -7,7 +7,7 @@ import 'package:the_collector/utils/data/functions_file_interaction.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
 
 class CollectionCards extends StatefulWidget {
-  const CollectionCards({super.key});
+  const CollectionCards(ValueNotifier<ThemeMode> themeNotifier, {super.key});
 
   @override
   _CollectionCardsState createState() => _CollectionCardsState();

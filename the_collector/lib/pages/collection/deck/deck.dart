@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:pandabar/main.view.dart';
 import 'package:pandabar/model.dart';
-import 'package:the_collector/pages/admin/admin_users.dart';
+import 'package:the_collector/pages/collection/deck/deck_page.dart';
 import 'package:the_collector/utils/data/user_manager.dart';
 
-class AdminHub extends StatefulWidget {
-  const AdminHub({super.key, required this.themeNotifier});
+class DeckCards extends StatefulWidget {
+  const DeckCards({super.key, required this.themeNotifier, this.deckId});
 
   final ValueNotifier<ThemeMode> themeNotifier;
+  final String? deckId;
 
   @override
-  State<AdminHub> createState() => _AdminHubState();
+  State<DeckCards> createState() => _DeckCardsState();
 }
 
-class _AdminHubState extends State<AdminHub> {
+class _DeckCardsState extends State<DeckCards> {
   int _currentIndex = 0;
 
   late ThemeMode _initialThemeMode;
@@ -27,6 +28,7 @@ class _AdminHubState extends State<AdminHub> {
       setState(() {
         _initialThemeMode = isDark ? ThemeMode.dark : ThemeMode.light;
         widget.themeNotifier.value = _initialThemeMode;
+        // set the cards in a collection somehow
       });
     });
   }
@@ -43,20 +45,30 @@ class _AdminHubState extends State<AdminHub> {
 
   @override
   Widget build(BuildContext context) {
+    var themeNotifier = widget.themeNotifier;
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: const Text('Leave Deck'),
+      ),
       body: IndexedStack(
         index: _currentIndex,
-        children: const [
-          AdminUsers(),
-          AdminUsers(),
-          AdminUsers(),
-          AdminUsers(),
+        children: [
+          DeckPage(themeNotifier: themeNotifier),
+          DeckPage(themeNotifier: themeNotifier),
+          DeckPage(themeNotifier: themeNotifier),
+          DeckPage(themeNotifier: themeNotifier),
         ],
       ),
       bottomNavigationBar: PandaBar(
         onFabButtonPressed: () async {},
         fabIcon: Icon(
-          Icons.shield_outlined,
+          Icons.sensor_window_outlined,
           color: Theme.of(context).colorScheme.surface,
         ),
         fabColors: [
@@ -66,23 +78,23 @@ class _AdminHubState extends State<AdminHub> {
         buttonData: [
           PandaBarButtonData(
             id: '0',
-            icon: Icons.admin_panel_settings_outlined,
-            title: 'Admin',
+            icon: Icons.sensor_window_outlined,
+            title: 'Cards',
           ),
           PandaBarButtonData(
             id: '1',
-            icon: Icons.admin_panel_settings_outlined,
-            title: 'Admin',
+            icon: Icons.sensor_window_outlined,
+            title: 'Cards',
           ),
           PandaBarButtonData(
             id: '2',
-            icon: Icons.admin_panel_settings_outlined,
-            title: 'Admin',
+            icon: Icons.sensor_window_outlined,
+            title: 'Cards',
           ),
           PandaBarButtonData(
             id: '3',
-            icon: Icons.admin_panel_settings_outlined,
-            title: 'Admin',
+            icon: Icons.sensor_window_outlined,
+            title: 'Cards',
           ),
         ],
         onChange: (id) {
