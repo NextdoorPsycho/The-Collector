@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -18,6 +19,14 @@ class _AdminUsersState extends State<AdminUsers>
   late AnimationController _animationController;
   late Animation<double> _animation;
   bool _isAnimating = false;
+  late StreamSubscription<bool> _sub;
+
+  @override
+  void dispose() {
+    _sub.cancel();
+    _animationController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -37,18 +46,15 @@ class _AdminUsersState extends State<AdminUsers>
         setState(() {
           _isAnimating = false;
         });
-        bool isAdmin = await UserManager.streamAdminStatus().first;
-        if (isAdmin) {
-          Nav.goToHome(context);
-        }
+        _sub = UserManager.streamAdminStatus().listen((isAdmin) {
+          setState(() {
+            if (isAdmin) {
+              Nav.goToHome(context);
+            }
+          });
+        });
       }
     });
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
   }
 
   void _startAnimation() {

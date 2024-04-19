@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:the_collector/main.dart';
 import 'package:the_collector/theme/color.dart';
@@ -15,11 +17,20 @@ class HubSettings extends StatefulWidget {
 class _HubSettingsState extends State<HubSettings> {
   late ThemeMode _initialThemeMode;
 
+  late StreamSubscription<bool> _sub;
+
+  @override
+  void dispose() {
+    _sub.cancel();
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
+
     // Get the initial theme mode
-    UserManager.streamTheme().first.then((isDark) {
+    _sub = UserManager.streamTheme().listen((isDark) {
       setState(() {
         _initialThemeMode = isDark ? ThemeMode.dark : ThemeMode.light;
         widget.themeNotifier.value = _initialThemeMode;
