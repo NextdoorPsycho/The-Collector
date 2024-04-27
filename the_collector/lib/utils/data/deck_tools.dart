@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scryfall_api/scryfall_api.dart';
 import 'package:the_collector/theme/toastification.dart';
+import 'package:the_collector/utils/firecrud/crud.dart';
 import 'package:uuid/uuid.dart';
 
 class Deck {
@@ -17,57 +18,16 @@ class Deck {
 }
 
 class DeckFunctions {
-  static Future<List<Deck>> getAllDecksByUserId() async {
-    String userId = FirebaseAuth.instance.currentUser!.uid;
-    List<Deck> decks = [];
-    try {
-      QuerySnapshot snapshot = await FirebaseFirestore.instance
-          .collection('user')
-          .doc(userId)
-          .collection('decks')
-          .get();
-
-      decks = snapshot.docs.map((doc) {
-        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-        List<MtgCard> cards = (data['cards'] as List)
-            .map((card) => MtgCard.fromJson(card))
-            .toList();
-
-        return Deck(
-          name: data['name'],
-          cards: cards,
-        );
-      }).toList();
-    } catch (e) {
-      error("Error fetching decks: $e");
-    }
-    return decks;
-  }
+  static Future<Iterable<Deck>> getAllDecksByUserId() =>
+      Crud.deck(FirebaseAuth.instance.currentUser!.uid).getAll();
 
   static Future<bool> createDeck({
     required String name,
     required List<MtgCard> cards,
-  }) async {
-    try {
-      Deck newDeck = Deck(name: name, cards: cards);
-      String userId = FirebaseAuth.instance.currentUser!.uid;
-      DocumentReference deckRef = FirebaseFirestore.instance
-          .collection('user')
-          .doc(userId)
-          .collection('decks')
-          .doc(newDeck.id);
-
-      await deckRef.set({
-        'name': newDeck.name,
-        'cards': newDeck.cards,
-      });
-
-      return true;
-    } catch (e) {
-      error("Error creating deck: $e");
-      return false;
-    }
-  }
+  }) =>
+      Crud.deck(FirebaseAuth.instance.currentUser!.uid)
+          .add(Deck(name: name, cards: cards))
+          .then((value) => true);
 
   static Future<void> addCardToDeck({
     required String deckId,
