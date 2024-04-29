@@ -4,13 +4,10 @@ import 'package:pandabar/model.dart';
 import 'package:the_collector/pages/dock/hub_collection.dart';
 import 'package:the_collector/pages/dock/hub_dice.dart';
 import 'package:the_collector/pages/dock/hub_rules.dart';
-import 'package:the_collector/pages/dock/hun_settings.dart';
-import 'package:the_collector/utils/data/user_manager.dart';
+import 'package:the_collector/pages/dock/hub_settings.dart';
 
 class CollectorHub extends StatefulWidget {
-  const CollectorHub({super.key, required this.themeNotifier});
-
-  final ValueNotifier<ThemeMode> themeNotifier;
+  const CollectorHub({super.key});
 
   @override
   State<CollectorHub> createState() => _CollectorHubState();
@@ -19,29 +16,9 @@ class CollectorHub extends StatefulWidget {
 class _CollectorHubState extends State<CollectorHub> {
   int _currentIndex = 0;
 
-  late ThemeMode _initialThemeMode;
-
   @override
   void initState() {
     super.initState();
-
-    // Get the initial theme mode
-    UserManager.streamTheme().first.then((isDark) {
-      setState(() {
-        _initialThemeMode = isDark ? ThemeMode.dark : ThemeMode.light;
-        widget.themeNotifier.value = _initialThemeMode;
-      });
-    });
-  }
-
-  void changeTheme() {
-    if (widget.themeNotifier.value == ThemeMode.light) {
-      widget.themeNotifier.value = ThemeMode.dark;
-      UserManager.updateTheme(isDark: true);
-    } else {
-      widget.themeNotifier.value = ThemeMode.light;
-      UserManager.updateTheme(isDark: false);
-    }
   }
 
   @override
@@ -49,12 +26,7 @@ class _CollectorHubState extends State<CollectorHub> {
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
-        children: [
-          const HubCollection(),
-          const HubDice(),
-          const HubRules(),
-          HubSettings(themeNotifier: widget.themeNotifier)
-        ],
+        children: const [HubCollection(), HubDice(), HubRules(), HubSettings()],
       ),
       bottomNavigationBar: PandaBar(
         onFabButtonPressed: () async {},

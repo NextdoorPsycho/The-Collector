@@ -3,13 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pandabar/main.view.dart';
 import 'package:pandabar/model.dart';
-import 'package:the_collector/pages/collection/deck/deck_page.dart';
-import 'package:the_collector/utils/data/user_manager.dart';
+import 'package:the_collector/pages/collection/deck/deck_raw.dart';
+import 'package:the_collector/pages/collection/deck/deck_settings.dart';
 
 class DeckCards extends StatefulWidget {
-  const DeckCards({super.key, required this.themeNotifier, this.deckId});
+  const DeckCards({super.key, this.deckId});
 
-  final ValueNotifier<ThemeMode> themeNotifier;
   final String? deckId;
 
   @override
@@ -19,7 +18,6 @@ class DeckCards extends StatefulWidget {
 class _DeckCardsState extends State<DeckCards> {
   int _currentIndex = 0;
 
-  late ThemeMode _initialThemeMode;
   late StreamSubscription<bool> _sub;
 
   @override
@@ -31,29 +29,10 @@ class _DeckCardsState extends State<DeckCards> {
   @override
   void initState() {
     super.initState();
-
-    // Get the initial theme mode
-    _sub = UserManager.streamTheme().listen((isDark) {
-      setState(() {
-        _initialThemeMode = isDark ? ThemeMode.dark : ThemeMode.light;
-        widget.themeNotifier.value = _initialThemeMode;
-      });
-    });
-  }
-
-  void changeTheme() {
-    if (widget.themeNotifier.value == ThemeMode.light) {
-      widget.themeNotifier.value = ThemeMode.dark;
-      UserManager.updateTheme(isDark: true);
-    } else {
-      widget.themeNotifier.value = ThemeMode.light;
-      UserManager.updateTheme(isDark: false);
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    var themeNotifier = widget.themeNotifier;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -66,11 +45,11 @@ class _DeckCardsState extends State<DeckCards> {
       ),
       body: IndexedStack(
         index: _currentIndex,
-        children: [
-          DeckPage(themeNotifier: themeNotifier),
-          DeckPage(themeNotifier: themeNotifier),
-          DeckPage(themeNotifier: themeNotifier),
-          DeckPage(themeNotifier: themeNotifier),
+        children: const [
+          DeckCards(),
+          DeckRaw(),
+          DeckCards(),
+          DeckSettings(),
         ],
       ),
       bottomNavigationBar: PandaBar(

@@ -15,12 +15,12 @@ dependencies:
     git:
       url: https://github.com/ArcaneArts/magic_card.git
       ref: master
-  toxic: ^1.1.0
+  toxic: ^1.2.3
   provider: ^6.1.2
-  build_runner: ^2.4.8
+  build_runner: ^2.4.9
   fast_log: ^1.0.7
   image: ^4.1.7
-  url_launcher: ^6.2.5
+  url_launcher: ^6.2.6
   flutter_launcher_icons: ^0.13.1
   universal_io: ^2.2.2
   app_rename: ^0.0.1  # flutter pub run app_rename:main all="the_collector"
@@ -51,9 +51,10 @@ dependencies:
   carousel_slider: ^4.2.1
   pandabar: ^0.1.2
   uuid: ^4.4.0
-  fire_crud: ^1.0.2
+  fire_crud: ^1.1.4
   collection_walker: ^1.1.1
   dart_mappable: ^4.2.2
+  dialoger: ^1.0.0
 
 
 

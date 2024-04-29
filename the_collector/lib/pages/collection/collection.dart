@@ -5,13 +5,10 @@ import 'package:the_collector/pages/collection/collection_cards.dart';
 import 'package:the_collector/pages/collection/collection_decks.dart';
 import 'package:the_collector/pages/collection/collection_prices.dart';
 import 'package:the_collector/pages/collection/collection_shops.dart';
-import 'package:the_collector/utils/data/user_manager.dart';
 import 'package:the_collector/utils/functions/ocr_utils.dart';
 
 class CollectionHub extends StatefulWidget {
-  const CollectionHub({super.key, required this.themeNotifier});
-
-  final ValueNotifier<ThemeMode> themeNotifier;
+  const CollectionHub({super.key});
 
   @override
   State<CollectionHub> createState() => _CollectionHubState();
@@ -20,29 +17,9 @@ class CollectionHub extends StatefulWidget {
 class _CollectionHubState extends State<CollectionHub> {
   int _currentIndex = 0;
 
-  late ThemeMode _initialThemeMode;
-
   @override
   void initState() {
     super.initState();
-
-    // Get the initial theme mode
-    UserManager.streamTheme().first.then((isDark) {
-      setState(() {
-        _initialThemeMode = isDark ? ThemeMode.dark : ThemeMode.light;
-        widget.themeNotifier.value = _initialThemeMode;
-      });
-    });
-  }
-
-  void changeTheme() {
-    if (widget.themeNotifier.value == ThemeMode.light) {
-      widget.themeNotifier.value = ThemeMode.dark;
-      UserManager.updateTheme(isDark: true);
-    } else {
-      widget.themeNotifier.value = ThemeMode.light;
-      UserManager.updateTheme(isDark: false);
-    }
   }
 
   @override
@@ -51,10 +28,10 @@ class _CollectionHubState extends State<CollectionHub> {
       body: IndexedStack(
         index: _currentIndex,
         children: [
-          CollectionCards(widget.themeNotifier),
-          CollectionDecks(themeNotifier: widget.themeNotifier),
-          CollectionPrices(widget.themeNotifier),
-          CollectionShops(widget.themeNotifier),
+          CollectionCards(),
+          CollectionDecks(),
+          CollectionPrices(),
+          CollectionShops(),
         ],
       ),
       bottomNavigationBar: PandaBar(

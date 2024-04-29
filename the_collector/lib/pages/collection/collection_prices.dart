@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:the_collector/theme/screen_templates/template_animate_simple.dart';
 
 class CollectionPrices extends StatefulWidget {
-  const CollectionPrices(ValueNotifier<ThemeMode> themeNotifier, {super.key});
+  const CollectionPrices({super.key});
 
   @override
   _CollectionPricesState createState() => _CollectionPricesState();

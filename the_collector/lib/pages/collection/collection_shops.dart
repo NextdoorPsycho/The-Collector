@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:the_collector/theme/screen_templates/template_animate_simple.dart';
 
 class CollectionShops extends StatefulWidget {
-  const CollectionShops(ValueNotifier<ThemeMode> themeNotifier, {super.key});
+  const CollectionShops({super.key});
 
   @override
   _CollectionShopsState createState() => _CollectionShopsState();
