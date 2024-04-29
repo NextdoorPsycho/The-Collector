@@ -27,7 +27,7 @@ class _CollectionHubState extends State<CollectionHub> {
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
-        children: [
+        children: const [
           CollectionCards(),
           CollectionDecks(),
           CollectionPrices(),

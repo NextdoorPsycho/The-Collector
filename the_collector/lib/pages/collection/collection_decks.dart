@@ -92,7 +92,7 @@ class DeckCard extends StatelessWidget {
         child: Center(
           child: Text(
             deck.name,
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.titleLarge,
             textAlign: TextAlign.center,
           ),
         ),

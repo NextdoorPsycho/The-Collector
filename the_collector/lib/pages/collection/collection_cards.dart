@@ -97,7 +97,7 @@ class _CollectionCardsState extends State<CollectionCards> {
   Widget buildCardItem(MTGCard card, ScryfallApiClient apiClient) {
     return FutureBuilder<Uint8List>(
       future: apiClient.getCardByIdAsImage(card.id!,
-          imageVersion: ImageVersion.artCrop),
+          imageVersion: ImageVersion.small),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // Loading screen

@@ -28,11 +28,9 @@ class MyThemeData {
       brightness: brightness,
       primaryColor: colorScheme.primary,
       hintColor: colorScheme.secondary,
-      backgroundColor: colorScheme.background,
       scaffoldBackgroundColor: colorScheme.background,
       cardColor: colorScheme.surface,
       dialogBackgroundColor: colorScheme.background,
-      colorScheme: colorScheme,
       appBarTheme: appBarTheme(isLight, colorScheme),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: MyColors.defaultAccent,
@@ -48,7 +46,7 @@ class MyThemeData {
       inputDecorationTheme: inputDecorationTheme(isLight),
       switchTheme: switchThemeData(isLight),
       checkboxTheme: checkboxThemeData(isLight),
-      radioTheme: radioThemeData(isLight),
+      radioTheme: radioThemeData(isLight), colorScheme: colorScheme.copyWith(background: colorScheme.background),
     );
   }
 

@@ -26,10 +26,12 @@ void main() async {
     );
     FirebaseUIAuth.configureProviders([...providers]);
   }
-  runApp(MyAdwApp());
+  runApp(const MyAdwApp());
 }
 
 class MyAdwApp extends StatefulWidget {
+  const MyAdwApp({super.key});
+
   @override
   _MyAdwAppState createState() => _MyAdwAppState();
 }
@@ -74,7 +76,7 @@ class _MyAdwAppState extends State<MyAdwApp> {
                 stream: Crud.user().streamOrNull(u),
                 builder: (context, f) {
                   if (f.hasData) {
-                    WidgetsBinding.instance!.addPostFrameCallback((_) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
                       ThemeMode t = _themeMode;
                       _themeMode =
                           f.data!.theme ? ThemeMode.light : ThemeMode.dark;

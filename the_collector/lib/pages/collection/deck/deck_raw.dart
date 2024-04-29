@@ -22,6 +22,6 @@ class _DeckRawState extends State<DeckRaw> {
 
   @override
   Widget build(BuildContext context) {
-    return Crud.deck(u).stream(deckId).build((data) => Placeholder());
+    return Crud.deck(u).stream(deckId).build((data) => const Placeholder());
   }
 }

@@ -36,7 +36,7 @@ class AnimatedSimpleScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 180,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

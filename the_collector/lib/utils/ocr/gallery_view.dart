@@ -8,13 +8,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:the_collector/utils/ocr/utls.dart';
 
 class GalleryView extends StatefulWidget {
-  GalleryView(
-      {Key? key,
+  const GalleryView(
+      {super.key,
       required this.title,
       this.text,
       required this.onImage,
-      required this.onDetectorViewModeChanged})
-      : super(key: key);
+      required this.onDetectorViewModeChanged});
 
   final String title;
   final String? text;

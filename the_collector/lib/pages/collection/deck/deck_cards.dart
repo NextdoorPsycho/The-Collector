@@ -13,7 +13,7 @@ class DeckCards extends StatefulWidget {
 }
 
 class _DeckCardsState extends State<DeckCards> {
-  int _currentIndex = 0;
+  final int _currentIndex = 0;
 
   late ThemeMode _initialThemeMode;
 
@@ -26,6 +26,6 @@ class _DeckCardsState extends State<DeckCards> {
 
   @override
   Widget build(BuildContext context) {
-    return Crud.deck(u).stream(deckId).build((data) => Placeholder());
+    return Crud.deck(u).stream(deckId).build((data) => const Placeholder());
   }
 }
