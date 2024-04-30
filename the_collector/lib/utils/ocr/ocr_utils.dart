@@ -9,34 +9,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:magic_card/magic_card.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:scryfall_api/scryfall_api.dart';
-import 'package:the_collector/crud.dart';
 import 'package:the_collector/pages/collection/collection_decks.dart';
 import 'package:the_collector/pages/nav_util.dart';
 import 'package:the_collector/theme/animation/spinning_triangle.dart';
-import 'package:the_collector/utils/data/card/card_rarity.dart';
-import 'package:the_collector/utils/data/card/card_type.dart';
+import 'package:the_collector/utils/crud.dart';
 import 'package:the_collector/utils/data/card/mtg_card.dart';
 
 class OCRUtilities {
-  static mapToCardRarity(Rarity rarity) {
-    switch (rarity) {
-      case Rarity.common:
-        return CardRarity.common;
-      case Rarity.uncommon:
-        return CardRarity.uncommon;
-      case Rarity.rare:
-        return CardRarity.rare;
-      case Rarity.special:
-        return CardRarity.special;
-      case Rarity.mythic:
-        return CardRarity.mythic;
-      case Rarity.bonus:
-        return CardRarity.bonus;
-      default:
-        return CardRarity.unknown;
-    }
-  }
-
   final ObjectDetector _objectDetector = ObjectDetector(
     options: ObjectDetectorOptions(
       classifyObjects: true,
@@ -195,13 +174,17 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
                   Crud.card(u).set(
                       card.id,
                       MTGCard(
-                          name: card.name,
-                          setId: card.setId,
-                          description: card.printedText ?? "",
-                          flavorText: card.flavorText ?? "",
-                          cardType: CardType.generic,
-                          rarity: OCRUtilities.mapToCardRarity(card.rarity),
-                          manaCost: card.manaCost ?? ""));
+                        name: card.name,
+                        setId: card.setId,
+                        description: card.printedText ?? "",
+                        flavorText: card.flavorText ?? "",
+                        rarity: card.rarity,
+                        manaCost: card.manaCost ?? "",
+                        cmc: card.cmc,
+                        typeLine: card.typeLine,
+                        borderColor: card.borderColor,
+                        setType: card.setType,
+                      ));
                   success('Card added to collection: ${card.name}');
                 }
                 Nav.goToCollection(context);

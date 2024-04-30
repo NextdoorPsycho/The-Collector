@@ -13,10 +13,6 @@ class MTGCardMapper extends ClassMapperBase<MTGCard> {
   static MTGCardMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = MTGCardMapper._());
-      MTGLandCardMapper.ensureInitialized();
-      MTGArtifactCardMapper.ensureInitialized();
-      MTGCreatureCardMapper.ensureInitialized();
-      CardTypeMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -34,14 +30,21 @@ class MTGCardMapper extends ClassMapperBase<MTGCard> {
   static int _$quantity(MTGCard v) => v.quantity;
   static const Field<MTGCard, int> _f$quantity =
       Field('quantity', _$quantity, opt: true, def: 1);
+  static double _$cmc(MTGCard v) => v.cmc;
+  static const Field<MTGCard, double> _f$cmc = Field('cmc', _$cmc);
+  static String _$typeLine(MTGCard v) => v.typeLine;
+  static const Field<MTGCard, String> _f$typeLine =
+      Field('typeLine', _$typeLine);
   static String _$flavorText(MTGCard v) => v.flavorText;
   static const Field<MTGCard, String> _f$flavorText =
       Field('flavorText', _$flavorText);
-  static CardType _$cardType(MTGCard v) => v.cardType;
-  static const Field<MTGCard, CardType> _f$cardType =
-      Field('cardType', _$cardType);
-  static String _$rarity(MTGCard v) => v.rarity;
-  static const Field<MTGCard, String> _f$rarity = Field('rarity', _$rarity);
+  static BorderColor? _$borderColor(MTGCard v) => v.borderColor;
+  static const Field<MTGCard, BorderColor> _f$borderColor =
+      Field('borderColor', _$borderColor, opt: true);
+  static SetType _$setType(MTGCard v) => v.setType;
+  static const Field<MTGCard, SetType> _f$setType = Field('setType', _$setType);
+  static Rarity _$rarity(MTGCard v) => v.rarity;
+  static const Field<MTGCard, Rarity> _f$rarity = Field('rarity', _$rarity);
   static dynamic _$manaCost(MTGCard v) => v.manaCost;
   static const Field<MTGCard, dynamic> _f$manaCost =
       Field('manaCost', _$manaCost);
@@ -55,8 +58,11 @@ class MTGCardMapper extends ClassMapperBase<MTGCard> {
     #setId: _f$setId,
     #description: _f$description,
     #quantity: _f$quantity,
+    #cmc: _f$cmc,
+    #typeLine: _f$typeLine,
     #flavorText: _f$flavorText,
-    #cardType: _f$cardType,
+    #borderColor: _f$borderColor,
+    #setType: _f$setType,
     #rarity: _f$rarity,
     #manaCost: _f$manaCost,
     #id: _f$id,
@@ -68,8 +74,11 @@ class MTGCardMapper extends ClassMapperBase<MTGCard> {
         setId: data.dec(_f$setId),
         description: data.dec(_f$description),
         quantity: data.dec(_f$quantity),
+        cmc: data.dec(_f$cmc),
+        typeLine: data.dec(_f$typeLine),
         flavorText: data.dec(_f$flavorText),
-        cardType: data.dec(_f$cardType),
+        borderColor: data.dec(_f$borderColor),
+        setType: data.dec(_f$setType),
         rarity: data.dec(_f$rarity),
         manaCost: data.dec(_f$manaCost));
   }
@@ -128,9 +137,12 @@ abstract class MTGCardCopyWith<$R, $In extends MTGCard, $Out>
       String? setId,
       String? description,
       int? quantity,
+      double? cmc,
+      String? typeLine,
       String? flavorText,
-      CardType? cardType,
-      String? rarity,
+      BorderColor? borderColor,
+      SetType? setType,
+      Rarity? rarity,
       dynamic manaCost});
   MTGCardCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -149,17 +161,23 @@ class _MTGCardCopyWithImpl<$R, $Out>
           String? setId,
           String? description,
           int? quantity,
+          double? cmc,
+          String? typeLine,
           String? flavorText,
-          CardType? cardType,
-          String? rarity,
+          Object? borderColor = $none,
+          SetType? setType,
+          Rarity? rarity,
           Object? manaCost = $none}) =>
       $apply(FieldCopyWithData({
         if (name != null) #name: name,
         if (setId != null) #setId: setId,
         if (description != null) #description: description,
         if (quantity != null) #quantity: quantity,
+        if (cmc != null) #cmc: cmc,
+        if (typeLine != null) #typeLine: typeLine,
         if (flavorText != null) #flavorText: flavorText,
-        if (cardType != null) #cardType: cardType,
+        if (borderColor != $none) #borderColor: borderColor,
+        if (setType != null) #setType: setType,
         if (rarity != null) #rarity: rarity,
         if (manaCost != $none) #manaCost: manaCost
       }));
@@ -169,8 +187,11 @@ class _MTGCardCopyWithImpl<$R, $Out>
       setId: data.get(#setId, or: $value.setId),
       description: data.get(#description, or: $value.description),
       quantity: data.get(#quantity, or: $value.quantity),
+      cmc: data.get(#cmc, or: $value.cmc),
+      typeLine: data.get(#typeLine, or: $value.typeLine),
       flavorText: data.get(#flavorText, or: $value.flavorText),
-      cardType: data.get(#cardType, or: $value.cardType),
+      borderColor: data.get(#borderColor, or: $value.borderColor),
+      setType: data.get(#setType, or: $value.setType),
       rarity: data.get(#rarity, or: $value.rarity),
       manaCost: data.get(#manaCost, or: $value.manaCost));
 

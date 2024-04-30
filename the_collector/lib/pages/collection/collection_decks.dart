@@ -2,8 +2,9 @@ import 'package:dialoger/dialoger.dart';
 import 'package:fire_crud/fire_crud.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:the_collector/crud.dart';
+import 'package:flyout/flyout.dart';
 import 'package:the_collector/pages/collection/deck/deck.dart';
+import 'package:the_collector/utils/crud.dart';
 import 'package:the_collector/utils/data/deck/mtg_deck.dart';
 import 'package:toxic/toxic.dart';
 
@@ -74,16 +75,7 @@ class DeckCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => DeckCards(
-              deckId: deck.id,
-            ),
-          ),
-        );
-      },
+      onTap: () => flyout(context, () => DeckFlyoutScreen(deck: deck)),
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,

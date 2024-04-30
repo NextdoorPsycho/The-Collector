@@ -5,7 +5,7 @@ import 'package:the_collector/pages/collection/collection_cards.dart';
 import 'package:the_collector/pages/collection/collection_decks.dart';
 import 'package:the_collector/pages/collection/collection_prices.dart';
 import 'package:the_collector/pages/collection/collection_shops.dart';
-import 'package:the_collector/utils/functions/ocr_utils.dart';
+import 'package:the_collector/utils/ocr/ocr_utils.dart';
 
 class CollectionHub extends StatefulWidget {
   const CollectionHub({super.key});

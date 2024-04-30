@@ -1,3 +1,4 @@
+import 'package:fast_log/fast_log.dart';
 import 'package:flutter/material.dart';
 import 'package:pandabar/main.view.dart';
 import 'package:pandabar/model.dart';
@@ -29,9 +30,13 @@ class _CollectorHubState extends State<CollectorHub> {
         children: const [HubCollection(), HubDice(), HubRules(), HubSettings()],
       ),
       bottomNavigationBar: PandaBar(
-        onFabButtonPressed: () async {},
+        onFabButtonPressed: () async {
+          setState(() {
+            info('Refresh');
+          });
+        },
         fabIcon: Icon(
-          Icons.question_mark_outlined,
+          Icons.refresh_outlined,
           color: Theme.of(context).colorScheme.surface,
         ),
         fabColors: [

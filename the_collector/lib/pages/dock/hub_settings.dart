@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:the_collector/crud.dart';
 import 'package:the_collector/main.dart';
 import 'package:the_collector/pages/collection/collection_decks.dart';
 import 'package:the_collector/theme/color.dart';
+import 'package:the_collector/utils/crud.dart';
 
 class HubSettings extends StatefulWidget {
   const HubSettings({super.key});

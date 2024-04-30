@@ -15,7 +15,7 @@ dependencies:
     git:
       url: https://github.com/ArcaneArts/magic_card.git
       ref: master
-  toxic: ^1.2.3
+  toxic: ^1.2.4
   provider: ^6.1.2
   build_runner: ^2.4.9
   fast_log: ^1.0.7
@@ -51,10 +51,11 @@ dependencies:
   carousel_slider: ^4.2.1
   pandabar: ^0.1.2
   uuid: ^4.4.0
-  fire_crud: ^1.1.4
+  fire_crud: ^1.1.8
   collection_walker: ^1.1.1
   dart_mappable: ^4.2.2
   dialoger: ^1.0.0
+  shared_preferences: ^2.2.3
 
 
 

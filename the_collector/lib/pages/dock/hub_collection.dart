@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:the_collector/pages/nav_util.dart';
 import 'package:the_collector/theme/color.dart';
 import 'package:the_collector/utils/data/user/app_user_restricted.dart';
-import 'package:the_collector/utils/functions/ocr_utils.dart';
+import 'package:the_collector/utils/ocr/ocr_utils.dart';
 
 class HubCollection extends StatefulWidget {
   const HubCollection({super.key});

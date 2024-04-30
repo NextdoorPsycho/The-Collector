@@ -437,10 +437,10 @@ packages:
     dependency: "direct main"
     description:
       name: fire_crud
-      sha256: "38e00cc7509846e687e61258981679e8b718a5c096d647ee8620734a7e8033fe"
+      sha256: ae0bad178e91b830980fbc943ffbb5a9d910887eef7c394f3691e47576e8afda
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.4"
+    version: "1.1.8"
   firebase_auth:
     dependency: "direct main"
     description:
@@ -1134,6 +1134,62 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.2"
+  shared_preferences:
+    dependency: "direct main"
+    description:
+      name: shared_preferences
+      sha256: d3bbe5553a986e83980916ded2f0b435ef2e1893dfaa29d5a7a790d0eca12180
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.3"
+  shared_preferences_android:
+    dependency: transitive
+    description:
+      name: shared_preferences_android
+      sha256: "1ee8bf911094a1b592de7ab29add6f826a7331fb854273d55918693d5364a1f2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.2"
+  shared_preferences_foundation:
+    dependency: transitive
+    description:
+      name: shared_preferences_foundation
+      sha256: "7708d83064f38060c7b39db12aefe449cb8cdc031d6062280087bc4cdb988f5c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.5"
+  shared_preferences_linux:
+    dependency: transitive
+    description:
+      name: shared_preferences_linux
+      sha256: "9f2cbcf46d4270ea8be39fa156d86379077c8a5228d9dfdb1164ae0bb93f1faa"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.2"
+  shared_preferences_platform_interface:
+    dependency: transitive
+    description:
+      name: shared_preferences_platform_interface
+      sha256: "22e2ecac9419b4246d7c22bfbbda589e3acf5c0351137d87dd2939d984d37c3b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.2"
+  shared_preferences_web:
+    dependency: transitive
+    description:
+      name: shared_preferences_web
+      sha256: "9aee1089b36bd2aafe06582b7d7817fd317ef05fc30e6ba14bff247d0933042a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.0"
+  shared_preferences_windows:
+    dependency: transitive
+    description:
+      name: shared_preferences_windows
+      sha256: "841ad54f3c8381c480d0c9b508b89a34036f512482c407e6df7a9c4aa2ef8f59"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.2"
   shelf:
     dependency: transitive
     description:
@@ -1263,10 +1319,10 @@ packages:
     dependency: "direct main"
     description:
       name: toxic
-      sha256: "73a3ad7fe4e07e399a6a98ef3deafaffd02e5f9c7ff9adf1606ec552f46a871f"
+      sha256: a7c75ef7001fa10256ea105a3d1c9e8c4d481587d442ca5f2128e3e67628ce3b
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.3"
+    version: "1.2.4"
   type_plus:
     dependency: transitive
     description:
