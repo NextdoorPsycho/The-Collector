@@ -41,6 +41,7 @@ android {
     }
 
     defaultConfig {
+        multiDexEnabled true
         applicationId "art.arcane.the_collector"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
@@ -63,4 +64,6 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation 'com.android.support:multidex:1.0.3'
+}

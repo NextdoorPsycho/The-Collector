@@ -59,7 +59,7 @@ class _CollectionCardsState extends State<CollectionCards> {
         empty: Center(
           child: Text(
             'NO CARDS :(',
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme.of(context).textTheme.headlineLarge
           ),
         ),
         failed: const Placeholder(),
