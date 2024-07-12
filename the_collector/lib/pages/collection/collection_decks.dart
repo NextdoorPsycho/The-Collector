@@ -43,8 +43,11 @@ class _CollectionDecksState extends State<CollectionDecks> {
         ),
         body: FireGrid<MTGDeck>(
           padding: const EdgeInsets.all(16),
-          gridDelegate: Grids.softSize(context, 200,
-              crossAxisSpacing: 16, mainAxisSpacing: 16),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
+          ),
           crud: Crud.deck(u),
           builder: (context, deck) => DeckCard(deck: deck),
         ));
