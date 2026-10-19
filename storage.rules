@@ -1,0 +1,37 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    function deleting(userId) {
+      return firestore.exists(/databases/(default)/documents/accountDeletions/$(userId));
+    }
+
+    function owns(userId) {
+      return request.auth != null && request.auth.uid == userId && !deleting(userId);
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+
+    match /user/{userId} {
+      match /public/{file} {
+        allow read: if !deleting(userId);
+        allow write: if owns(userId);
+      }
+
+      match /decks/{file} {
+        allow read: if !deleting(userId);
+        allow write: if owns(userId);
+      }
+
+      match /private/{file} {
+        allow read, write: if owns(userId);
+      }
+
+      match /collection/{file} {
+        allow read, write: if owns(userId);
+      }
+    }
+  }
+}

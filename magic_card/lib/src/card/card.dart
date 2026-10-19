@@ -1,10 +1,11 @@
 import 'dart:typed_data';
 
 import 'package:fast_log/fast_log.dart';
-import 'package:flutter/material.dart';
-import 'package:foil/foil.dart';
+import 'package:flutter/widgets.dart';
 import 'package:memcached/memcached.dart';
 import 'package:scryfall_api/scryfall_api.dart';
+
+import 'card_effects.dart';
 
 ScryfallApiClient? _sf;
 
@@ -49,8 +50,10 @@ class CardView extends StatelessWidget {
     this.back = false,
     this.foil = false,
     this.flat = true,
-  }) : assert((interactive && !flat) || !interactive,
-            "Interactive cards must be non-flat");
+  }) : assert(
+         (interactive && !flat) || !interactive,
+         "Interactive cards must be non-flat",
+       );
 
   Widget buildImage(BuildContext context, Uint8List bytes) {
     verbose("Building image widget");
@@ -62,7 +65,9 @@ class CardView extends StatelessWidget {
           bytes,
           frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
             child = ClipRRect(
-                borderRadius: BorderRadius.circular(20), child: child);
+              borderRadius: BorderRadius.circular(20),
+              child: child,
+            );
             if (wasSynchronouslyLoaded) {
               success("Image loaded synchronously");
               return child;
@@ -86,18 +91,7 @@ class CardView extends StatelessWidget {
 
   Widget wrap(BuildContext context, Widget child) {
     verbose("Applying foil effects");
-    return Foil(
-      isUnwrapped: !foil,
-      opacity: 0.4,
-      scalar: const Scalar(horizontal: 0.2, vertical: 0.2),
-      child: Foil(
-        isUnwrapped: !foil,
-        opacity: 0.2,
-        scalar: const Scalar(horizontal: 0.55, vertical: 0.55),
-        gradient: Foils.linearLoopingReversed,
-        child: child,
-      ),
-    );
+    return foil ? CardEffects(foil: true, child: child) : child;
   }
 
   @override

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:arcane/arcane.dart';
 
 class BlankListingPage extends StatefulWidget {
   final List<Widget> groups;
@@ -6,7 +6,7 @@ class BlankListingPage extends StatefulWidget {
   const BlankListingPage({super.key, required this.groups});
 
   @override
-  _BlankListingPageState createState() => _BlankListingPageState();
+  State<BlankListingPage> createState() => _BlankListingPageState();
 }
 
 class _BlankListingPageState extends State<BlankListingPage> {

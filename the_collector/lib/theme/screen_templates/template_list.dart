@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:arcane/arcane.dart';
 
 class ListScreen extends StatelessWidget {
   const ListScreen({
@@ -38,19 +38,10 @@ class ListScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    title,
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
+                  Text(title, style: Theme.of(context).typography.h2),
                   const SizedBox(height: 8),
-                  Text(
-                    description,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  if (footer != null) ...[
-                    const SizedBox(height: 16),
-                    footer!,
-                  ],
+                  Text(description, style: Theme.of(context).typography.base),
+                  if (footer != null) ...[const SizedBox(height: 16), footer!],
                 ],
               ),
             ),

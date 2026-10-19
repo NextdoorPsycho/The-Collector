@@ -63,19 +63,21 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDtqtsAIFG9eNdamnrreUmiZSlN1Q3GlDI',
-    appId: '1:774038668608:ios:e57995e1d426160168e6a5',
+    appId: '1:774038668608:ios:05e6b06edd3b8ce168e6a5',
     messagingSenderId: '774038668608',
     projectId: 'the-collector-app',
     storageBucket: 'the-collector-app.appspot.com',
-    iosBundleId: 'com.example.modelApp',
+    iosBundleId: 'com.volmit.collector',
+    iosClientId: '774038668608-ej29bg6tkare2pe7ishomtmb3vptslii.apps.googleusercontent.com',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyDtqtsAIFG9eNdamnrreUmiZSlN1Q3GlDI',
-    appId: '1:774038668608:ios:e671cdbe075173c868e6a5',
+    appId: '1:774038668608:ios:05e6b06edd3b8ce168e6a5',
     messagingSenderId: '774038668608',
     projectId: 'the-collector-app',
     storageBucket: 'the-collector-app.appspot.com',
-    iosBundleId: 'com.example.modelApp.RunnerTests',
+    iosBundleId: 'com.volmit.collector',
+    iosClientId: '774038668608-ej29bg6tkare2pe7ishomtmb3vptslii.apps.googleusercontent.com',
   );
 }

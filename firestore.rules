@@ -1,0 +1,209 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function deleting(userId) {
+      return exists(/databases/$(database)/documents/accountDeletions/$(userId));
+    }
+
+    function activeActor() {
+      return request.auth != null && !deleting(request.auth.uid);
+    }
+
+    function owns(userId) {
+      return activeActor() && request.auth.uid == userId;
+    }
+
+    match /accountDeletions/{userId} {
+      allow get: if request.auth != null && request.auth.uid == userId;
+      allow list, create, update, delete: if false;
+    }
+
+    function isAdmin() {
+      return activeActor()
+        && exists(/databases/$(database)/documents/user/$(request.auth.uid)/restricted/perms)
+        && get(/databases/$(database)/documents/user/$(request.auth.uid)/restricted/perms).data.admin == true;
+    }
+
+    match /user/{userId} {
+      allow read: if owns(userId) || isAdmin();
+      allow write: if owns(userId);
+
+      match /cards/{document=**} {
+        allow read, write: if owns(userId);
+      }
+
+      match /decks/{document=**} {
+        allow read, write: if owns(userId);
+      }
+
+      match /priceHistory/{observationId} {
+        allow read, write: if owns(userId);
+      }
+
+      match /ingestionOperations/{operationId} {
+        allow read: if owns(userId);
+        allow create: if owns(userId)
+          && request.resource.data.keys().hasOnly(['cardId', 'quantity', 'language', 'finish', 'createdAt', 'deckId', 'deckSection'])
+          && request.resource.data.cardId is string
+          && request.resource.data.quantity is int
+          && request.resource.data.quantity > 0
+          && request.resource.data.quantity <= 1000000
+          && request.resource.data.language is string
+          && request.resource.data.finish in ['nonfoil', 'foil', 'etched', 'glossy']
+          && (!request.resource.data.keys().hasAny(['deckId']) || request.resource.data.deckId == null || request.resource.data.deckId is string)
+          && (!request.resource.data.keys().hasAny(['deckSection']) || request.resource.data.deckSection == null || request.resource.data.deckSection in ['mainboard', 'sideboard', 'commander'])
+          && request.resource.data.createdAt == request.time;
+        allow update, delete: if false;
+      }
+
+      match /gameOperations/{operationId} {
+        allow read: if owns(userId);
+        allow create: if owns(userId) && operationId.matches('^[0-9a-f]{32}$')
+          && couplesGameReceipt(
+            get(/databases/$(database)/documents/gameSessions/$(request.resource.data.sessionId)).data,
+            getAfter(/databases/$(database)/documents/gameSessions/$(request.resource.data.sessionId)).data,
+            request.resource.data,
+            operationId
+          );
+        allow update, delete: if false;
+      }
+
+      match /restricted/perms {
+        allow read: if owns(userId) || isAdmin();
+        allow create, update: if isAdmin() && !deleting(userId) && !owns(userId)
+          && request.resource.data.keys().hasOnly(['admin'])
+          && request.resource.data.admin is bool;
+        allow delete: if false;
+      }
+    }
+
+    function validPlayer(data, index) {
+      return index >= data.life.size() || (
+        data.life[index] is int && data.life[index] >= -1000000 && data.life[index] <= 1000000
+        && data.names[index] is string && data.names[index].size() > 0 && data.names[index].size() <= 40
+      );
+    }
+
+    function validGame(data) {
+      return data.keys().hasOnly(['id', 'ownerId', 'format', 'names', 'life', 'members', 'createdAt', 'updatedAt', 'operationVersion', 'revision', 'lastOperationId'])
+        && (
+          !data.keys().hasAny(['operationVersion', 'revision', 'lastOperationId'])
+          || (
+            data.operationVersion is int && data.operationVersion == 1 && data.revision is int && data.revision >= 0
+            && (data.lastOperationId == null || (data.lastOperationId is string && data.lastOperationId.matches('^[0-9a-f]{32}$')))
+            && data.members.toSet().size() == data.members.size() && data.ownerId in data.members
+          )
+        )
+        && data.format in ['standard', 'commander']
+        && data.names is list && data.life is list && data.members is list
+        && data.names.size() >= 2 && data.names.size() <= 8 && data.names.size() == data.life.size()
+        && data.members.size() >= 1 && data.members.size() <= 16
+        && validPlayer(data, 0) && validPlayer(data, 1) && validPlayer(data, 2) && validPlayer(data, 3)
+        && validPlayer(data, 4) && validPlayer(data, 5) && validPlayer(data, 6) && validPlayer(data, 7);
+    }
+
+    function hasGameOperations(data) {
+      return data.keys().hasAny(['operationVersion']) && data.operationVersion == 1;
+    }
+
+    function replaceGameValue(values, index, value) {
+      return (index == 0 ? [] : values[0:index]).concat([value])
+        .concat(index + 1 == values.size() ? [] : values[index + 1:values.size()]);
+    }
+
+    function couplesGameReceipt(before, after, operation, operationId) {
+      // The paired game write validates the intent; duplicating it here exceeds the rules expression budget.
+      return hasGameOperations(before) && hasGameOperations(after)
+        && request.auth.uid in before.members
+        && after.revision == before.revision + 1 && after.lastOperationId == operationId
+        && operation.revision == after.revision && operation.sessionId == before.id;
+    }
+
+    function validGameOperation(before, after, operation, operationId) {
+      return hasGameOperations(before) && hasGameOperations(after)
+        && request.auth.uid in before.members
+        && after.diff(before).affectedKeys().hasOnly(['life', 'names', 'members', 'updatedAt', 'revision', 'lastOperationId'])
+        && after.life.size() == before.life.size()
+        && after.names.size() == before.names.size()
+        && after.revision is int && after.revision == before.revision + 1
+        && after.lastOperationId == operationId && after.updatedAt == request.time
+        && operation.keys().hasOnly(['sessionId', 'kind', 'player', 'delta', 'name', 'revision', 'createdAt'])
+        && operation.sessionId == before.id && operation.revision is int && operation.revision == after.revision
+        && operation.createdAt == request.time
+        && (
+          (
+            operation.kind == 'delta'
+            && operation.player is int && operation.player >= 0 && operation.player < before.life.size()
+            && operation.delta is int && operation.delta != 0 && operation.delta >= -1000000 && operation.delta <= 1000000
+            && operation.name == null
+            && after.names == before.names && after.members == before.members
+            && before.life[operation.player] + operation.delta >= -1000000
+            && before.life[operation.player] + operation.delta <= 1000000
+            && after.life == replaceGameValue(before.life, operation.player, before.life[operation.player] + operation.delta)
+          ) || (
+            operation.kind == 'rename'
+            && operation.player is int && operation.player >= 0 && operation.player < before.names.size()
+            && operation.delta == null && operation.name is string && operation.name.size() > 0 && operation.name.size() <= 40
+            && after.life == before.life && after.members == before.members
+            && after.names == replaceGameValue(before.names, operation.player, operation.name)
+          ) || (
+            operation.kind == 'reset'
+            && operation.player == null && operation.delta == null && operation.name == null
+            && after.names == before.names && after.members == before.members
+            && after.life.hasOnly([before.format == 'commander' ? 40 : 20])
+          ) || (
+            operation.kind == 'leave'
+            && operation.player == null && operation.delta == null && operation.name == null
+            && request.auth.uid != before.ownerId
+            && after.life == before.life && after.names == before.names
+            && after.members == before.members.removeAll([request.auth.uid])
+          )
+        );
+    }
+
+    function commitsGameOperation() {
+      let path = /databases/$(database)/documents/user/$(request.auth.uid)/gameOperations/$(request.resource.data.lastOperationId);
+      return !exists(path) && validGameOperation(
+        resource.data, request.resource.data, getAfter(path).data, request.resource.data.lastOperationId
+      );
+    }
+
+    function joinsGame(before, after) {
+      return after.diff(before).affectedKeys().hasOnly(['members'])
+        && after.members is list && after.members.size() <= 16
+        && after.members.hasAll(before.members) && request.auth.uid in after.members
+        && after.members.size() == before.members.size() + 1;
+    }
+
+    function legacyGameUpdate(before, after) {
+      return validGame(after) && (
+        request.auth.uid in before.members
+          ? after.diff(before).affectedKeys().hasOnly(['life', 'names', 'updatedAt'])
+            && after.life.size() == before.life.size() && after.updatedAt == request.time
+          : joinsGame(before, after)
+      );
+    }
+
+    match /gameSessions/{sessionId} {
+      // The unlisted, random session code is the invitation shared by its owner.
+      allow get: if activeActor();
+      allow list: if activeActor() && request.auth.uid in resource.data.members;
+      allow create: if activeActor() && sessionId.matches('^[0-9a-f]{16}$')
+        && validGame(request.resource.data) && request.resource.data.id == sessionId
+        && request.resource.data.ownerId == request.auth.uid
+        && request.resource.data.members == [request.auth.uid]
+        && (!hasGameOperations(request.resource.data)
+          || (request.resource.data.revision == 0 && request.resource.data.lastOperationId == null))
+        && request.resource.data.createdAt == request.time && request.resource.data.updatedAt == request.time;
+      allow update: if activeActor() && (
+        hasGameOperations(resource.data)
+          ? (request.auth.uid in resource.data.members
+            ? commitsGameOperation()
+            : joinsGame(resource.data, request.resource.data))
+          : legacyGameUpdate(resource.data, request.resource.data)
+      );
+      allow delete: if activeActor() && request.auth.uid == resource.data.ownerId;
+    }
+  }
+}

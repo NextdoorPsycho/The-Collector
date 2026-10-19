@@ -1,0 +1,1166 @@
+[
+  {
+    "imagePath": "capture_0.jpg",
+    "width": 6048,
+    "height": 8064,
+    "crops": [
+      {
+        "imagePath": "capture_0_crop_0.jpg",
+        "width": 2536,
+        "height": 3542,
+        "rectified": true,
+        "warnings": [
+          "orientation_ensemble",
+          "geometry_adjusted"
+        ],
+        "sharpness": 0.8720083674924692,
+        "sourceCorners": [
+          {
+            "x": 0.2854797840118408,
+            "y": 0.5528870522975922
+          },
+          {
+            "x": 0.5706996917724609,
+            "y": 0.595917284488678
+          },
+          {
+            "x": 0.5384314656257629,
+            "y": 0.8509814888238907
+          },
+          {
+            "x": 0.08080682903528214,
+            "y": 0.7789884805679321
+          }
+        ],
+        "lines": [
+          {
+            "text": "Enchanment",
+            "confidence": 1.0,
+            "alternatives": [
+              "Enchanent",
+              "Enchanument"
+            ],
+            "bounds": {
+              "x": 0.04615489928240646,
+              "y": 0.5535118257848183,
+              "width": 0.3031950989732231,
+              "height": 0.03112446608885333
+            }
+          },
+          {
+            "text": "1; Prevent all damage against you",
+            "confidence": 1.0,
+            "alternatives": [
+              "1 ; Prevent all damage against you",
+              "1; Prevent all damag\u00e9 against you"
+            ],
+            "bounds": {
+              "x": 0.10953347228242584,
+              "y": 0.6583850925019639,
+              "width": 0.7484786939169706,
+              "height": 0.03783583681439351
+            }
+          },
+          {
+            "text": "from one blue source? it a source",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.10416665996877097,
+              "y": 0.7,
+              "width": 0.7416666795026616,
+              "height": 0.02970297029634191
+            }
+          },
+          {
+            "text": "deals damage to you more than",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.10746625910315219,
+              "y": 0.7279881007947292,
+              "width": 0.6934852961110015,
+              "height": 0.039091950610168014
+            }
+          },
+          {
+            "text": "once in a turn, you may",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.10765585125326303,
+              "y": 0.7636024700276981,
+              "width": 0.526809159712358,
+              "height": 0.04191939233054577
+            }
+          },
+          {
+            "text": "ach time to prevent the",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.13112670058835427,
+              "y": 0.8021424065278301,
+              "width": 0.51721025316643,
+              "height": 0.036134613466934404
+            }
+          },
+          {
+            "text": "Strele of Protection: Blue",
+            "confidence": 1.0,
+            "alternatives": [
+              "rele of Protection: Blue",
+              "Strele of Protections Blue"
+            ],
+            "bounds": {
+              "x": 0.050000006190179795,
+              "y": 1.647580960550954e-10,
+              "width": 0.6333333204973384,
+              "height": 0.0324590160405748
+            }
+          },
+          {
+            "text": "Enchantment",
+            "confidence": 1.0,
+            "alternatives": [
+              "Enchanument",
+              "Enchanment"
+            ],
+            "bounds": {
+              "x": 0.052738341213014794,
+              "y": 0.5523255624052823,
+              "width": 0.3002028309215199,
+              "height": 0.027616317073504204
+            }
+          }
+        ]
+      },
+      {
+        "imagePath": "capture_0_crop_1.jpg",
+        "width": 1806,
+        "height": 2319,
+        "rectified": true,
+        "warnings": [],
+        "sharpness": 0.2963377309230468,
+        "sourceCorners": [
+          {
+            "x": 0.6185122728347778,
+            "y": 0.19452154636383057
+          },
+          {
+            "x": 0.9049540758132935,
+            "y": 0.2120468020439148
+          },
+          {
+            "x": 0.8608672618865967,
+            "y": 0.473361611366272
+          },
+          {
+            "x": 0.5997961163520813,
+            "y": 0.4477490782737732
+          }
+        ],
+        "lines": [
+          {
+            "text": "Wienerseter Darte",
+            "confidence": 1.0,
+            "alternatives": [
+              "Wienerseser Darte",
+              "Wienerseter Date"
+            ],
+            "bounds": {
+              "x": 0.1458333263687004,
+              "y": 0.07708133969530617,
+              "width": 0.3166666801849737,
+              "height": 0.025837320574162673
+            }
+          }
+        ]
+      },
+      {
+        "imagePath": "capture_0_crop_2.jpg",
+        "width": 1164,
+        "height": 1790,
+        "rectified": true,
+        "warnings": [
+          "incomplete_card",
+          "no_text"
+        ],
+        "sharpness": 0.29340632528017346,
+        "sourceCorners": [
+          {
+            "x": 0.4074327349662781,
+            "y": 0.34111708402633667
+          },
+          {
+            "x": 0.5968315005302429,
+            "y": 0.36636120080947876
+          },
+          {
+            "x": 0.5478032827377319,
+            "y": 0.5846762955188751
+          },
+          {
+            "x": 0.35883796215057373,
+            "y": 0.5593869686126709
+          }
+        ],
+        "lines": []
+      }
+    ]
+  },
+  {
+    "imagePath": "capture_1.jpg",
+    "width": 6048,
+    "height": 8064,
+    "crops": [
+      {
+        "imagePath": "capture_1_crop_0.jpg",
+        "width": 2908,
+        "height": 3638,
+        "rectified": true,
+        "warnings": [
+          "incomplete_card",
+          "no_text"
+        ],
+        "sharpness": 0.5825162287453488,
+        "sourceCorners": [
+          {
+            "x": 0.28932029008865356,
+            "y": 0.5493033826351166
+          },
+          {
+            "x": 0.574173092842102,
+            "y": 0.579307347536087
+          },
+          {
+            "x": 0.5410043597221375,
+            "y": 0.8480572551488876
+          },
+          {
+            "x": 0.08031134307384491,
+            "y": 0.7761463671922684
+          }
+        ],
+        "lines": []
+      },
+      {
+        "imagePath": "capture_1_crop_1.jpg",
+        "width": 1731,
+        "height": 2418,
+        "rectified": true,
+        "warnings": [],
+        "sharpness": 0.8776358035634936,
+        "sourceCorners": [
+          {
+            "x": 0.6173738241195679,
+            "y": 0.19805437326431274
+          },
+          {
+            "x": 0.8997024297714233,
+            "y": 0.21766304969787598
+          },
+          {
+            "x": 0.8478987216949463,
+            "y": 0.47976481914520264
+          },
+          {
+            "x": 0.5986745953559875,
+            "y": 0.46028339862823486
+          }
+        ],
+        "lines": [
+          {
+            "text": "Creature - Bat",
+            "confidence": 1.0,
+            "alternatives": [
+              "Creature- Bat",
+              "Creature -Bat"
+            ],
+            "bounds": {
+              "x": 0.08924949700021594,
+              "y": 0.5784883720453035,
+              "width": 0.2799188556627093,
+              "height": 0.024902860422189588
+            }
+          },
+          {
+            "text": "Flying",
+            "confidence": 1.0,
+            "alternatives": [
+              "Fying",
+              "Fling"
+            ],
+            "bounds": {
+              "x": 0.07707910946595119,
+              "y": 0.6497093021269152,
+              "width": 0.13995942783135468,
+              "height": 0.036337209595837194
+            }
+          },
+          {
+            "text": "Whenever you create or sacrifice a",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.08710392592565104,
+              "y": 0.7,
+              "width": 0.7080451665794602,
+              "height": 0.03414701730831123
+            }
+          },
+          {
+            "text": "token, each opponent loses",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.07412790269369941,
+              "y": 0.7351239662997715,
+              "width": 0.5639534965673716,
+              "height": 0.03857845590134298
+            }
+          },
+          {
+            "text": "1 life.",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.6451142656635085,
+              "y": 0.7334396630603448,
+              "width": 0.13325408865067478,
+              "height": 0.035926396393578905
+            }
+          },
+          {
+            "text": "2/3",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.7500000010624347,
+              "y": 0.915916954902748,
+              "width": 0.0886627884439729,
+              "height": 0.038408304640084275
+            }
+          },
+          {
+            "text": "\u00abThe enemy has many spies as",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.06761641068316827,
+              "y": 0.7949994718420306,
+              "width": 0.5821466693234486,
+              "height": 0.05377761368899
+            }
+          },
+          {
+            "text": "ways of hearing.\"",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.06430696661063348,
+              "y": 0.8326512998710272,
+              "width": 0.3430297255304314,
+              "height": 0.04408287126993397
+            }
+          },
+          {
+            "text": "-Gandalf",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.05860615673702087,
+              "y": 0.8700606934171543,
+              "width": 0.2235271338671181,
+              "height": 0.034613046547801216
+            }
+          },
+          {
+            "text": "C 0095",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.03568605118969291,
+              "y": 0.9395856487775793,
+              "width": 0.09496584023294397,
+              "height": 0.015347851625422829
+            }
+          },
+          {
+            "text": "LTR \u2022 EN JOHN TEDRICK",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.0343408902309137,
+              "y": 0.9565382915398053,
+              "width": 0.2915978372414625,
+              "height": 0.020219211381735266
+            }
+          },
+          {
+            "text": "\u00a9 MEE",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.5367520349005586,
+              "y": 0.9469132412494399,
+              "width": 0.08333429570308169,
+              "height": 0.015451867801626927
+            }
+          },
+          {
+            "text": "TM & \u00a9 202",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.5355449588266245,
+              "y": 0.9655464763609853,
+              "width": 0.11340569179392625,
+              "height": 0.014956894707433959
+            }
+          },
+          {
+            "text": "Mirkwood Bats",
+            "confidence": 1.0,
+            "alternatives": [
+              "Mirkwood Bat",
+              "MirkwoodBats"
+            ],
+            "bounds": {
+              "x": 0.13482635806496016,
+              "y": 0.06975850322328458,
+              "width": 0.3233296171897554,
+              "height": 0.032645168479429464
+            }
+          }
+        ]
+      },
+      {
+        "imagePath": "capture_1_crop_2.jpg",
+        "width": 1249,
+        "height": 2005,
+        "rectified": true,
+        "warnings": [
+          "incomplete_card",
+          "no_text"
+        ],
+        "sharpness": 0.7927656176793774,
+        "sourceCorners": [
+          {
+            "x": 0.4171287715435028,
+            "y": 0.34435516595840454
+          },
+          {
+            "x": 0.5947985053062439,
+            "y": 0.3681749105453491
+          },
+          {
+            "x": 0.5514546632766724,
+            "y": 0.5832651257514954
+          },
+          {
+            "x": 0.34857726097106934,
+            "y": 0.5554388165473938
+          }
+        ],
+        "lines": []
+      }
+    ]
+  },
+  {
+    "imagePath": "capture_2.jpg",
+    "width": 6048,
+    "height": 8064,
+    "crops": [
+      {
+        "imagePath": "capture_2_crop_0.jpg",
+        "width": 2536,
+        "height": 3542,
+        "rectified": true,
+        "warnings": [
+          "geometry_adjusted"
+        ],
+        "sharpness": 0.8277100695631119,
+        "sourceCorners": [
+          {
+            "x": 0.2717852294445038,
+            "y": 0.5447057485580444
+          },
+          {
+            "x": 0.669272243976593,
+            "y": 0.6027639508247375
+          },
+          {
+            "x": 0.5682127475738525,
+            "y": 0.8865485861897469
+          },
+          {
+            "x": 0.020379357039928436,
+            "y": 0.8004824817180634
+          }
+        ],
+        "lines": [
+          {
+            "text": "1 \u00b7",
+            "confidence": 1.0,
+            "alternatives": [
+              "1 *",
+              "1\u00b7"
+            ],
+            "bounds": {
+              "x": 0.6592292092868637,
+              "y": 0.03331451143299802,
+              "width": 0.07505070899939303,
+              "height": 0.026278511404923877
+            }
+          },
+          {
+            "text": "Enchantment",
+            "confidence": 1.0,
+            "alternatives": [
+              "Enchanument",
+              "Enchaniment"
+            ],
+            "bounds": {
+              "x": 0.09236212925387148,
+              "y": 0.4819714190829829,
+              "width": 0.24330726406927738,
+              "height": 0.032390542786919774
+            }
+          },
+          {
+            "text": "1; Prevent all damage against you",
+            "confidence": 1.0,
+            "alternatives": [
+              "1: Prevent all damage against you",
+              "1 ; Prevent all damage against you"
+            ],
+            "bounds": {
+              "x": 0.14547648283702025,
+              "y": 0.5759426499670011,
+              "width": 0.6096944237357058,
+              "height": 0.04151821082625129
+            }
+          },
+          {
+            "text": "from one blue source. If a source",
+            "confidence": 1.0,
+            "alternatives": [
+              "from one blie source. If a source",
+              "from one ble source. If a source"
+            ],
+            "bounds": {
+              "x": 0.14604462309516666,
+              "y": 0.6133720929159391,
+              "width": 0.6024340801058508,
+              "height": 0.030614355336064825
+            }
+          },
+          {
+            "text": "deals damage to you more than",
+            "confidence": 1.0,
+            "alternatives": [
+              "deal damage to you more than",
+              "deals damage to you more han"
+            ],
+            "bounds": {
+              "x": 0.14768815280490524,
+              "y": 0.6463094695814923,
+              "width": 0.5686304230795298,
+              "height": 0.04004261656577546
+            }
+          },
+          {
+            "text": "Cirele of Protection: Blue",
+            "confidence": 1.0,
+            "alternatives": [
+              "Cirele of Protections Blue",
+              "Cirele of Protection Blue"
+            ],
+            "bounds": {
+              "x": 0.07832385803520485,
+              "y": 0.02269506280817979,
+              "width": 0.4642021106996747,
+              "height": 0.036741299046244354
+            }
+          }
+        ]
+      },
+      {
+        "imagePath": "capture_2_crop_1.jpg",
+        "width": 1573,
+        "height": 2175,
+        "rectified": true,
+        "warnings": [
+          "incomplete_card",
+          "no_text"
+        ],
+        "sharpness": 0.2742161269319994,
+        "sourceCorners": [
+          {
+            "x": 0.6429682374000549,
+            "y": 0.20517754554748535
+          },
+          {
+            "x": 0.8895787596702576,
+            "y": 0.223846435546875
+          },
+          {
+            "x": 0.829457700252533,
+            "y": 0.4770053029060364
+          },
+          {
+            "x": 0.5712748169898987,
+            "y": 0.4570552110671997
+          }
+        ],
+        "lines": []
+      }
+    ]
+  },
+  {
+    "imagePath": "capture_3.jpg",
+    "width": 6048,
+    "height": 8064,
+    "crops": [
+      {
+        "imagePath": "capture_3_crop_0.jpg",
+        "width": 2539,
+        "height": 3546,
+        "rectified": true,
+        "warnings": [
+          "orientation_ensemble",
+          "geometry_adjusted"
+        ],
+        "sharpness": 0.8587500304014964,
+        "sourceCorners": [
+          {
+            "x": 0.285838782787323,
+            "y": 0.5530933737754822
+          },
+          {
+            "x": 0.5708613991737366,
+            "y": 0.5958972275257111
+          },
+          {
+            "x": 0.5380644798278809,
+            "y": 0.8509214669466019
+          },
+          {
+            "x": 0.08047772943973541,
+            "y": 0.7789749652147293
+          }
+        ],
+        "lines": [
+          {
+            "text": "1\u7c73",
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.8559837727340258,
+              "y": 0.0,
+              "width": 0.09939148069366688,
+              "height": 0.030523255904358004
+            }
+          },
+          {
+            "text": "Enchanument",
+            "confidence": 1.0,
+            "alternatives": [
+              "Enchannent",
+              "Enchanment"
+            ],
+            "bounds": {
+              "x": 0.04665314065544805,
+              "y": 0.5552325585622429,
+              "width": 0.30223124346395175,
+              "height": 0.027616278169118824
+            }
+          },
+          {
+            "text": "1; Prevent all damage against you",
+            "confidence": 1.0,
+            "alternatives": [
+              "1 ; Prevent all damage against you",
+              "1; Prevent all damag\u00e9 against you"
+            ],
+            "bounds": {
+              "x": 0.10931362913198914,
+              "y": 0.6568840535413215,
+              "width": 0.7489289050965797,
+              "height": 0.039709130990189245
+            }
+          },
+          {
+            "text": "from one blue source. I1 a source",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.10833332504039139,
+              "y": 0.7,
+              "width": 0.7416666826863927,
+              "height": 0.02970297029634191
+            }
+          },
+          {
+            "text": "deals damage to you more than",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.1072304376097055,
+              "y": 0.7277502489243168,
+              "width": 0.6968342938761073,
+              "height": 0.04021244335891606
+            }
+          },
+          {
+            "text": "once in a turn, you may",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.10779181902376254,
+              "y": 0.7640015600230349,
+              "width": 0.5265304491537246,
+              "height": 0.03920862762021345
+            }
+          },
+          {
+            "text": "each time to prevent the",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.11104167294341918,
+              "y": 0.802535211257112,
+              "width": 0.5308333205253103,
+              "height": 0.03492957746478875
+            }
+          },
+          {
+            "text": "rele of Protection Blue",
+            "confidence": 1.0,
+            "alternatives": [
+              "rele of Protections Blue",
+              "rele of Protection Ble"
+            ],
+            "bounds": {
+              "x": 0.050000007782045316,
+              "y": 2.3500645873753e-11,
+              "width": 0.6333333173136073,
+              "height": 0.03245901632308962
+            }
+          },
+          {
+            "text": "Enchantment",
+            "confidence": 1.0,
+            "alternatives": [
+              "Enchantent",
+              "Enchantmment"
+            ],
+            "bounds": {
+              "x": 0.050709932313710904,
+              "y": 0.5537790498833006,
+              "width": 0.30223125110973015,
+              "height": 0.026162830491860634
+            }
+          }
+        ]
+      },
+      {
+        "imagePath": "capture_3_crop_1.jpg",
+        "width": 1546,
+        "height": 2198,
+        "rectified": true,
+        "warnings": [
+          "incomplete_card",
+          "no_text"
+        ],
+        "sharpness": 0.24784801495214984,
+        "sourceCorners": [
+          {
+            "x": 0.6358180642127991,
+            "y": 0.20482796430587769
+          },
+          {
+            "x": 0.8895093202590942,
+            "y": 0.22385215759277344
+          },
+          {
+            "x": 0.8292258381843567,
+            "y": 0.4766845703125
+          },
+          {
+            "x": 0.5901303291320801,
+            "y": 0.45879703760147095
+          }
+        ],
+        "lines": []
+      },
+      {
+        "imagePath": "capture_3_crop_2.jpg",
+        "width": 1638,
+        "height": 2294,
+        "rectified": false,
+        "warnings": [
+          "no_card_rectangle",
+          "partial_card",
+          "incomplete_card"
+        ],
+        "sharpness": 0.8107678821531854,
+        "sourceCorners": [
+          {
+            "x": 0.6261943927668291,
+            "y": 0.5731144462405077
+          },
+          {
+            "x": 0.8968473646790995,
+            "y": 0.5731144462405077
+          },
+          {
+            "x": 0.8968473646790995,
+            "y": 0.8574137864844893
+          },
+          {
+            "x": 0.6261943927668291,
+            "y": 0.8574137864844893
+          }
+        ],
+        "lines": [
+          {
+            "text": "Enchantment",
+            "confidence": 1.0,
+            "alternatives": [
+              "Enchantmen",
+              "Enchantmet"
+            ],
+            "bounds": {
+              "x": 0.03917962985014293,
+              "y": 0.4528406671045291,
+              "width": 0.39344156006753667,
+              "height": 0.08170184906192102
+            }
+          },
+          {
+            "text": "As Nevermore enters the bat",
+            "confidence": 1.0,
+            "alternatives": [
+              "As Nevermore enter the bat",
+              "As Nevermor enters the bat"
+            ],
+            "bounds": {
+              "x": 0.029698079710359808,
+              "y": 0.5218009090586371,
+              "width": 0.9703019202896402,
+              "height": 0.15514922536968045
+            }
+          },
+          {
+            "text": "name a nonland card.",
+            "confidence": 1.0,
+            "alternatives": [
+              "name a nonland card",
+              "name anonland card."
+            ],
+            "bounds": {
+              "x": 0.021138759527842582,
+              "y": 0.5530654087151535,
+              "width": 0.7634633568471458,
+              "height": 0.14720990580897175
+            }
+          },
+          {
+            "text": "The named card can't be ca",
+            "confidence": 1.0,
+            "alternatives": [
+              "The named card can't beca",
+              "The named card can't be a"
+            ],
+            "bounds": {
+              "x": 0.01871013194038923,
+              "y": 0.6128767882851347,
+              "width": 0.9812898680596107,
+              "height": 0.1582307823866268
+            }
+          },
+          {
+            "text": "an't be ca",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.6409221320395169,
+              "y": 0.7,
+              "width": 0.3576773060110463,
+              "height": 0.0658463235740569
+            }
+          },
+          {
+            "text": "the laro of Avac",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.1617465240587943,
+              "y": 0.7061910343638446,
+              "width": 0.5136653541499733,
+              "height": 0.09664091359014092
+            }
+          },
+          {
+            "text": "words, andn, the foll",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.3241279103143346,
+              "y": 0.7806896555052598,
+              "width": 0.6715116209745116,
+              "height": 0.05379310276197349
+            }
+          },
+          {
+            "text": "deeds are",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.6849650660913926,
+              "y": 0.8080127114463915,
+              "width": 0.3150349339086074,
+              "height": 0.07403557818868886
+            }
+          },
+          {
+            "text": "-Jason A. Engle",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.038892185509268255,
+              "y": 0.8580543571530684,
+              "width": 0.4022097558474511,
+              "height": 0.09371481190557067
+            }
+          },
+          {
+            "text": "& C 5995-2051 Wacde 4",
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.0,
+              "y": 0.8932977869926858,
+              "width": 0.45033589726834056,
+              "height": 0.09310738936714504
+            }
+          },
+          {
+            "text": "nzoa",
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.4247814197341904,
+              "y": 0.76,
+              "width": 0.22055669644983802,
+              "height": 0.03714265081064971
+            }
+          },
+          {
+            "text": "henceforth disallow",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.0,
+              "y": 0.7655366210524346,
+              "width": 0.65,
+              "height": 0.12911024010699726
+            }
+          },
+          {
+            "text": "Nevermore",
+            "confidence": 1.0,
+            "alternatives": [
+              "Nevermor",
+              "Nevemore"
+            ],
+            "bounds": {
+              "x": 0.07388055609144008,
+              "y": 0.03690484039348785,
+              "width": 0.31323603628901486,
+              "height": 0.057519239342730975
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "imagePath": "capture_4.jpg",
+    "width": 6048,
+    "height": 8064,
+    "crops": [
+      {
+        "imagePath": "capture_4_crop_0.jpg",
+        "width": 2963,
+        "height": 3573,
+        "rectified": true,
+        "warnings": [],
+        "sharpness": 0.8192800816148351,
+        "sourceCorners": [
+          {
+            "x": 0.287873238325119,
+            "y": 0.5516932904720306
+          },
+          {
+            "x": 0.5708083510398865,
+            "y": 0.5903235673904419
+          },
+          {
+            "x": 0.5380461812019348,
+            "y": 0.849262073636055
+          },
+          {
+            "x": 0.08237424492835999,
+            "y": 0.7778933346271515
+          }
+        ],
+        "lines": [
+          {
+            "text": "1\u7063",
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.8573141867059962,
+              "y": 0.027058193428522892,
+              "width": 0.0998687744140625,
+              "height": 0.036285660823230814
+            }
+          },
+          {
+            "text": "1: Prevent all damage against you",
+            "confidence": 1.0,
+            "alternatives": [
+              "1 : Prevent all damage against you",
+              "1 Prevent all damage against you"
+            ],
+            "bounds": {
+              "x": 0.10808271412296706,
+              "y": 0.6547121091985871,
+              "width": 0.7593362373218201,
+              "height": 0.05265350427184612
+            }
+          },
+          {
+            "text": "from one blue source. If a source",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.10833334952770368,
+              "y": 0.7,
+              "width": 0.7458333003858807,
+              "height": 0.034482758693522485
+            }
+          },
+          {
+            "text": "nage to you more than",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.31493265217585986,
+              "y": 0.7304811442369507,
+              "width": 0.49797229020379974,
+              "height": 0.04600358792205356
+            }
+          },
+          {
+            "text": "once in a turn, you may pay -",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.10793467164481926,
+              "y": 0.7673144568661296,
+              "width": 0.6674241286057692,
+              "height": 0.043641775045821916
+            }
+          },
+          {
+            "text": "cach time to prevent the damage.",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.11188539127526748,
+              "y": 0.7976173719950801,
+              "width": 0.7262030432903173,
+              "height": 0.05071974939374779
+            }
+          },
+          {
+            "text": "Cirele",
+            "confidence": 1.0,
+            "alternatives": [
+              "\u00c7irele",
+              "C\u00fcrele"
+            ],
+            "bounds": {
+              "x": 0.04977375664571043,
+              "y": 0.0015000010444439216,
+              "width": 0.14389140017119498,
+              "height": 0.038999997725397896
+            }
+          },
+          {
+            "text": "of Protection: B",
+            "confidence": 1.0,
+            "alternatives": [
+              "of Protection: L",
+              "of Protection B"
+            ],
+            "bounds": {
+              "x": 0.1951817181547002,
+              "y": 0.002408171732415143,
+              "width": 0.41868362735640186,
+              "height": 0.05148745661196501
+            }
+          },
+          {
+            "text": "lue",
+            "confidence": 0.5,
+            "alternatives": [
+              "luc",
+              "lae"
+            ],
+            "bounds": {
+              "x": 0.6013904623074391,
+              "y": 0.01847999942815237,
+              "width": 0.08644984318659854,
+              "height": 0.03564000029001176
+            }
+          }
+        ]
+      },
+      {
+        "imagePath": "capture_4_crop_1.jpg",
+        "width": 981,
+        "height": 1391,
+        "rectified": true,
+        "warnings": [
+          "incomplete_card",
+          "no_text"
+        ],
+        "sharpness": 0.5469000400943334,
+        "sourceCorners": [
+          {
+            "x": 0.647060751914978,
+            "y": 0.23632800579071045
+          },
+          {
+            "x": 0.8625595569610596,
+            "y": 0.2511705160140991
+          },
+          {
+            "x": 0.8459405303001404,
+            "y": 0.36628395318984985
+          },
+          {
+            "x": 0.6198146939277649,
+            "y": 0.3489617705345154
+          }
+        ],
+        "lines": []
+      }
+    ]
+  }
+]

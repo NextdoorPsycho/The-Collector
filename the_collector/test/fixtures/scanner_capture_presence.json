@@ -1,0 +1,1023 @@
+{
+  "captures": [
+    {
+      "source": "collector_saved_failure.jpg",
+      "index": 0,
+      "crop": {
+        "width": 1840,
+        "height": 2941,
+        "rectified": true,
+        "sourceCorners": [
+          {
+            "y": 0.5604372876882553,
+            "x": 0.7887178480625152
+          },
+          {
+            "x": 0.9845814645290375,
+            "y": 0.5218059885501861
+          },
+          {
+            "y": 0.7645442542433738,
+            "x": 0.9831138110160828
+          },
+          {
+            "y": 0.8241075244545937,
+            "x": 0.7199728870391846
+          }
+        ],
+        "lines": [],
+        "warnings": [
+          "details_pending",
+          "incomplete_card",
+          "no_text",
+          "border_recovered"
+        ],
+        "imagePath": "saved-collector_saved_failure.jpg-0.jpg"
+      }
+    },
+    {
+      "source": "collector_saved_failure.jpg",
+      "index": 1,
+      "crop": {
+        "width": 1211,
+        "height": 1805,
+        "rectified": true,
+        "sourceCorners": [
+          {
+            "x": 0.6398931670188904,
+            "y": 0.08380820512771614
+          },
+          {
+            "x": 0.8518089771270752,
+            "y": 0.2234961986541748
+          },
+          {
+            "y": 0.3625817763805389,
+            "x": 0.8141880762577057
+          },
+          {
+            "x": 0.5903737962245941,
+            "y": 0.22554611325263973
+          }
+        ],
+        "lines": [],
+        "warnings": [
+          "details_pending",
+          "incomplete_card",
+          "no_text",
+          "border_recovered"
+        ],
+        "imagePath": "saved-collector_saved_failure.jpg-1.jpg"
+      }
+    },
+    {
+      "source": "collector_saved_failure.jpg",
+      "index": 2,
+      "crop": {
+        "width": 697,
+        "height": 840,
+        "rectified": true,
+        "sourceCorners": [
+          {
+            "x": 0.1821036419272423,
+            "y": 0.39380642890930184
+          },
+          {
+            "y": 0.451329333782196,
+            "x": 0.2566799873113632
+          },
+          {
+            "y": 0.4663833677768707,
+            "x": 0.1387679548561573
+          },
+          {
+            "x": 0.07507265791296959,
+            "y": 0.4163828647136688
+          }
+        ],
+        "lines": [],
+        "warnings": [
+          "details_pending",
+          "incomplete_card",
+          "no_text",
+          "border_recovered"
+        ],
+        "imagePath": "saved-collector_saved_failure.jpg-2.jpg"
+      }
+    },
+    {
+      "source": "collector_saved_failure.jpg",
+      "index": 3,
+      "crop": {
+        "width": 2650,
+        "height": 4096,
+        "rectified": true,
+        "sourceCorners": [
+          {
+            "x": 0.2501275691807172,
+            "y": 0.373655632040075
+          },
+          {
+            "y": 0.3628713527335803,
+            "x": 0.6379525885069128
+          },
+          {
+            "x": 0.7089326890915784,
+            "y": 0.8249382275747209
+          },
+          {
+            "x": 0.2653828387694734,
+            "y": 0.8234807529074478
+          }
+        ],
+        "lines": [
+          {
+            "confidence": 1.0,
+            "alternativeConfidences": [],
+            "bounds": {
+              "x": 0.06644518515071454,
+              "y": 0.04094827588319472,
+              "width": 0.5714285780042185,
+              "height": 0.03448275849223137
+            },
+            "alternatives": [],
+            "glyphHeight": 0.03448275849223137,
+            "text": "Snow-Covered Swamp"
+          },
+          {
+            "bounds": {
+              "width": 0.37567957997501883,
+              "y": 0.8233847311113816,
+              "height": 0.0538770891726017,
+              "x": 0.060166850210003966
+            },
+            "confidence": 1.0,
+            "alternativeConfidences": [],
+            "glyphHeight": 0.030723276377914513,
+            "text": "Basic Snow Land",
+            "alternatives": []
+          },
+          {
+            "glyphHeight": 0.028017239250605043,
+            "text": "Swamp",
+            "confidence": 1.0,
+            "bounds": {
+              "y": 0.8102539246980794,
+              "x": 0.6710582155434611,
+              "width": 0.15954470166973034,
+              "height": 0.028199046850204468
+            },
+            "alternatives": [],
+            "alternativeConfidences": []
+          },
+          {
+            "alternatives": [],
+            "alternativeConfidences": [],
+            "text": "ad dr Caar",
+            "confidence": 0.30000001192092896,
+            "bounds": {
+              "x": 0.8162279607783686,
+              "height": 0.02053683251142502,
+              "width": 0.15097602855745662,
+              "y": 0.9006030915885562
+            },
+            "glyphHeight": 0.02053683251142502
+          },
+          {
+            "confidence": 0.30000001192092896,
+            "bounds": {
+              "x": 0.6170777209869879,
+              "width": 0.1943316567537472,
+              "y": 0.9130509735585761,
+              "height": 0.02011501044034958
+            },
+            "alternatives": [],
+            "glyphHeight": 0.020115012302994728,
+            "text": "пдС 30090 30",
+            "alternativeConfidences": []
+          },
+          {
+            "text": "252/2846",
+            "bounds": {
+              "height": 0.03135482594370842,
+              "x": 0.031261622806745715,
+              "y": 0.9424979858888158,
+              "width": 0.17671819258239654
+            },
+            "glyphHeight": 0.02433263678788505,
+            "alternatives": [],
+            "confidence": 0.30000001192092896,
+            "alternativeConfidences": []
+          },
+          {
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "bounds": {
+              "y": 0.9510846496369563,
+              "x": 0.034190515275730624,
+              "width": 0.33007218719068154,
+              "height": 0.04239683970808983
+            },
+            "alternativeConfidences": [],
+            "text": "MINT-EN •Tinstin",
+            "glyphHeight": 0.023218750361120977
+          }
+        ],
+        "warnings": [
+          "details_pending",
+          "basic_land_outline",
+          "unread_footer",
+          "border_recovered",
+          "partial_card"
+        ],
+        "imagePath": "saved-collector_saved_failure.jpg-3.jpg"
+      }
+    },
+    {
+      "source": "collector_four_cards.png",
+      "index": 0,
+      "crop": {
+        "width": 1110,
+        "height": 1612,
+        "rectified": true,
+        "sourceCorners": [
+          {
+            "x": 0.14713464617729188,
+            "y": 0.3025605738162994
+          },
+          {
+            "y": 0.3100194674730301,
+            "x": 0.32921531558036804
+          },
+          {
+            "y": 0.7789062467217446,
+            "x": 0.30919180512428285
+          },
+          {
+            "x": 0.11630154252052306,
+            "y": 0.7728557130694389
+          }
+        ],
+        "lines": [
+          {
+            "alternativeConfidences": [],
+            "text": "Snow-Covered Swamp",
+            "alternatives": [],
+            "glyphHeight": 0.03298460213609675,
+            "bounds": {
+              "width": 0.5263920964421452,
+              "height": 0.03994757602587529,
+              "x": 0.09308860057922078,
+              "y": 0.07684364671271582
+            },
+            "confidence": 1.0
+          },
+          {
+            "alternatives": [],
+            "alternativeConfidences": [],
+            "glyphHeight": 0.030397022332506185,
+            "text": "Basic Snow Land",
+            "bounds": {
+              "width": 0.3375,
+              "height": 0.030397022332506185,
+              "y": 0.8145161284637191,
+              "x": 0.07812500187499999
+            },
+            "confidence": 1.0
+          },
+          {
+            "alternatives": [],
+            "text": "Swamp",
+            "alternativeConfidences": [],
+            "confidence": 1.0,
+            "glyphHeight": 0.028674352849387685,
+            "bounds": {
+              "y": 0.8166497458558443,
+              "height": 0.028674352849387685,
+              "x": 0.6458745506723732,
+              "width": 0.1516367319467905
+            }
+          },
+          {
+            "text": "252/254 L",
+            "alternativeConfidences": [],
+            "bounds": {
+              "y": 0.9157938215982143,
+              "width": 0.1500838546065597,
+              "height": 0.019705460030151056,
+              "x": 0.05308307419624673
+            },
+            "confidence": 0.30000001192092896,
+            "glyphHeight": 0.01939655279352751,
+            "alternatives": []
+          },
+          {
+            "confidence": 0.30000001192092896,
+            "text": "MHISEN N TIIUS LUNTER",
+            "alternativeConfidences": [],
+            "bounds": {
+              "x": 0.05312500312499993,
+              "height": 0.021738897186355022,
+              "width": 0.3125,
+              "y": 0.9330024818745803
+            },
+            "alternatives": [],
+            "glyphHeight": 0.021738897186355022
+          },
+          {
+            "text": "IMA: C 2019 Wisants of the Coast",
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "alternativeConfidences": [],
+            "glyphHeight": 0.019535594779267806,
+            "bounds": {
+              "width": 0.3531249999999999,
+              "height": 0.019535594779267806,
+              "x": 0.5875000029427083,
+              "y": 0.9159482760015548
+            }
+          },
+          {
+            "confidence": 0.30000001192092896,
+            "bounds": {
+              "y": 0.9311983466671738,
+              "x": 0.056261339415525725,
+              "height": 0.02005165312901017,
+              "width": 0.3049001882742117
+            },
+            "glyphHeight": 0.020051651946769267,
+            "text": "MHITEN D TITUS LUNTER",
+            "alternatives": [],
+            "alternativeConfidences": []
+          },
+          {
+            "text": "IN A C 2019 Wizands of the Coast",
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "alternativeConfidences": [],
+            "bounds": {
+              "y": 0.9118637091779724,
+              "width": 0.35074380410684125,
+              "height": 0.022326110808317333,
+              "x": 0.5896227511864601
+            },
+            "glyphHeight": 0.01917319994472028
+          }
+        ],
+        "warnings": [
+          "details_pending",
+          "basic_land_outline",
+          "unread_footer",
+          "border_recovered"
+        ],
+        "imagePath": "saved-collector_four_cards.png-0.jpg"
+      }
+    },
+    {
+      "source": "collector_four_cards.png",
+      "index": 1,
+      "crop": {
+        "width": 1124,
+        "height": 1677,
+        "rectified": true,
+        "sourceCorners": [
+          {
+            "y": 0.31467525303363797,
+            "x": 0.7311357939243316
+          },
+          {
+            "y": 0.343677316904068,
+            "x": 0.910102061033249
+          },
+          {
+            "x": 0.9265125656127929,
+            "y": 0.8194396147131919
+          },
+          {
+            "y": 0.7932762840390205,
+            "x": 0.7311645483970642
+          }
+        ],
+        "lines": [
+          {
+            "text": "Cireleof Proceerion: Blue",
+            "confidence": 0.30000001192092896,
+            "alternativeConfidences": [],
+            "bounds": {
+              "height": 0.032440610665104286,
+              "y": 0.07747318238150402,
+              "width": 0.543408322588829,
+              "x": 0.11254021713002275
+            },
+            "glyphHeight": 0.032440610665104175,
+            "alternatives": []
+          },
+          {
+            "alternativeConfidences": [],
+            "text": "*",
+            "glyphHeight": 0.025862068596059107,
+            "alternatives": [],
+            "confidence": 0.30000001192092896,
+            "bounds": {
+              "height": 0.02586206747607478,
+              "x": 0.84244373023498,
+              "y": 0.08405172469792321,
+              "width": 0.038585208064720766
+            }
+          },
+          {
+            "alternatives": [],
+            "glyphHeight": 0.026221692491060766,
+            "alternativeConfidences": [],
+            "bounds": {
+              "height": 0.026221692491060766,
+              "width": 0.2604501527399355,
+              "x": 0.12218650003678468,
+              "y": 0.5494636475223224
+            },
+            "text": "Fe chscrornent",
+            "confidence": 0.30000001192092896
+          },
+          {
+            "bounds": {
+              "width": 0.6302250763699677,
+              "height": 0.0301724139498869,
+              "y": 0.6357758618982092,
+              "x": 0.1800643151912219
+            },
+            "glyphHeight": 0.0301724139498869,
+            "alternativeConfidences": [],
+            "confidence": 0.5,
+            "text": "1; Prevent all damage against you",
+            "alternatives": []
+          },
+          {
+            "text": "from one blue source. If a source",
+            "bounds": {
+              "y": 0.6637931036716084,
+              "width": 0.6270096531117938,
+              "height": 0.03017241394988679,
+              "x": 0.17041800505182012
+            },
+            "confidence": 1.0,
+            "alternativeConfidences": [],
+            "glyphHeight": 0.03017241394988679,
+            "alternatives": []
+          },
+          {
+            "text": "deals damage to you more than",
+            "confidence": 1.0,
+            "glyphHeight": 0.03777314141765675,
+            "alternatives": [],
+            "alternativeConfidences": [],
+            "bounds": {
+              "width": 0.5962732932745773,
+              "y": 0.6916666673627527,
+              "x": 0.1677018612819659,
+              "height": 0.03777314141765675
+            }
+          },
+          {
+            "confidence": 0.5,
+            "bounds": {
+              "x": 0.17041802154220465,
+              "y": 0.7240762807483337,
+              "height": 0.030393325387365833,
+              "width": 0.6012861584429215
+            },
+            "glyphHeight": 0.030393325387365833,
+            "text": "once in a turn, you may pay 1",
+            "alternatives": [],
+            "alternativeConfidences": []
+          },
+          {
+            "alternativeConfidences": [],
+            "bounds": {
+              "x": 0.16994461417117307,
+              "y": 0.7488840048462057,
+              "width": 0.6281919106045653,
+              "height": 0.03796760231718266
+            },
+            "alternatives": [],
+            "text": "each time to prévent the damage,",
+            "glyphHeight": 0.031001654105504355,
+            "confidence": 1.0
+          },
+          {
+            "text": "Illus. Pete Venters",
+            "alternatives": [],
+            "confidence": 0.30000001192092896,
+            "alternativeConfidences": [],
+            "bounds": {
+              "y": 0.8576114389030366,
+              "x": 0.11532190105780636,
+              "width": 0.29025654097044595,
+              "height": 0.026156433432832582
+            },
+            "glyphHeight": 0.023498035129336382
+          },
+          {
+            "bounds": {
+              "width": 0.48553054103647686,
+              "x": 0.11575562381455914,
+              "height": 0.01730045971057692,
+              "y": 0.8814064365080423
+            },
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "text": "© 1995 Wizards of thé Coast, Inc. All rights reserved",
+            "alternativeConfidences": [],
+            "glyphHeight": 0.01730046027891685
+          }
+        ],
+        "warnings": [
+          "details_pending",
+          "incomplete_card",
+          "border_recovered"
+        ],
+        "imagePath": "saved-collector_four_cards.png-1.jpg"
+      }
+    },
+    {
+      "source": "collector_four_cards.png",
+      "index": 2,
+      "crop": {
+        "width": 1032,
+        "height": 1436,
+        "rectified": true,
+        "sourceCorners": [
+          {
+            "y": 0.29887624144554137,
+            "x": 0.5495472896099091
+          },
+          {
+            "x": 0.7165546548366547,
+            "y": 0.3255378437042237
+          },
+          {
+            "x": 0.714255324602127,
+            "y": 0.7404056948423385
+          },
+          {
+            "y": 0.7283088117837906,
+            "x": 0.540023227930069
+          }
+        ],
+        "lines": [
+          {
+            "glyphHeight": 0.033852240534865935,
+            "text": "Jolted Awake",
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "width": 0.31595735771711486,
+              "x": 0.06481932965915524,
+              "y": 0.06721912218485238,
+              "height": 0.03523166199580541
+            },
+            "alternativeConfidences": []
+          },
+          {
+            "confidence": 1.0,
+            "alternatives": [],
+            "alternativeConfidences": [],
+            "glyphHeight": 0.02785455608174576,
+            "text": "Sorcery",
+            "bounds": {
+              "y": 0.5794742252281126,
+              "x": 0.06498911284588241,
+              "width": 0.16344414940176083,
+              "height": 0.028432184607205646
+            }
+          },
+          {
+            "alternativeConfidences": [],
+            "confidence": 1.0,
+            "alternatives": [],
+            "text": "Choose up to one target artifact or",
+            "bounds": {
+              "x": 0.07485030124981129,
+              "height": 0.0348189415041783,
+              "width": 0.7514970173207365,
+              "y": 0.6399721454880146
+            },
+            "glyphHeight": 0.0348189415041783
+          },
+          {
+            "alternativeConfidences": [],
+            "confidence": 1.0,
+            "text": "creature card in your graveyard. You",
+            "alternatives": [],
+            "glyphHeight": 0.03879310161622451,
+            "bounds": {
+              "height": 0.03879310161622451,
+              "x": 0.07185630330873273,
+              "width": 0.7844311026639716,
+              "y": 0.6724137936961981
+            }
+          },
+          {
+            "confidence": 1.0,
+            "glyphHeight": 0.037521293451132504,
+            "alternatives": [],
+            "bounds": {
+              "width": 0.8544966231944949,
+              "x": 0.07131652859517425,
+              "y": 0.7021449235770438,
+              "height": 0.046554517613147994
+            },
+            "text": "get 44 (two energy counters). Then you",
+            "alternativeConfidences": []
+          },
+          {
+            "confidence": 1.0,
+            "alternativeConfidences": [],
+            "alternatives": [],
+            "bounds": {
+              "x": 0.07185628060964747,
+              "width": 0.8443113814952762,
+              "y": 0.74568965482995,
+              "height": 0.034482759353510195
+            },
+            "text": "may pay an amount of 4 equal to that",
+            "glyphHeight": 0.034482759353510195
+          },
+          {
+            "bounds": {
+              "y": 0.7698545263716005,
+              "x": 0.06808748101366313,
+              "height": 0.053407217466731494,
+              "width": 0.833999752074249
+            },
+            "text": "card's man yalue, If you do, return it",
+            "confidence": 0.5,
+            "alternatives": [],
+            "alternativeConfidences": [],
+            "glyphHeight": 0.04060742231230085
+          },
+          {
+            "alternatives": [],
+            "bounds": {
+              "width": 0.8375803629557291,
+              "x": 0.07078560089316088,
+              "height": 0.049149946249959275,
+              "y": 0.8046784115016301
+            },
+            "alternativeConfidences": [],
+            "text": "from your graveyard to the battlefield.",
+            "glyphHeight": 0.03398293737461991,
+            "confidence": 1.0
+          },
+          {
+            "text": "C 0500",
+            "alternativeConfidences": [],
+            "bounds": {
+              "width": 0.1077844264895417,
+              "x": 0.04491018106660641,
+              "y": 0.943965517789191,
+              "height": 0.01939655080811231
+            },
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "glyphHeight": 0.01939655080811231
+          },
+          {
+            "alternatives": [],
+            "text": "O STEVEN RUSHRAL BEACK",
+            "confidence": 0.30000001192092896,
+            "alternativeConfidences": [],
+            "glyphHeight": 0.02192255896167563,
+            "bounds": {
+              "width": 0.29498781899149107,
+              "height": 0.02946409209525014,
+              "y": 0.9617532390961512,
+              "x": 0.17285583566927282
+            }
+          },
+          {
+            "text": "TH 6 © 2024 Wizards of the Coas",
+            "alternativeConfidences": [],
+            "alternatives": [],
+            "bounds": {
+              "x": 0.5981071422258948,
+              "width": 0.36973462363546217,
+              "height": 0.03105176059648529,
+              "y": 0.952092016053701
+            },
+            "confidence": 0.30000001192092896,
+            "glyphHeight": 0.024251517588854014
+          },
+          {
+            "glyphHeight": 0.036548969930349756,
+            "alternativeConfidences": [],
+            "bounds": {
+              "x": 0.0681232096719063,
+              "height": 0.05293629434373642,
+              "y": 0.770488265295663,
+              "width": 0.8357128764307775
+            },
+            "text": "card's mana yalue. If you do, return it",
+            "confidence": 0.5,
+            "alternatives": []
+          },
+          {
+            "bounds": {
+              "width": 0.8297979665357013,
+              "y": 0.8518642456707536,
+              "x": 0.07000953955879817,
+              "height": 0.05529927677578395
+            },
+            "glyphHeight": 0.03833492893606039,
+            "text": "Cyeling 2 (2, Discard this card: Draw",
+            "confidence": 1.0,
+            "alternativeConfidences": [],
+            "alternatives": []
+          },
+          {
+            "confidence": 1.0,
+            "alternatives": [],
+            "bounds": {
+              "width": 0.13155441875605622,
+              "height": 0.02651737795935737,
+              "y": 0.8916382184992144,
+              "x": 0.0710762391788942
+            },
+            "text": "a card",
+            "alternativeConfidences": [],
+            "glyphHeight": 0.026288661486266324
+          },
+          {
+            "bounds": {
+              "width": 0.08189655274383782,
+              "x": 0.07543103372660324,
+              "height": 0.01855670081244577,
+              "y": 0.9427835051313324
+            },
+            "text": "0506",
+            "confidence": 0.5,
+            "alternatives": [],
+            "glyphHeight": 0.01855670081244577,
+            "alternativeConfidences": []
+          },
+          {
+            "text": "4N3е",
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "alternativeConfidences": [],
+            "bounds": {
+              "width": 0.08189655274383781,
+              "y": 0.9613402061604731,
+              "height": 0.020103092988332103,
+              "x": 0.045258619360839726
+            },
+            "glyphHeight": 0.020103092988332103
+          },
+          {
+            "text": "STEVEN RUSHELL BEASK",
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "bounds": {
+              "x": 0.17374953180302924,
+              "width": 0.2967452411503755,
+              "height": 0.02919459078047012,
+              "y": 0.9606162765460644
+            },
+            "glyphHeight": 0.021494747179660368,
+            "alternativeConfidences": []
+          },
+          {
+            "alternatives": [],
+            "glyphHeight": 0.023336156045829927,
+            "text": "TI & O 2021 Wizards of the Coast",
+            "bounds": {
+              "width": 0.37448371473208875,
+              "height": 0.03113260534074571,
+              "x": 0.6005503770234855,
+              "y": 0.9516157628489202
+            },
+            "alternativeConfidences": [],
+            "confidence": 0.30000001192092896
+          }
+        ],
+        "warnings": [
+          "details_pending",
+          "border_recovered"
+        ],
+        "imagePath": "saved-collector_four_cards.png-2.jpg"
+      }
+    },
+    {
+      "source": "collector_four_cards.png",
+      "index": 3,
+      "crop": {
+        "width": 1007,
+        "height": 1499,
+        "rectified": true,
+        "sourceCorners": [
+          {
+            "x": 0.3659657347202301,
+            "y": 0.32730816125869755
+          },
+          {
+            "x": 0.5263726568222046,
+            "y": 0.337052458524704
+          },
+          {
+            "x": 0.5253625041246415,
+            "y": 0.7616852563619614
+          },
+          {
+            "x": 0.3525950521230698,
+            "y": 0.759870279431343
+          }
+        ],
+        "lines": [
+          {
+            "alternativeConfidences": [],
+            "confidence": 0.30000001192092896,
+            "bounds": {
+              "width": 0.30128203497992617,
+              "x": 0.051282058845506996,
+              "y": 0.032327586855061874,
+              "height": 0.04094827524820954
+            },
+            "alternatives": [],
+            "text": "Coopyracion",
+            "glyphHeight": 0.04094827524820954
+          },
+          {
+            "text": "2",
+            "alternativeConfidences": [],
+            "glyphHeight": 0.030172413290229905,
+            "alternatives": [],
+            "confidence": 1.0,
+            "bounds": {
+              "width": 0.03846153758821036,
+              "x": 0.8493589746353819,
+              "y": 0.030172413366278295,
+              "height": 0.030172414143880166
+            }
+          },
+          {
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "text": "NEEVOSERETEO",
+            "glyphHeight": 0.05214399879881893,
+            "bounds": {
+              "x": 0.5926567631886701,
+              "width": 0.30049914405459444,
+              "y": 0.2688998055289791,
+              "height": 0.2861194051106771
+            },
+            "alternativeConfidences": []
+          },
+          {
+            "glyphHeight": 0.03266666666666662,
+            "confidence": 0.30000001192092896,
+            "alternativeConfidences": [],
+            "bounds": {
+              "x": 0.08974359666611223,
+              "y": 0.5560000002905835,
+              "height": 0.03266666666666662,
+              "width": 0.3653846014113653
+            },
+            "text": "nchuint Creurure",
+            "alternatives": []
+          },
+          {
+            "alternativeConfidences": [],
+            "bounds": {
+              "width": 0.7474381583077567,
+              "y": 0.635685529129409,
+              "height": 0.04151593017578126,
+              "x": 0.10863181456116236
+            },
+            "alternatives": [],
+            "glyphHeight": 0.03850850076068973,
+            "text": "Target creature gains banding.",
+            "confidence": 1.0
+          },
+          {
+            "glyphHeight": 0.04133333333333333,
+            "alternatives": [],
+            "confidence": 1.0,
+            "alternativeConfidences": [],
+            "text": "\"The Elues mrain our healers, and",
+            "bounds": {
+              "height": 0.04133333333333333,
+              "x": 0.11858974277814736,
+              "width": 0.7564102657257564,
+              "y": 0.6786666670030015
+            }
+          },
+          {
+            "glyphHeight": 0.04200000000000004,
+            "alternatives": [],
+            "alternativeConfidences": [],
+            "confidence": 0.5,
+            "text": "we keep the Orcs at bay. Most",
+            "bounds": {
+              "height": 0.041999999999999926,
+              "x": 0.10493828081683346,
+              "y": 0.7206666671875,
+              "width": 0.6975308372860863
+            }
+          },
+          {
+            "alternatives": [],
+            "text": "Eloish bargains aren't as fair.\"",
+            "alternativeConfidences": [],
+            "confidence": 1.0,
+            "bounds": {
+              "x": 0.11111112277670994,
+              "y": 0.7583333337916667,
+              "width": 0.6975308372860862,
+              "height": 0.04583333333333328
+            },
+            "glyphHeight": 0.04583333333333328
+          },
+          {
+            "text": "-General Jarkeld, the Areric Fax",
+            "alternatives": [],
+            "glyphHeight": 0.0387931035359701,
+            "bounds": {
+              "y": 0.8038793101162516,
+              "x": 0.11538463487526467,
+              "height": 0.0387931035359701,
+              "width": 0.7724358694893974
+            },
+            "confidence": 0.5,
+            "alternativeConfidences": []
+          },
+          {
+            "alternatives": [],
+            "alternativeConfidences": [],
+            "bounds": {
+              "width": 0.3141025664314391,
+              "y": 0.9113333328956059,
+              "height": 0.02616666666666667,
+              "x": 0.05128205325863936
+            },
+            "glyphHeight": 0.02616666666666667,
+            "confidence": 0.30000001192092896,
+            "text": "Illus. Phil Foglio"
+          },
+          {
+            "bounds": {
+              "y": 0.9373333328970933,
+              "width": 0.5737179347446987,
+              "height": 0.02200000000000002,
+              "x": 0.0480769358007275
+            },
+            "glyphHeight": 0.02200000000000002,
+            "alternatives": [],
+            "alternativeConfidences": [],
+            "text": "© 1995 Wizards of the Coast, lnc. All nghta geservod",
+            "confidence": 0.30000001192092896
+          }
+        ],
+        "warnings": [
+          "details_pending",
+          "incomplete_card",
+          "border_recovered"
+        ],
+        "imagePath": "saved-collector_four_cards.png-3.jpg"
+      }
+    },
+    {
+      "source": "collector_empty_desk.jpg",
+      "index": 0,
+      "crop": {
+        "width": 688,
+        "height": 817,
+        "rectified": true,
+        "sourceCorners": [
+          {
+            "x": 0.11522209137678147,
+            "y": 0.5173636895418168
+          },
+          {
+            "x": 0.19777978748083114,
+            "y": 0.5709868341684341
+          },
+          {
+            "y": 0.6547697395086288,
+            "x": 0.15219535440206527
+          },
+          {
+            "y": 0.6062560576200485,
+            "x": 0.07385003775358201
+          }
+        ],
+        "lines": [],
+        "warnings": [
+          "details_pending",
+          "incomplete_card",
+          "no_text",
+          "border_recovered"
+        ],
+        "imagePath": "saved-collector_empty_desk.jpg-0.jpg"
+      }
+    }
+  ]
+}

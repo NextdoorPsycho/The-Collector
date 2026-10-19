@@ -1,0 +1,992 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+import 'package:arcane/generated/arcane_shadcn/shadcn_flutter.dart';
+
+/// {@template menu_theme}
+/// Styling options for menu widgets such as [MenuGroup] and [MenuButton].
+/// {@endtemplate}
+class MenuTheme {
+  /// Default padding applied to each menu item.
+  final EdgeInsets? itemPadding;
+
+  /// Offset applied when showing a submenu.
+  final Offset? subMenuOffset;
+
+  /// {@macro menu_theme}
+  const MenuTheme({
+    this.itemPadding,
+    this.subMenuOffset,
+  });
+
+  /// Creates a copy of this theme but with the given fields replaced.
+  MenuTheme copyWith({
+    ValueGetter<EdgeInsets?>? itemPadding,
+    ValueGetter<Offset?>? subMenuOffset,
+  }) {
+    return MenuTheme(
+      itemPadding: itemPadding == null ? this.itemPadding : itemPadding(),
+      subMenuOffset:
+          subMenuOffset == null ? this.subMenuOffset : subMenuOffset(),
+    );
+  }
+
+  @override
+  int get hashCode => Object.hash(itemPadding, subMenuOffset);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is MenuTheme &&
+        other.itemPadding == itemPadding &&
+        other.subMenuOffset == subMenuOffset;
+  }
+
+  @override
+  String toString() {
+    return 'MenuTheme(itemPadding: $itemPadding, subMenuOffset: $subMenuOffset)';
+  }
+}
+
+class MenuShortcut extends StatelessWidget {
+  final ShortcutActivator activator;
+  final Widget? combiner;
+
+  const MenuShortcut({super.key, required this.activator, this.combiner});
+
+  @override
+  Widget build(BuildContext context) {
+    var activator = this.activator;
+    var combiner = this.combiner ?? const Text(' + ');
+    final displayMapper = Data.maybeOf<KeyboardShortcutDisplayHandle>(context);
+    assert(displayMapper != null, 'Cannot find KeyboardShortcutDisplayMapper');
+    List<LogicalKeyboardKey> keys = shortcutActivatorToKeySet(activator);
+    List<Widget> children = [];
+    for (int i = 0; i < keys.length; i++) {
+      if (i > 0) {
+        children.add(combiner);
+      }
+      children.add(displayMapper!.buildKeyboardDisplay(context, keys[i]));
+    }
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: children,
+    ).xSmall().muted();
+  }
+}
+
+abstract class MenuItem extends Widget {
+  const MenuItem({super.key});
+
+  bool get hasLeading;
+  PopoverController? get popoverController;
+}
+
+class MenuRadioGroup<T> extends StatelessWidget implements MenuItem {
+  final T? value;
+  final ContextedValueChanged<T>? onChanged;
+  final List<Widget> children;
+
+  const MenuRadioGroup({
+    super.key,
+    required this.value,
+    required this.onChanged,
+    required this.children,
+  });
+
+  @override
+  bool get hasLeading => children.isNotEmpty;
+
+  @override
+  PopoverController? get popoverController => null;
+
+  @override
+  Widget build(BuildContext context) {
+    final menuGroupData = Data.maybeOf<MenuGroupData>(context);
+    assert(
+        menuGroupData != null, 'MenuRadioGroup must be a child of MenuGroup');
+    return Data<MenuRadioGroup<T>>.inherit(
+      data: this,
+      child: Flex(
+        direction: menuGroupData!.direction,
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: children,
+      ),
+    );
+  }
+}
+
+class MenuRadio<T> extends StatelessWidget {
+  final T value;
+  final Widget child;
+  final Widget? trailing;
+  final FocusNode? focusNode;
+  final bool enabled;
+  final bool autoClose;
+
+  const MenuRadio({
+    super.key,
+    required this.value,
+    required this.child,
+    this.trailing,
+    this.focusNode,
+    this.enabled = true,
+    this.autoClose = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final scaling = theme.scaling;
+    final radioGroup = Data.maybeOf<MenuRadioGroup<T>>(context);
+    assert(radioGroup != null, 'MenuRadio must be a child of MenuRadioGroup');
+    return Data<MenuRadioGroup<T>>.boundary(
+      child: MenuButton(
+        leading: radioGroup!.value == value
+            ? SizedBox(
+                width: 16 * scaling,
+                height: 16 * scaling,
+                child: const Icon(
+                  RadixIcons.dotFilled,
+                ).iconSmall(),
+              )
+            : SizedBox(width: 16 * scaling),
+        onContextPressed: (context) {
+          radioGroup.onChanged?.call(context, value);
+        },
+        enabled: enabled,
+        focusNode: focusNode,
+        autoClose: autoClose,
+        trailing: trailing,
+        child: child,
+      ),
+    );
+  }
+}
+
+class MenuDivider extends StatelessWidget implements MenuItem {
+  const MenuDivider({super.key});
+  @override
+  Widget build(BuildContext context) {
+    final menuGroupData = Data.maybeOf<MenuGroupData>(context);
+    final theme = Theme.of(context);
+    final scaling = theme.scaling;
+    return AnimatedPadding(
+      duration: kDefaultDuration,
+      padding:
+          (menuGroupData == null || menuGroupData.direction == Axis.vertical
+                  ? const EdgeInsets.symmetric(vertical: 4)
+                  : const EdgeInsets.symmetric(horizontal: 4)) *
+              scaling,
+      child: menuGroupData == null || menuGroupData.direction == Axis.vertical
+          ? Divider(
+              height: 1 * scaling,
+              thickness: 1 * scaling,
+              indent: -4 * scaling,
+              endIndent: -4 * scaling,
+              color: theme.colorScheme.border,
+            )
+          : VerticalDivider(
+              width: 1 * scaling,
+              thickness: 1 * scaling,
+              color: theme.colorScheme.border,
+              indent: -4 * scaling,
+              endIndent: -4 * scaling,
+            ),
+    );
+  }
+
+  @override
+  bool get hasLeading => false;
+
+  @override
+  PopoverController? get popoverController => null;
+}
+
+class MenuGap extends StatelessWidget implements MenuItem {
+  final double size;
+
+  const MenuGap(this.size, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Gap(size);
+  }
+
+  @override
+  bool get hasLeading => false;
+
+  @override
+  PopoverController? get popoverController => null;
+}
+
+class MenuButton extends StatefulWidget implements MenuItem {
+  final Widget child;
+  final List<MenuItem>? subMenu;
+  final ContextedCallback? onContextPressed;
+  final VoidCallback? onPressed;
+  final Widget? trailing;
+  final Widget? leading;
+  final bool enabled;
+  final FocusNode? focusNode;
+  final bool autoClose;
+  final double emptyLeadingSpace;
+  @override
+  final PopoverController? popoverController;
+  const MenuButton({
+    super.key,
+    required this.child,
+    this.emptyLeadingSpace = 16,
+    this.subMenu,
+    this.onPressed,
+    this.onContextPressed,
+    this.trailing,
+    this.leading,
+    this.enabled = true,
+    this.focusNode,
+    this.autoClose = true,
+    this.popoverController,
+  });
+
+  @override
+  State<MenuButton> createState() => _MenuButtonState();
+
+  @override
+  bool get hasLeading => leading != null;
+}
+
+class MenuLabel extends StatelessWidget implements MenuItem {
+  final Widget child;
+  final Widget? trailing;
+  final Widget? leading;
+  final double emptyLeadingSpace;
+
+  const MenuLabel({
+    super.key,
+    this.emptyLeadingSpace = 16,
+    required this.child,
+    this.trailing,
+    this.leading,
+  });
+
+  @override
+  bool get hasLeading => leading != null;
+
+  @override
+  PopoverController? get popoverController => null;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final scaling = theme.scaling;
+    final menuGroupData = Data.maybeOf<MenuGroupData>(context);
+    assert(menuGroupData != null, 'MenuLabel must be a child of MenuGroup');
+    return Padding(
+      padding: const EdgeInsets.only(left: 8, top: 6, right: 6, bottom: 6) *
+              scaling +
+          menuGroupData!.itemPadding,
+      child: Basic(
+        contentSpacing: 8 * scaling,
+        leading: leading == null && menuGroupData.hasLeading
+            ? SizedBox(width: emptyLeadingSpace * scaling)
+            : leading == null
+                ? null
+                : SizedBox(
+                    width: 16 * scaling,
+                    height: 16 * scaling,
+                    child: leading!.iconSmall(),
+                  ),
+        trailing: trailing,
+        content: child.semiBold(),
+        trailingAlignment: Alignment.center,
+        leadingAlignment: Alignment.center,
+        contentAlignment: menuGroupData.direction == Axis.vertical
+            ? AlignmentDirectional.centerStart
+            : Alignment.center,
+      ),
+    );
+  }
+}
+
+class MenuCheckbox extends StatelessWidget implements MenuItem {
+  final bool value;
+  final ContextedValueChanged<bool>? onChanged;
+  final Widget child;
+  final Widget? trailing;
+  final bool enabled;
+  final bool autoClose;
+
+  const MenuCheckbox({
+    super.key,
+    this.value = false,
+    this.onChanged,
+    required this.child,
+    this.trailing,
+    this.enabled = true,
+    this.autoClose = true,
+  });
+
+  @override
+  bool get hasLeading => true;
+  @override
+  PopoverController? get popoverController => null;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final scaling = theme.scaling;
+    return MenuButton(
+      leading: value
+          ? SizedBox(
+              width: 16 * scaling,
+              height: 16 * scaling,
+              child: const Icon(
+                RadixIcons.check,
+              ).iconSmall(),
+            )
+          : SizedBox(width: 16 * scaling),
+      onContextPressed: (context) {
+        onChanged?.call(context, !value);
+      },
+      enabled: enabled,
+      autoClose: autoClose,
+      trailing: trailing,
+      child: child,
+    );
+  }
+}
+
+class _MenuButtonState extends State<MenuButton> {
+  final ValueNotifier<List<MenuItem>> _children = ValueNotifier([]);
+
+  @override
+  void initState() {
+    super.initState();
+    _children.value = widget.subMenu ?? [];
+  }
+
+  @override
+  void didUpdateWidget(covariant MenuButton oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!listEquals(widget.subMenu, oldWidget.subMenu)) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        if (mounted) {
+          _children.value = widget.subMenu ?? [];
+        }
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final menuBarData = Data.maybeOf<MenubarState>(context);
+    final menuData = Data.maybeOf<MenuData>(context);
+    final menuGroupData = Data.maybeOf<MenuGroupData>(context);
+    assert(menuGroupData != null, 'MenuButton must be a child of MenuGroup');
+    final theme = Theme.of(context);
+    final scaling = theme.scaling;
+    final compTheme = ComponentTheme.maybeOf<MenuTheme>(context);
+    final isSheetOverlay = SheetOverlayHandler.isSheetOverlay(context);
+    final isDialogOverlay = DialogOverlayHandler.isDialogOverlay(context);
+    final isIndependentOverlay = isSheetOverlay || isDialogOverlay;
+    void openSubMenu(BuildContext context, bool autofocus) {
+      menuGroupData!.closeOthers();
+      final overlayManager = OverlayManager.of(context);
+      menuData!.popoverController.show(
+        context: context,
+        regionGroupId: menuGroupData.regionGroupId,
+        consumeOutsideTaps: false,
+        dismissBackdropFocus: false,
+        modal: true,
+        handler: MenuOverlayHandler(overlayManager),
+        overlayBarrier: OverlayBarrier(
+          borderRadius: BorderRadius.circular(theme.radiusMd),
+        ),
+        builder: (context) {
+          final theme = Theme.of(context);
+          final scaling = theme.scaling;
+          var itemPadding = menuGroupData.itemPadding;
+          final isSheetOverlay = SheetOverlayHandler.isSheetOverlay(context);
+          if (isSheetOverlay) {
+            itemPadding = const EdgeInsets.symmetric(horizontal: 8) * scaling;
+          }
+          return ConstrainedBox(
+            constraints: const BoxConstraints(
+                  minWidth: 192, // 12rem
+                ) *
+                scaling,
+            child: AnimatedBuilder(
+                animation: _children,
+                builder: (context, child) {
+                  return MenuGroup(
+                      direction: menuGroupData.direction,
+                      parent: menuGroupData,
+                      onDismissed: menuGroupData.onDismissed,
+                      regionGroupId: menuGroupData.regionGroupId,
+                      subMenuOffset: compTheme?.subMenuOffset ??
+                          const Offset(8, -4 + -1) * scaling,
+                      itemPadding: itemPadding,
+                      autofocus: autofocus,
+                      builder: (context, children) {
+                        return MenuPopup(
+                          children: children,
+                        );
+                      },
+                      children: _children.value);
+                }),
+          );
+        },
+        alignment: Alignment.topLeft,
+        anchorAlignment:
+            menuBarData != null ? Alignment.bottomLeft : Alignment.topRight,
+        offset: menuGroupData.subMenuOffset ?? compTheme?.subMenuOffset,
+      );
+    }
+
+    return Actions(
+      actions: {
+        OpenSubMenuIntent: ContextCallbackAction<OpenSubMenuIntent>(
+          onInvoke: (intent, [context]) {
+            if (widget.subMenu?.isNotEmpty ?? false) {
+              openSubMenu(this.context, true);
+              return true;
+            }
+            return false;
+          },
+        ),
+        ActivateIntent: CallbackAction<ActivateIntent>(
+          onInvoke: (intent) {
+            widget.onPressed?.call();
+            if (widget.subMenu?.isNotEmpty ?? false) {
+              openSubMenu(context, true);
+            }
+            if (widget.autoClose) {
+              menuGroupData!.closeAll();
+            }
+            return;
+          },
+        ),
+      },
+      child: SubFocus(
+          enabled: widget.enabled,
+          builder: (context, subFocusState) {
+            bool hasFocus = subFocusState.isFocused && menuBarData == null;
+            return Data<MenuData>.boundary(
+              child: Data<MenubarState>.boundary(
+                child: TapRegion(
+                  groupId: menuGroupData!.root,
+                  child: AnimatedBuilder(
+                      animation: menuData!.popoverController,
+                      builder: (context, child) {
+                        return Button(
+                          disableFocusOutline: true,
+                          alignment: menuGroupData.direction == Axis.vertical
+                              ? AlignmentDirectional.centerStart
+                              : Alignment.center,
+                          style: (menuBarData == null
+                                  ? ButtonVariance.menu
+                                  : ButtonVariance.menubar)
+                              .copyWith(
+                            padding: (context, states, value) {
+                              return value.optionallyResolve(context) +
+                                  menuGroupData.itemPadding;
+                            },
+                            decoration: (context, states, value) {
+                              final theme = Theme.of(context);
+                              return (value as BoxDecoration).copyWith(
+                                color:
+                                    menuData.popoverController.hasOpenPopover ||
+                                            hasFocus
+                                        ? theme.colorScheme.accent
+                                        : null,
+                                borderRadius:
+                                    BorderRadius.circular(theme.radiusMd),
+                              );
+                            },
+                          ),
+                          trailing: menuBarData != null
+                              ? widget.trailing
+                              : widget.trailing != null ||
+                                      (widget.subMenu != null &&
+                                          menuBarData == null)
+                                  ? Row(
+                                      children: [
+                                        if (widget.trailing != null)
+                                          widget.trailing!,
+                                        if (widget.subMenu != null &&
+                                            menuBarData == null)
+                                          const Icon(
+                                            RadixIcons.chevronRight,
+                                          ).iconSmall(),
+                                      ],
+                                    ).gap(8 * scaling)
+                                  : null,
+                          leading: widget.leading == null &&
+                                  menuGroupData.hasLeading &&
+                                  menuBarData == null
+                              ? SizedBox(width: 16 * scaling)
+                              : widget.leading == null
+                                  ? null
+                                  : SizedBox(
+                                      width: 16 * scaling,
+                                      height: 16 * scaling,
+                                      child: widget.leading!.iconSmall(),
+                                    ),
+                          disableTransition: true,
+                          enabled: widget.enabled,
+                          focusNode: widget.focusNode,
+                          onHover: (value) {
+                            if (value) {
+                              subFocusState.requestFocus();
+                              if ((menuBarData == null ||
+                                      menuGroupData.hasOpenPopovers) &&
+                                  widget.subMenu != null &&
+                                  widget.subMenu!.isNotEmpty) {
+                                if (!menuData
+                                        .popoverController.hasOpenPopover &&
+                                    !isIndependentOverlay) {
+                                  openSubMenu(context, false);
+                                }
+                              } else {
+                                menuGroupData.closeOthers();
+                              }
+                            } else {
+                              subFocusState.unfocus();
+                            }
+                          },
+                          onPressed: () {
+                            widget.onPressed?.call();
+                            if (widget.subMenu != null &&
+                                widget.subMenu!.isNotEmpty) {
+                              if (!menuData.popoverController.hasOpenPopover) {
+                                openSubMenu(context, false);
+                              }
+                            } else {
+                              if (widget.autoClose) {
+                                menuGroupData.closeAll();
+                              }
+                            }
+                          },
+                          child: widget.child,
+                        );
+                      }),
+                ),
+              ),
+            );
+          }),
+    );
+  }
+}
+
+class MenuGroupData {
+  final MenuGroupData? parent;
+  final List<MenuData> children;
+  final bool hasLeading;
+  final Offset? subMenuOffset;
+  final VoidCallback? onDismissed;
+  final Object? regionGroupId;
+  final Axis direction;
+  final EdgeInsets itemPadding;
+  final SubFocusScopeState focusScope;
+
+  MenuGroupData(
+    this.parent,
+    this.children,
+    this.hasLeading,
+    this.subMenuOffset,
+    this.onDismissed,
+    this.regionGroupId,
+    this.direction,
+    this.itemPadding,
+    this.focusScope,
+  );
+
+  bool get hasOpenPopovers {
+    for (final child in children) {
+      if (child.popoverController.hasOpenPopover) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  void closeOthers() {
+    for (final child in children) {
+      child.popoverController.close();
+    }
+  }
+
+  void closeAll() {
+    var menuGroupData = parent;
+    if (menuGroupData == null) {
+      onDismissed?.call();
+      return;
+    }
+    menuGroupData.closeOthers();
+    menuGroupData.closeAll();
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is MenuGroupData) {
+      return listEquals(children, other.children) &&
+          parent == other.parent &&
+          hasLeading == other.hasLeading &&
+          subMenuOffset == other.subMenuOffset &&
+          onDismissed == other.onDismissed;
+    }
+    return false;
+  }
+
+  MenuGroupData get root {
+    var menuGroupData = parent;
+    if (menuGroupData == null) {
+      return this;
+    }
+    return menuGroupData.root;
+  }
+
+  @override
+  int get hashCode => Object.hash(
+        children,
+        parent,
+        hasLeading,
+        subMenuOffset,
+        onDismissed,
+      );
+
+  @override
+  String toString() {
+    return 'MenuGroupData{parent: $parent, children: $children, hasLeading: $hasLeading, subMenuOffset: $subMenuOffset, onDismissed: $onDismissed, regionGroupId: $regionGroupId, direction: $direction}';
+  }
+}
+
+class MenuData {
+  final PopoverController popoverController;
+
+  MenuData({PopoverController? popoverController})
+      : popoverController = popoverController ?? PopoverController();
+}
+
+class MenuGroup extends StatefulWidget {
+  final List<MenuItem> children;
+  final Widget Function(BuildContext context, List<Widget> children) builder;
+  final MenuGroupData? parent;
+  final Offset? subMenuOffset;
+  final VoidCallback? onDismissed;
+  final Object? regionGroupId;
+  final Axis direction;
+  final Map<Type, Action> actions;
+  final EdgeInsets? itemPadding;
+  final bool autofocus;
+  final FocusNode? focusNode;
+
+  const MenuGroup({
+    super.key,
+    required this.children,
+    required this.builder,
+    this.parent,
+    this.subMenuOffset,
+    this.onDismissed,
+    this.regionGroupId,
+    this.actions = const {},
+    required this.direction,
+    this.itemPadding,
+    this.autofocus = true,
+    this.focusNode,
+  });
+
+  @override
+  State<MenuGroup> createState() => _MenuGroupState();
+}
+
+class _MenuGroupState extends State<MenuGroup> {
+  late List<MenuData> _data;
+
+  @override
+  void initState() {
+    super.initState();
+    _data = List.generate(widget.children.length, (i) {
+      return MenuData();
+    });
+  }
+
+  @override
+  void didUpdateWidget(covariant MenuGroup oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!listEquals(oldWidget.children, widget.children)) {
+      Map<Key, MenuData> oldKeyedData = {};
+      for (int i = 0; i < oldWidget.children.length; i++) {
+        oldKeyedData[oldWidget.children[i].key ?? ValueKey(i)] = _data[i];
+      }
+      _data = List.generate(widget.children.length, (i) {
+        var child = widget.children[i];
+        var key = child.key ?? ValueKey(i);
+        var oldData = oldKeyedData[key];
+        if (oldData != null) {
+          if (child.popoverController != null &&
+              oldData.popoverController != child.popoverController) {
+            oldData.popoverController.dispose();
+            oldData = MenuData(popoverController: child.popoverController);
+          }
+        } else {
+          oldData = MenuData(popoverController: child.popoverController);
+        }
+        return oldData;
+      });
+      // dispose unused data
+      for (var data in oldKeyedData.values) {
+        if (!_data.contains(data)) {
+          data.popoverController.dispose();
+        }
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    for (var data in _data) {
+      data.popoverController.dispose();
+    }
+    super.dispose();
+  }
+
+  void closeAll() {
+    MenuGroupData? data = widget.parent;
+    if (data == null) {
+      widget.onDismissed?.call();
+      return;
+    }
+    data.closeOthers();
+    data.closeAll();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final parentGroupData = Data.maybeOf<MenuGroupData>(context);
+    final menubarData = Data.maybeOf<MenubarState>(context);
+    final compTheme = ComponentTheme.maybeOf<MenuTheme>(context);
+    final itemPadding =
+        widget.itemPadding ?? compTheme?.itemPadding ?? EdgeInsets.zero;
+    final subMenuOffset = widget.subMenuOffset ?? compTheme?.subMenuOffset;
+    List<Widget> children = [];
+    bool hasLeading = false;
+    for (int i = 0; i < widget.children.length; i++) {
+      final child = widget.children[i];
+      final data = _data[i];
+      if (child.hasLeading) {
+        hasLeading = true;
+      }
+      children.add(
+        Data<MenuData>.inherit(
+          data: data,
+          child: child,
+        ),
+      );
+    }
+    final direction = Directionality.of(context);
+    return SubFocusScope(
+        autofocus: widget.autofocus,
+        builder: (context, scope) {
+          return Actions(
+            actions: {
+              NextMenuFocusIntent: CallbackAction<NextMenuFocusIntent>(
+                onInvoke: (intent) {
+                  scope.nextFocus(intent.forward
+                      ? widget.direction == Axis.horizontal
+                          ? TraversalDirection.left
+                          : TraversalDirection.up
+                      : widget.direction == Axis.horizontal
+                          ? TraversalDirection.right
+                          : TraversalDirection.down);
+                  return;
+                },
+              ),
+              DirectionalMenuFocusIntent:
+                  CallbackAction<DirectionalMenuFocusIntent>(
+                onInvoke: (intent) {
+                  if (widget.direction == Axis.vertical) {
+                    if (intent.direction == TraversalDirection.left) {
+                      if (direction == TextDirection.ltr) {
+                        for (final menu in parentGroupData?.children ?? []) {
+                          menu.popoverController.close();
+                        }
+                        return;
+                      } else {}
+                    } else if (intent.direction == TraversalDirection.right) {
+                      if (direction == TextDirection.ltr) {
+                        bool? result = scope.invokeActionOnFocused(
+                            const OpenSubMenuIntent()) as bool?;
+                        if (result != true) {
+                          parentGroupData?.root.focusScope
+                              .nextFocus(TraversalDirection.right);
+                        }
+                        return;
+                      } else {}
+                    }
+                  }
+                  if (!scope.nextFocus(intent.direction)) {
+                    for (final menu in parentGroupData?.children ?? []) {
+                      menu.popoverController.close();
+                    }
+                    parentGroupData?.focusScope.nextFocus(
+                      intent.direction,
+                    );
+                  }
+                  return;
+                },
+              ),
+              CloseMenuIntent: CallbackAction<CloseMenuIntent>(
+                onInvoke: (intent) {
+                  closeAll();
+                  return;
+                },
+              ),
+              ActivateIntent: CallbackAction<ActivateIntent>(
+                onInvoke: (intent) {
+                  scope.invokeActionOnFocused(const ActivateIntent());
+                  return;
+                },
+              ),
+              ...widget.actions,
+            },
+            child: Shortcuts(
+              shortcuts: {
+                const SingleActivator(LogicalKeyboardKey.arrowUp):
+                    const DirectionalMenuFocusIntent(TraversalDirection.up),
+                const SingleActivator(LogicalKeyboardKey.arrowDown):
+                    const DirectionalMenuFocusIntent(TraversalDirection.down),
+                const SingleActivator(LogicalKeyboardKey.arrowLeft):
+                    const DirectionalMenuFocusIntent(TraversalDirection.left),
+                const SingleActivator(LogicalKeyboardKey.arrowRight):
+                    const DirectionalMenuFocusIntent(TraversalDirection.right),
+                const SingleActivator(LogicalKeyboardKey.tab):
+                    DirectionalMenuFocusIntent(widget.direction == Axis.vertical
+                        ? TraversalDirection.down
+                        : TraversalDirection.right),
+                const SingleActivator(LogicalKeyboardKey.tab, shift: true):
+                    DirectionalMenuFocusIntent(widget.direction == Axis.vertical
+                        ? TraversalDirection.up
+                        : TraversalDirection.left),
+                const SingleActivator(LogicalKeyboardKey.escape):
+                    const CloseMenuIntent(),
+                const SingleActivator(LogicalKeyboardKey.enter):
+                    const ActivateIntent(),
+                const SingleActivator(LogicalKeyboardKey.space):
+                    const ActivateIntent(),
+                const SingleActivator(LogicalKeyboardKey.backspace):
+                    const CloseMenuIntent(),
+                const SingleActivator(LogicalKeyboardKey.numpadEnter):
+                    const ActivateIntent(),
+              },
+              child: Focus(
+                autofocus: menubarData == null,
+                focusNode: widget.focusNode,
+                child: Data.inherit(
+                  data: MenuGroupData(
+                    widget.parent,
+                    _data,
+                    hasLeading,
+                    subMenuOffset,
+                    widget.onDismissed,
+                    widget.regionGroupId,
+                    widget.direction,
+                    itemPadding,
+                    scope,
+                  ),
+                  child: Builder(builder: (context) {
+                    return widget.builder(context, children);
+                  }),
+                ),
+              ),
+            ),
+          );
+        });
+  }
+}
+
+class CloseMenuIntent extends Intent {
+  const CloseMenuIntent();
+}
+
+class OpenSubMenuIntent extends Intent {
+  const OpenSubMenuIntent();
+}
+
+class NextMenuFocusIntent extends Intent {
+  final bool forward;
+
+  const NextMenuFocusIntent(this.forward);
+}
+
+class MenuOverlayHandler extends OverlayHandler {
+  final OverlayManager manager;
+
+  const MenuOverlayHandler(this.manager);
+
+  @override
+  OverlayCompleter<T?> show<T>({
+    required BuildContext context,
+    required AlignmentGeometry alignment,
+    required WidgetBuilder builder,
+    Offset? position,
+    AlignmentGeometry? anchorAlignment,
+    PopoverConstraint widthConstraint = PopoverConstraint.flexible,
+    PopoverConstraint heightConstraint = PopoverConstraint.flexible,
+    Key? key,
+    bool rootOverlay = true,
+    bool modal = true,
+    bool barrierDismissable = true,
+    Clip clipBehavior = Clip.none,
+    Object? regionGroupId,
+    Offset? offset,
+    AlignmentGeometry? transitionAlignment,
+    EdgeInsetsGeometry? margin,
+    bool follow = true,
+    bool consumeOutsideTaps = true,
+    ValueChanged<PopoverOverlayWidgetState>? onTickFollow,
+    bool allowInvertHorizontal = true,
+    bool allowInvertVertical = true,
+    bool dismissBackdropFocus = true,
+    Duration? showDuration,
+    Duration? dismissDuration,
+    OverlayBarrier? overlayBarrier,
+    LayerLink? layerLink,
+  }) {
+    return manager.showMenu(
+      context: context,
+      alignment: alignment,
+      builder: builder,
+      position: position,
+      anchorAlignment: anchorAlignment,
+      widthConstraint: widthConstraint,
+      heightConstraint: heightConstraint,
+      key: key,
+      rootOverlay: rootOverlay,
+      modal: modal,
+      barrierDismissable: barrierDismissable,
+      clipBehavior: clipBehavior,
+      regionGroupId: regionGroupId,
+      offset: offset,
+      transitionAlignment: transitionAlignment,
+      margin: margin,
+      follow: follow,
+      consumeOutsideTaps: consumeOutsideTaps,
+      onTickFollow: onTickFollow,
+      allowInvertHorizontal: allowInvertHorizontal,
+      allowInvertVertical: allowInvertVertical,
+      dismissBackdropFocus: dismissBackdropFocus,
+      showDuration: showDuration,
+      dismissDuration: dismissDuration,
+      overlayBarrier: overlayBarrier,
+      layerLink: layerLink,
+    );
+  }
+}
+
+class DirectionalMenuFocusIntent extends Intent {
+  final TraversalDirection direction;
+
+  const DirectionalMenuFocusIntent(this.direction);
+}

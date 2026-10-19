@@ -16,19 +16,18 @@ But all and all its a pocket companion.
 
 ### Collection Zone
 - **Cards**: View and manage your entire card collection in one place.
-- **Decks**: Construct and customize your decks.
+- **Organize**: Group cards into decks, binders, boxes, folders and lists.
+- **Import**: Read Moxfield CSV/text exports, paste a list or try a public deck link.
 - **Prices/Trends**: Stay updated with the latest market trends and card prices.
-- **TCG Shops**: Locate card shops and see their offerings.
+- **TCG Shops**: Open card-shop searches in Maps or the Wizards Store & Event Locator.
 
 ![Collection Zone Image](https://storage.googleapis.com/psycho_upload/ShareX/2024/04/Vysor_Jxqs6CNJk7.png)
 
-### Dice
-- **Life Counter**: Keep track of life totals during games.
-- **Rolling**: A digital dice roller to support your gaming needs.
-- **Wireless**: Connect and synchronize the app across multiple devices.
-- **Settings**: Customize your dice rolling experience.
-
-![Dice Image](link-to-dice-image) [no image yet!]
+### Tabletop
+- **Dice**: Roll d4 through d100 with an animated numeric result and individual rolls.
+- **Number**: Pick a number from an inclusive range and retain its history.
+- **Life**: Keep local life totals or share a game with an invitation code.
+- **Commander**: Enable Commander modes in Settings.
 
 ### Settings
 Manage app settings to suit your preferences for various features, As you can see its very, very detailed as of now.
@@ -54,4 +53,3 @@ Admin controls for app management and user oversight. Only accessible to the app
 
 
 ---
-

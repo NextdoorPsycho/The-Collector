@@ -1,5 +1,5 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter/material.dart';
+import 'package:arcane/arcane.dart';
+import 'package:the_collector/theme/collector_brand.dart';
 
 class AnimatedSimpleScreen extends StatelessWidget {
   const AnimatedSimpleScreen({
@@ -38,47 +38,18 @@ class AnimatedSimpleScreen extends StatelessWidget {
           children: [
             const SizedBox(
               height: 180,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-              ),
+              child: Row(mainAxisAlignment: MainAxisAlignment.center),
             ),
-            if (image != null) ...[
-              image!,
-              const SizedBox(height: 50),
-            ],
-            Text(
-              title,
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
+            if (image != null) ...[image!, const SizedBox(height: 50)],
+            Text(title, style: Theme.of(context).typography.h1),
             const SizedBox(height: 15),
-            AnimatedTextKit(
-              animatedTexts: [
-                TypewriterAnimatedText(
-                  cursor: '|',
-                  description,
-                  textAlign: TextAlign.left,
-                  speed: const Duration(milliseconds: 50),
-                ),
-              ],
-              totalRepeatCount: 1,
-              pause: const Duration(milliseconds: 1000),
-              displayFullTextOnTap: true,
-              stopPauseOnTap: true,
-            ),
-            if (secondDescription != null) ...[
+            CollectorTypewriter(description),
+            if (secondDescription != null) ...<Widget>[
               const SizedBox(height: 20),
-              AnimatedTextKit(
-                animatedTexts: [
-                  TypewriterAnimatedText(
-                    secondDescription!,
-                    textStyle: Theme.of(context).textTheme.headlineMedium,
-                    speed: const Duration(milliseconds: 100),
-                  ),
-                ],
-                totalRepeatCount: 1,
-                pause: const Duration(milliseconds: 1000),
-                displayFullTextOnTap: true,
-                stopPauseOnTap: true,
+              CollectorTypewriter(
+                secondDescription!,
+                style: Theme.of(context).typography.h2,
+                characterDuration: const Duration(milliseconds: 100),
               ),
             ],
             if (footer != null) ...[

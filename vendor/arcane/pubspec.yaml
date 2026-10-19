@@ -1,0 +1,159 @@
+name: arcane
+description: "A modified variant of shadcn_flutter along with new features & improvements. This package follows the changes of shadcn_flutter while also maintaining additional features & fixes."
+version: 6.5.14
+homepage: https://arcane.art
+documentation: https://tome.arcane.art
+repository: https://github.com/ArcaneArts/arcane
+environment:
+  sdk: ^3.13.0
+  flutter: ">=3.47.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  cached_network_image: ">=4.0.4 <5.0.0"
+  flutter_sticky_header: ">=0.7.0 <1.0.0"
+  padded: ">=1.0.1 <2.0.0"
+  pylon: ">=3.1.9 <4.0.0"
+  rxdart: ">=0.26.0 <1.0.0"
+  sliver_tools: ">=0.2.12 <1.0.0"
+  toxic: ">=1.3.3 <2.0.0"
+  toxic_flutter: ">=1.1.0 <2.0.0"
+  flutter_svg: ">=2.0.15 <3.0.0"
+  sliver_fill_remaining_box_adapter: ">=1.0.0 <2.0.0"
+  modal_bottom_sheet: ">=3.0.0 <4.0.0"
+  ionicons: ">=0.2.3 <1.0.0"
+  skeletonizer: ">=3.0.0 <4.0.0"
+  country_flags: ">=4.1.2 <5.0.0"
+  phonecodes: ">=0.0.4 <0.1.0"
+  cross_file: ">=0.3.4 <0.4.0"
+  image: ">=4.5.0 <5.0.0"
+  email_validator: ">=3.0.0 <4.0.0"
+  flutter_animate: ">=4.5.1 <5.0.0"
+  soft_edge_blur: ">=0.1.3 <0.2.0"
+  flutter_hooks: ">=0.21.0 <0.22.0"
+  auto_size_text: ">=3.0.0 <4.0.0"
+  octo_image: ">=2.1.0 <3.0.0"
+  flutter_blurhash: ">=0.8.2 <1.0.0"
+  common_svgs: ">=1.0.2 <2.0.0"
+  conjure: ">=1.0.0 <2.0.0"
+  data_widget: ">=0.0.2 <0.1.0"
+  jiffy: ">=6.3.1 <7.0.0"
+  universal_io: ">=2.2.2 <3.0.0"
+  fast_log: ">=1.0.7 <2.0.0"
+  precision_stopwatch: ">=1.0.2 <2.0.0"
+  font_awesome_flutter: ">=11.0.0 <12.0.0"
+  meta_seo: ">=3.0.9 <4.0.0"
+  uuid: ">=3.0.0 <6.0.0"
+  gap: ">=3.0.0 <4.0.0"
+  chat_color: ">=1.0.0 <2.0.0"
+  color: ">=3.0.0 <4.0.0"
+  tinycolor2: ">=3.0.1 <4.0.0"
+  flutter_shaders: ">=0.1.3 <0.2.0"
+  dotted_border: ">=3.1.0 <4.0.0"
+  faker: ">=2.2.0 <3.0.0"
+  serviced: ">=1.0.3 <2.0.0"
+  expressions: ">=0.2.5 <1.0.0"
+  hive_flutter: ">=1.1.0 <2.0.0"
+  haptic_feedback: ">=0.5.1+1 <1.0.0"
+  url_launcher: ">=6.3.1 <7.0.0"
+  flutter_randomcolor: ">=1.0.18 <2.0.0"
+  crypto: ">=3.0.6 <4.0.0"
+  flutter_staggered_grid_view: ">=0.7.0 <1.0.0"
+  custom_refresh_indicator: ">=4.0.0 <5.0.0"
+  measure_size: ">=5.0.2 <6.0.0"
+  mesh_gradient: ">=1.3.8 <2.0.0"
+  thumbhash: ">=0.1.0 <2.0.0"
+  gpt_markdown: ">=1.1.4 <2.0.0"
+  flutter_thumbhash: ">=0.1.0+1 <1.0.0"
+  throttled: ">=1.0.1 <2.0.0"
+  animated_reorderable_list: ">=1.3.0 <2.0.0"
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  artifact_gen: ^1.1.0
+  build_runner: ^2.10.0
+flutter:
+  shaders: 
+    - packages/arcane/resources/shaders/frost.frag
+    - packages/arcane/resources/shaders/pixelate.frag
+    - packages/arcane/resources/shaders/pixelate_blur.frag
+    - packages/arcane/resources/shaders/rgb.frag
+    - packages/arcane/resources/shaders/loader.frag
+    - packages/arcane/resources/shaders/glyph.frag
+    - packages/arcane/resources/shaders/invert.frag
+    - packages/arcane/resources/shaders/warp.frag
+    - packages/arcane/resources/shaders/black_hole.frag
+    - packages/arcane/resources/shaders/lux.frag
+    - packages/arcane/resources/shaders/cascade.frag
+    - packages/arcane/resources/shaders/edge.frag
+    - packages/arcane/resources/shaders/arcane_blur.frag
+    - packages/arcane/resources/shaders/liquid_glass.frag
+    - packages/arcane/resources/shaders/ice.frag
+    - packages/mesh_gradient/shaders/point_mesh_gradient.frag
+  uses-material-design: true
+  fonts:
+    - family: Phosphor
+      fonts:
+        - asset: fonts/Phosphor.ttf
+    - family: RadixIcons
+      fonts:
+        - asset: "packages/arcane/resources/icons/RadixIcons.otf"
+    - family: BootstrapIcons
+      fonts:
+        - asset: "packages/arcane/resources/icons/BootstrapIcons.otf"
+    - family: LucideIcons
+      fonts:
+        - asset: "packages/arcane/resources/icons/LucideIcons.ttf"
+    - family: "GeistSans"
+      fonts:
+        - asset: "packages/arcane/resources/fonts/Geist-Black.otf"
+          weight: 800
+        - asset: "packages/arcane/resources/fonts/Geist-Bold.otf"
+          weight: 700
+        - asset: "packages/arcane/resources/fonts/Geist-Light.otf"
+          weight: 300
+        - asset: "packages/arcane/resources/fonts/Geist-Medium.otf"
+          weight: 500
+        - asset: "packages/arcane/resources/fonts/Geist-SemiBold.otf"
+          weight: 600
+        - asset: "packages/arcane/resources/fonts/Geist-Thin.otf"
+          weight: 100
+        - asset: "packages/arcane/resources/fonts/Geist-UltraBlack.otf"
+          weight: 900
+        - asset: "packages/arcane/resources/fonts/Geist-UltraLight.otf"
+          weight: 200
+        - asset: "packages/arcane/resources/fonts/Geist-Regular.otf"
+          weight: 400
+    - family: "GeistMono"
+      fonts:
+        - asset: "packages/arcane/resources/fonts/GeistMono-Black.otf"
+          weight: 800
+        - asset: "packages/arcane/resources/fonts/GeistMono-Bold.otf"
+          weight: 700
+        - asset: "packages/arcane/resources/fonts/GeistMono-Light.otf"
+          weight: 300
+        - asset: "packages/arcane/resources/fonts/GeistMono-Medium.otf"
+          weight: 500
+        - asset: "packages/arcane/resources/fonts/GeistMono-Regular.otf"
+          weight: 400
+        - asset: "packages/arcane/resources/fonts/GeistMono-SemiBold.otf"
+          weight: 600
+        - asset: "packages/arcane/resources/fonts/GeistMono-Thin.otf"
+          weight: 100
+        - asset: "packages/arcane/resources/fonts/GeistMono-UltraBlack.otf"
+          weight: 900
+        - asset: "packages/arcane/resources/fonts/GeistMono-UltraLight.otf"
+          weight: 200
+topics:
+  - widgets
+  - user-interface
+  - design
+  - components
+  - shadcn-ui
+scripts:
+  build_runner: dart run build_runner build --delete-conflicting-outputs
+  sync_upstream: sh ./script_sync_shadcn.sh
+  hotload_docs: sh ./script_sync_docs_live.sh
+  deploy_docs: sh ./script_deploy_docs_fast.sh
+  validate_dependencies: dart pub global activate dependency_validator && dart pub global run dependency_validator

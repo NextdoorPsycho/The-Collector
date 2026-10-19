@@ -5,7 +5,8 @@ class CardSearch {
   static final ScryfallApiClient _apiClient = ScryfallApiClient();
 
   static Future<List<MtgCard>> searchCardsByStrings(
-      List<String> strings) async {
+    List<String> strings,
+  ) async {
     List<MtgCard> candidateCards = [];
 
     for (String s in strings) {
@@ -14,20 +15,17 @@ class CardSearch {
     }
 
     candidateCards = candidateCards.toSet().toList();
-    candidateCards.sort((a, b) =>
-        _getMatchScore(b, strings).compareTo(_getMatchScore(a, strings)));
+    candidateCards.sort(
+      (a, b) =>
+          _getMatchScore(b, strings).compareTo(_getMatchScore(a, strings)),
+    );
 
     return candidateCards;
   }
 
-  static Future<MtgCard?> searchMostConfidentCard(List<String> strings) async {
-    final candidateCards = await searchCardsByStrings(strings);
-    return candidateCards.isNotEmpty ? candidateCards.first : null;
-  }
-
   static Future<MtgCard?> getCardByID(String id) async {
     try {
-      final card = await _apiClient.getCardById(id);
+      final MtgCard card = await _apiClient.getCardById(id);
       return card;
     } catch (e) {
       info('Error getting card by ID: $e');
@@ -37,9 +35,11 @@ class CardSearch {
 
   static Future<List<MtgCard>> _searchByString(String query) async {
     try {
-      final searchResult = await _apiClient.searchCards(query);
+      final PaginableList<MtgCard> searchResult = await _apiClient.searchCards(
+        query,
+      );
       info('Search result: $searchResult');
-      return searchResult.data ?? [];
+      return searchResult.data;
     } catch (e) {
       info('Error searching cards: $e');
       return [];
@@ -50,7 +50,7 @@ class CardSearch {
     int score = 0;
 
     for (String s in strings) {
-      final lowerQuery = s.toLowerCase();
+      final String lowerQuery = s.toLowerCase();
 
       if (card.name.toLowerCase().contains(lowerQuery)) {
         score += 5;

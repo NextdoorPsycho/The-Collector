@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:arcane/arcane.dart';
 
 class Nav {
   static void goToLogin(BuildContext context) {

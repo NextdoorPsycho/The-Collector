@@ -1,0 +1,1436 @@
+[
+  {
+    "imagePath": "/local/source-0.jpg",
+    "width": 6048,
+    "height": 8064,
+    "crops": [
+      {
+        "imagePath": "/local/source-0-crop-0.jpg",
+        "width": 2570,
+        "height": 3590,
+        "rectified": true,
+        "warnings": [
+          "geometry_adjusted"
+        ],
+        "sharpness": 0.8531495288304876,
+        "sourceCorners": [
+          {
+            "x": 0.28695255517959595,
+            "y": 0.5514530837535858
+          },
+          {
+            "x": 0.5732595920562744,
+            "y": 0.5896708369255066
+          },
+          {
+            "x": 0.5689985156059265,
+            "y": 0.8477256596088409
+          },
+          {
+            "x": 0.1020914763212204,
+            "y": 0.7867747098207474
+          }
+        ],
+        "lines": [
+          {
+            "text": "Enchantment",
+            "confidence": 1.0,
+            "alternatives": [
+              "Enchanument",
+              "Enchaniment"
+            ],
+            "glyphHeight": 0.02540558610743929,
+            "bounds": {
+              "x": 0.054425163505435095,
+              "y": 0.561708301626526,
+              "width": 0.298823375182393,
+              "height": 0.028180027273704056
+            }
+          },
+          {
+            "text": "1; Prevent all damage against you",
+            "confidence": 1.0,
+            "alternatives": [
+              "1 ; Prevent all damage against you",
+              "1 Prevent all damage against you"
+            ],
+            "glyphHeight": 0.0378830083565459,
+            "bounds": {
+              "x": 0.11359026842079448,
+              "y": 0.6612813376266349,
+              "width": 0.7423934995896158,
+              "height": 0.03788300835654601
+            }
+          },
+          {
+            "text": "from one blue source. I1 a source",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.029777365491651206,
+            "bounds": {
+              "x": 0.10833333479166662,
+              "y": 0.7,
+              "width": 0.7375,
+              "height": 0.029777365274080047
+            }
+          },
+          {
+            "text": "deals damage to you more than",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.036892440103322446,
+            "bounds": {
+              "x": 0.11470416999229373,
+              "y": 0.7297822783129684,
+              "width": 0.6848119357216682,
+              "height": 0.03839217205436863
+            }
+          },
+          {
+            "text": "once in a turn, you may",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.042598607888631096,
+            "bounds": {
+              "x": 0.10833333549851883,
+              "y": 0.76,
+              "width": 0.5254166635029623,
+              "height": 0.04259860745076991
+            }
+          },
+          {
+            "text": "each time to prevent the",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.03708468856422487,
+            "bounds": {
+              "x": 0.11065251307687185,
+              "y": 0.7981887594012471,
+              "width": 0.5289858439322294,
+              "height": 0.04218314540358542
+            }
+          },
+          {
+            "text": "Circle of Protection: Blue",
+            "confidence": 1.0,
+            "alternatives": [
+              "Circle of Protection: Blae",
+              "Circle of Protection Blue"
+            ],
+            "glyphHeight": 0.038796427036919635,
+            "bounds": {
+              "x": 0.052256939864385656,
+              "y": 0.009898837543293126,
+              "width": 0.6307150755410993,
+              "height": 0.04208039813571507
+            }
+          }
+        ]
+      },
+      {
+        "imagePath": "/local/source-0-crop-1.jpg",
+        "width": 856,
+        "height": 1233,
+        "rectified": true,
+        "warnings": [
+          "incomplete_card",
+          "no_text"
+        ],
+        "sharpness": 0.2677030102468558,
+        "sourceCorners": [
+          {
+            "x": 0.7004432082176208,
+            "y": 0.20649540424346924
+          },
+          {
+            "x": 0.8850619196891785,
+            "y": 0.22434639930725098
+          },
+          {
+            "x": 0.8656905293464661,
+            "y": 0.3202195167541504
+          },
+          {
+            "x": 0.6769708395004272,
+            "y": 0.3093971014022827
+          }
+        ],
+        "lines": []
+      },
+      {
+        "imagePath": "/local/source-0-crop-2.jpg",
+        "width": 503,
+        "height": 632,
+        "rectified": true,
+        "warnings": [
+          "incomplete_card",
+          "small_image",
+          "no_text"
+        ],
+        "sharpness": 0.2609721116933433,
+        "sourceCorners": [
+          {
+            "x": 0.07143944501876831,
+            "y": 0.018887460231781006
+          },
+          {
+            "x": 0.15339118242263794,
+            "y": 0.01722174882888794
+          },
+          {
+            "x": 0.160117506980896,
+            "y": 0.08993649482727051
+          },
+          {
+            "x": 0.08375957608222961,
+            "y": 0.09018808603286743
+          }
+        ],
+        "lines": []
+      },
+      {
+        "imagePath": "/local/source-0-crop-3.jpg",
+        "width": 1550,
+        "height": 2170,
+        "rectified": false,
+        "warnings": [
+          "no_card_rectangle",
+          "partial_card",
+          "incomplete_card"
+        ],
+        "sharpness": 0.8335090429682591,
+        "sourceCorners": [
+          {
+            "x": 0.6066371690222926,
+            "y": 0.5622699989557424
+          },
+          {
+            "x": 0.8627121512397522,
+            "y": 0.5622699989557424
+          },
+          {
+            "x": 0.8627121512397522,
+            "y": 0.8312563248144185
+          },
+          {
+            "x": 0.6066371690222926,
+            "y": 0.8312563248144185
+          }
+        ],
+        "lines": [
+          {
+            "text": "Enchantment",
+            "confidence": 1.0,
+            "alternatives": [
+              "Enchantmen",
+              "Enchantent"
+            ],
+            "glyphHeight": 0.03089971757623011,
+            "bounds": {
+              "x": 0.040135538751437265,
+              "y": 0.4531762121302939,
+              "width": 0.40350967899445567,
+              "height": 0.08040034562211984
+            }
+          },
+          {
+            "text": "As Nevermore enters the ba",
+            "confidence": 1.0,
+            "alternatives": [
+              "As Nevermore enter the ba",
+              "As Nevermor enters the ba"
+            ],
+            "glyphHeight": 0.043271475623740244,
+            "bounds": {
+              "x": 0.02979030017378877,
+              "y": 0.5219349443712468,
+              "width": 0.9702096998262112,
+              "height": 0.14967579643847206
+            }
+          },
+          {
+            "text": "name a nonland card.",
+            "confidence": 1.0,
+            "alternatives": [
+              "name a noland card.",
+              "name a nonland card"
+            ],
+            "glyphHeight": 0.04436328767670186,
+            "bounds": {
+              "x": 0.024639063925386864,
+              "y": 0.5561148745380811,
+              "width": 0.774702384702621,
+              "height": 0.1375613726778514
+            }
+          },
+          {
+            "text": "The named",
+            "confidence": 1.0,
+            "alternatives": [
+              "The name",
+              "Thenamed"
+            ],
+            "glyphHeight": 0.04176905339369842,
+            "bounds": {
+              "x": 0.017725995875445124,
+              "y": 0.6117271293411006,
+              "width": 0.42528517200100807,
+              "height": 0.09451504896313367
+            }
+          },
+          {
+            "text": "Mu can t De",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.04436621184141443,
+            "bounds": {
+              "x": 0.4882311048734844,
+              "y": 0.7,
+              "width": 0.4440071745841734,
+              "height": 0.05775168951534246
+            }
+          },
+          {
+            "text": "Isy the laro of Avacyn, the jo",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.05455788417060466,
+            "bounds": {
+              "x": 0.055478456404708124,
+              "y": 0.7,
+              "width": 0.9445137663810483,
+              "height": 0.14392207251802988
+            }
+          },
+          {
+            "text": "thoughts, words, and deeds ar",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.06070716671888598,
+            "bounds": {
+              "x": 0.0027940522564740018,
+              "y": 0.7201808062766428,
+              "width": 0.9929038558467742,
+              "height": 0.16853606569255056
+            }
+          },
+          {
+            "text": "- Jason A. Engle",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.03555134769434015,
+            "bounds": {
+              "x": 0.03575034974616466,
+              "y": 0.8621475512532061,
+              "width": 0.4082143869707661,
+              "height": 0.08329581161218191
+            }
+          },
+          {
+            "text": "RC 1995-2051 9ode",
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "glyphHeight": 0.027897272699345634,
+            "bounds": {
+              "x": 0.03250001014328199,
+              "y": 0.8971081249369119,
+              "width": 0.42573332755796367,
+              "height": 0.08172038493712254
+            }
+          },
+          {
+            "text": "PYES",
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "glyphHeight": 0.0228994218502391,
+            "bounds": {
+              "x": 0.1700359238706807,
+              "y": 0.76,
+              "width": 0.12223054038153755,
+              "height": 0.03219384913207314
+            }
+          },
+          {
+            "text": "woras",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.026307791362279558,
+            "bounds": {
+              "x": 0.32097238507236364,
+              "y": 0.7782626693981871,
+              "width": 0.20032363619123192,
+              "height": 0.03896740442034843
+            }
+          },
+          {
+            "text": "henceforth disal",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.050049086055565975,
+            "bounds": {
+              "x": 0.020619040074212523,
+              "y": 0.76,
+              "width": 0.5293338018750388,
+              "height": 0.1060383497275696
+            }
+          },
+          {
+            "text": "Nevermore",
+            "confidence": 1.0,
+            "alternatives": [
+              "Nevermor",
+              "evermore"
+            ],
+            "glyphHeight": 0.022842012764512958,
+            "bounds": {
+              "x": 0.07994741845300089,
+              "y": 0.03500709445514749,
+              "width": 0.32257249401461696,
+              "height": 0.055601386245416135
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "imagePath": "/local/source-1.jpg",
+    "width": 6048,
+    "height": 8064,
+    "crops": [
+      {
+        "imagePath": "/local/source-1-crop-0.jpg",
+        "width": 2909,
+        "height": 3388,
+        "rectified": true,
+        "warnings": [
+          "incomplete_card",
+          "no_text"
+        ],
+        "sharpness": 0.16574388288800979,
+        "sourceCorners": [
+          {
+            "x": 0.28674596548080444,
+            "y": 0.5509143769741058
+          },
+          {
+            "x": 0.56998610496521,
+            "y": 0.5879654586315155
+          },
+          {
+            "x": 0.5650991201400757,
+            "y": 0.8390943855047226
+          },
+          {
+            "x": 0.11384505033493042,
+            "y": 0.7805331200361252
+          }
+        ],
+        "lines": []
+      },
+      {
+        "imagePath": "/local/source-1-crop-1.jpg",
+        "width": 1576,
+        "height": 2206,
+        "rectified": false,
+        "warnings": [
+          "no_card_rectangle",
+          "partial_card",
+          "incomplete_card"
+        ],
+        "sharpness": 0.877500005774436,
+        "sourceCorners": [
+          {
+            "x": 0.6694546958293448,
+            "y": 0.1916583008911228
+          },
+          {
+            "x": 0.9298015065424556,
+            "y": 0.1916583008911228
+          },
+          {
+            "x": 0.9298015065424556,
+            "y": 0.46513184155615517
+          },
+          {
+            "x": 0.6694546958293448,
+            "y": 0.46513184155615517
+          }
+        ],
+        "lines": [
+          {
+            "text": "Creature - Bat",
+            "confidence": 1.0,
+            "alternatives": [
+              "Creature- Bat",
+              "Creature -Bat"
+            ],
+            "glyphHeight": 0.02156374946614825,
+            "bounds": {
+              "x": 0.04320716575785996,
+              "y": 0.4700903297806748,
+              "width": 0.24305924546295013,
+              "height": 0.03288358098684607
+            }
+          },
+          {
+            "text": "Flying",
+            "confidence": 1.0,
+            "alternatives": [
+              "Fying",
+              "Flyin"
+            ],
+            "glyphHeight": 0.029104109708039855,
+            "bounds": {
+              "x": 0.031325372073718286,
+              "y": 0.5279619396944312,
+              "width": 0.11639418819834134,
+              "height": 0.03224081833148584
+            }
+          },
+          {
+            "text": "Whenever you create or sacrifice a",
+            "confidence": 1.0,
+            "alternatives": [
+              "Whenever you create or sacrifice",
+              "Whenever you createor sacrifice a"
+            ],
+            "glyphHeight": 0.031044807890117616,
+            "bounds": {
+              "x": 0.030315513486723324,
+              "y": 0.5567899871113619,
+              "width": 0.5895987960892886,
+              "height": 0.06251704336185404
+            }
+          },
+          {
+            "text": "token, each opponent loses 1 life.",
+            "confidence": 1.0,
+            "alternatives": [
+              "token, each opponent loses 1 lifé.",
+              "token, each opponent loses 1 life"
+            ],
+            "glyphHeight": 0.029480011261380886,
+            "bounds": {
+              "x": 0.02071362537416792,
+              "y": 0.5909022242235817,
+              "width": 0.5746339517196424,
+              "height": 0.04911691625876957
+            }
+          },
+          {
+            "text": "\"The enemy has many spies and man",
+            "confidence": 1.0,
+            "alternatives": [
+              "The enemy has many spies and man",
+              "\"The enemyhas many spies and man"
+            ],
+            "glyphHeight": 0.03422621438949751,
+            "bounds": {
+              "x": 0.009257026364427854,
+              "y": 0.6353802219846525,
+              "width": 0.5983828239634558,
+              "height": 0.0625257241326036
+            }
+          },
+          {
+            "text": "ways of hearingịằi",
+            "confidence": 1.0,
+            "alternatives": [
+              "ways of hearingịằ",
+              "way of hearingịằi"
+            ],
+            "glyphHeight": 0.029219308632965513,
+            "bounds": {
+              "x": 0.004881728895835993,
+              "y": 0.6637226284628499,
+              "width": 0.282458987937966,
+              "height": 0.03859126902880283
+            }
+          },
+          {
+            "text": "-Jandalf",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.020761245543142837,
+            "bounds": {
+              "x": 0.03343023383718731,
+              "y": 0.7000000000550972,
+              "width": 0.14534883450735642,
+              "height": 0.020761245543142837
+            }
+          },
+          {
+            "text": "0095",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.011602969177182357,
+            "bounds": {
+              "x": 0.0,
+              "y": 0.740217091574715,
+              "width": 0.052751670415743315,
+              "height": 0.012988578300821818
+            }
+          },
+          {
+            "text": "JOHN TEDRICK",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.010104603118109698,
+            "bounds": {
+              "x": 0.0678574312148615,
+              "y": 0.76,
+              "width": 0.1380916840848867,
+              "height": 0.012619908615934374
+            }
+          },
+          {
+            "text": "I & © 2023 Wiards of the",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.010917397141530878,
+            "bounds": {
+              "x": 0.37278998596274765,
+              "y": 0.7691372298539745,
+              "width": 0.20944297894632144,
+              "height": 0.021379017955852016
+            }
+          },
+          {
+            "text": "Mirkwood Bats",
+            "confidence": 1.0,
+            "alternatives": [
+              "Mirkwood Bat",
+              "Mirkwood Bas"
+            ],
+            "glyphHeight": 0.028210079095556714,
+            "bounds": {
+              "x": 0.12471881137475842,
+              "y": 0.036195751355372896,
+              "width": 0.30483464662193643,
+              "height": 0.0422555986720713
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "imagePath": "/local/source-2.jpg",
+    "width": 6048,
+    "height": 8064,
+    "crops": [
+      {
+        "imagePath": "/local/source-2-crop-0.jpg",
+        "width": 2915,
+        "height": 3498,
+        "rectified": true,
+        "warnings": [
+          "orientation_ensemble"
+        ],
+        "sharpness": 0.869040110645226,
+        "sourceCorners": [
+          {
+            "x": 0.2862652540206909,
+            "y": 0.554606020450592
+          },
+          {
+            "x": 0.576909065246582,
+            "y": 0.5839525759220123
+          },
+          {
+            "x": 0.5709978938102722,
+            "y": 0.8478624373674393
+          },
+          {
+            "x": 0.10480113327503204,
+            "y": 0.7862962335348129
+          }
+        ],
+        "lines": [
+          {
+            "text": "1米",
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "glyphHeight": 0.03691295017522888,
+            "bounds": {
+              "x": 0.847533588369761,
+              "y": 0.04600768139916578,
+              "width": 0.10118272569444442,
+              "height": 0.039154004750761584
+            }
+          },
+          {
+            "text": "Enchaniment",
+            "confidence": 1.0,
+            "alternatives": [
+              "Enchanment",
+              "Enchaiment"
+            ],
+            "glyphHeight": 0.028281869061728658,
+            "bounds": {
+              "x": 0.047724068604880675,
+              "y": 0.5542917276102654,
+              "width": 0.31217012549296985,
+              "height": 0.040505266925687455
+            }
+          },
+          {
+            "text": "1; Prevent all damage against you",
+            "confidence": 1.0,
+            "alternatives": [
+              "1 ; Prevent all damage against you",
+              "1 Prevent all damage against you"
+            ],
+            "glyphHeight": 0.03725521817922519,
+            "bounds": {
+              "x": 0.11609685440256806,
+              "y": 0.6599115149892376,
+              "width": 0.7416783713509516,
+              "height": 0.0491668849484862
+            }
+          },
+          {
+            "text": "from one blue source. If a source",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.0354245689338052,
+            "bounds": {
+              "x": 0.10795664989051255,
+              "y": 0.7,
+              "width": 0.742429714961634,
+              "height": 0.03952762365096952
+            }
+          },
+          {
+            "text": "deals damage to you more than",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.03822772118775006,
+            "bounds": {
+              "x": 0.11181152095462053,
+              "y": 0.7321855190511046,
+              "width": 0.6929218307934671,
+              "height": 0.0482708740234375
+            }
+          },
+          {
+            "text": "once in a turn, you may pay -",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.03653592226718994,
+            "bounds": {
+              "x": 0.11202644313781512,
+              "y": 0.7670775824859332,
+              "width": 0.6635099602007244,
+              "height": 0.04537848772321427
+            }
+          },
+          {
+            "text": "e in a murn",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.019761123657226553,
+            "bounds": {
+              "x": 0.20595929799624588,
+              "y": 0.7765245907005687,
+              "width": 0.22013082222596506,
+              "height": 0.01976112365722658
+            }
+          },
+          {
+            "text": ", vou mav",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.020618506350871927,
+            "bounds": {
+              "x": 0.41830679910725804,
+              "y": 0.7779152346145598,
+              "width": 0.2167176387481046,
+              "height": 0.022411483764648424
+            }
+          },
+          {
+            "text": "each time to prevent th",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.03601843113082138,
+            "bounds": {
+              "x": 0.11333551785569176,
+              "y": 0.8014895921775049,
+              "width": 0.5207717122910898,
+              "height": 0.04172155325753349
+            }
+          },
+          {
+            "text": "trele",
+            "confidence": 1.0,
+            "alternatives": [
+              "ircle",
+              "frele"
+            ],
+            "glyphHeight": 0.026883714165000332,
+            "bounds": {
+              "x": 0.08851847665431427,
+              "y": 0.0063349332330499,
+              "width": 0.1092901452251586,
+              "height": 0.029416950770786845
+            }
+          },
+          {
+            "text": "of Protection L",
+            "confidence": 1.0,
+            "alternatives": [
+              "of Protection b",
+              "of Protection L"
+            ],
+            "glyphHeight": 0.0320784054936388,
+            "bounds": {
+              "x": 0.19354764196610216,
+              "y": 0.0060373812524493475,
+              "width": 0.4131779507190929,
+              "height": 0.0581609126499721
+            }
+          },
+          {
+            "text": "Enchantment",
+            "confidence": 1.0,
+            "alternatives": [
+              "Enchantment®",
+              "Enchantment™"
+            ],
+            "glyphHeight": 0.027509610449686455,
+            "bounds": {
+              "x": 0.051277356582496436,
+              "y": 0.5530481154218403,
+              "width": 0.3241261005401612,
+              "height": 0.03805075834194804
+            }
+          }
+        ]
+      },
+      {
+        "imagePath": "/local/source-2-crop-1.jpg",
+        "width": 2302,
+        "height": 3216,
+        "rectified": true,
+        "warnings": [
+          "geometry_adjusted"
+        ],
+        "sharpness": 0.8109188594814786,
+        "sourceCorners": [
+          {
+            "x": 0.6188623905181885,
+            "y": 0.571903645992279
+          },
+          {
+            "x": 0.8956759572029114,
+            "y": 0.5980090796947479
+          },
+          {
+            "x": 0.9878737926483154,
+            "y": 0.8545797318220139
+          },
+          {
+            "x": 0.5739672780036926,
+            "y": 0.8077029436826706
+          }
+        ],
+        "lines": [
+          {
+            "text": "Enchantment",
+            "confidence": 1.0,
+            "alternatives": [
+              "Enchantmen",
+              "Enchantent"
+            ],
+            "glyphHeight": 0.02914320296725846,
+            "bounds": {
+              "x": 0.06116797631613247,
+              "y": 0.5703402535681659,
+              "width": 0.30327107075708626,
+              "height": 0.040172519968516784
+            }
+          },
+          {
+            "text": "As Nevermore enters the battlefield,",
+            "confidence": 1.0,
+            "alternatives": [
+              "As Nevermore enters the battlefield",
+              "As Nevermore enter the battlefield,"
+            ],
+            "glyphHeight": 0.05235122148314114,
+            "bounds": {
+              "x": 0.06024650808968139,
+              "y": 0.6421476556504265,
+              "width": 0.9140101083975892,
+              "height": 0.058671913336758585
+            }
+          },
+          {
+            "text": "name a nonland card.",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.0342560548960052,
+            "bounds": {
+              "x": 0.06686047552327584,
+              "y": 0.7000000002289528,
+              "width": 0.5479650953145363,
+              "height": 0.0342560548960052
+            }
+          },
+          {
+            "text": "The named card can't be cast.",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.044261713867984276,
+            "bounds": {
+              "x": 0.0678187165657819,
+              "y": 0.7347304616356334,
+              "width": 0.7583057128482027,
+              "height": 0.04951343654845814
+            }
+          },
+          {
+            "text": "1a11Ca",
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "glyphHeight": 0.014197183322412358,
+            "bounds": {
+              "x": 0.2078488383938723,
+              "y": 0.76,
+              "width": 0.15966569521080193,
+              "height": 0.01419718320630161
+            }
+          },
+          {
+            "text": "ua cant",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.0189637305699482,
+            "bounds": {
+              "x": 0.4185319783906842,
+              "y": 0.7600000000442694,
+              "width": 0.21446220591485263,
+              "height": 0.018963730569948174
+            }
+          },
+          {
+            "text": "\"By the law of Avacyn, th",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.047307883065262984,
+            "bounds": {
+              "x": 0.06747647443075067,
+              "y": 0.7870908878432354,
+              "width": 0.5825235255692494,
+              "height": 0.07374405539715229
+            }
+          },
+          {
+            "text": "thoughts, words, and deed",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.04709377276793259,
+            "bounds": {
+              "x": 0.06874732283776291,
+              "y": 0.8356709063978809,
+              "width": 0.5755219280003546,
+              "height": 0.05671892551560477
+            }
+          },
+          {
+            "text": "henceforth disallowed.\"",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.04422381995830005,
+            "bounds": {
+              "x": 0.07038837195864149,
+              "y": 0.8727250871979013,
+              "width": 0.5184487968006822,
+              "height": 0.047819439981885516
+            }
+          },
+          {
+            "text": "- Jason A. Engle",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.02637897446963565,
+            "bounds": {
+              "x": 0.09374035452360259,
+              "y": 0.9479086807028558,
+              "width": 0.27025358355411383,
+              "height": 0.034041443661704564
+            }
+          },
+          {
+            "text": "C 1995-20519",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.01748955365907344,
+            "bounds": {
+              "x": 0.11104166360558028,
+              "y": 0.9806451614018694,
+              "width": 0.17875000529677593,
+              "height": 0.01748955365907344
+            }
+          },
+          {
+            "text": "Nevermore",
+            "confidence": 1.0,
+            "alternatives": [
+              "Nevermor",
+              "evermore"
+            ],
+            "glyphHeight": 0.033030842738512256,
+            "bounds": {
+              "x": 0.03280999627144283,
+              "y": 0.0022240990824968776,
+              "width": 0.3010374279668495,
+              "height": 0.034108961697282454
+            }
+          }
+        ]
+      },
+      {
+        "imagePath": "/local/source-2-crop-2.jpg",
+        "width": 1541,
+        "height": 3931,
+        "rectified": true,
+        "warnings": [
+          "incomplete_card",
+          "no_text"
+        ],
+        "sharpness": 0.3823071660799267,
+        "sourceCorners": [
+          {
+            "x": 0.41692790389060974,
+            "y": 0.34216946363449097
+          },
+          {
+            "x": 0.6499035954475403,
+            "y": 0.3740459680557251
+          },
+          {
+            "x": 0.4587727189064026,
+            "y": 0.5711175501346588
+          },
+          {
+            "x": 0.3455567955970764,
+            "y": 0.5557322204113007
+          }
+        ],
+        "lines": []
+      }
+    ]
+  },
+  {
+    "imagePath": "/local/source-3.jpg",
+    "width": 6048,
+    "height": 8064,
+    "crops": [
+      {
+        "imagePath": "/local/source-3-crop-0.jpg",
+        "width": 2987,
+        "height": 3553,
+        "rectified": true,
+        "warnings": [
+          "incomplete_card"
+        ],
+        "sharpness": 0.8774037570551306,
+        "sourceCorners": [
+          {
+            "x": 0.2851289212703705,
+            "y": 0.5523345768451691
+          },
+          {
+            "x": 0.5827627182006836,
+            "y": 0.5827016532421112
+          },
+          {
+            "x": 0.5760282278060913,
+            "y": 0.8506188541650772
+          },
+          {
+            "x": 0.0996747836470604,
+            "y": 0.787969321012497
+          }
+        ],
+        "lines": [
+          {
+            "text": "1 *",
+            "confidence": 1.0,
+            "alternatives": [
+              "1*",
+              "1 ·"
+            ],
+            "glyphHeight": 0.039392234102419765,
+            "bounds": {
+              "x": 0.8324697777843688,
+              "y": 0.0565559934011064,
+              "width": 0.0984455910392874,
+              "height": 0.039392234102419765
+            }
+          },
+          {
+            "text": "Enchaniment",
+            "confidence": 1.0,
+            "alternatives": [
+              "Enchanment",
+              "Enchanıment"
+            ],
+            "glyphHeight": 0.027363455791980427,
+            "bounds": {
+              "x": 0.056301929312960165,
+              "y": 0.5560853757705827,
+              "width": 0.3035897455381421,
+              "height": 0.03442873764252763
+            }
+          },
+          {
+            "text": "1; Prevent all damage against you",
+            "confidence": 1.0,
+            "alternatives": [
+              "1: Prevent all damage against you",
+              "1 ; Prevent all damage against you"
+            ],
+            "glyphHeight": 0.03389609389094954,
+            "bounds": {
+              "x": 0.11830219771391827,
+              "y": 0.6556136983742232,
+              "width": 0.7288351812196704,
+              "height": 0.052642221187834126
+            }
+          },
+          {
+            "text": "trom one blue source. If a source",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.03634411060803154,
+            "bounds": {
+              "x": 0.11613016486601797,
+              "y": 0.7,
+              "width": 0.7260025616790076,
+              "height": 0.038689199987130114
+            }
+          },
+          {
+            "text": "deals damage to you more than",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.03573176391634114,
+            "bounds": {
+              "x": 0.11853262451796741,
+              "y": 0.7264504953441204,
+              "width": 0.6785245228962725,
+              "height": 0.04684677410304661
+            }
+          },
+          {
+            "text": "1o Pere 1e",
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "glyphHeight": 0.023843897932914707,
+            "bounds": {
+              "x": 0.09529582460208749,
+              "y": 0.9199330032709434,
+              "width": 0.20480134241392653,
+              "height": 0.03278929619136045
+            }
+          },
+          {
+            "text": "once in a turn, you may",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.03295128336808366,
+            "bounds": {
+              "x": 0.11852263265228952,
+              "y": 0.7641528607580211,
+              "width": 0.5185428419024766,
+              "height": 0.04285301333568136
+            }
+          },
+          {
+            "text": "each time to prevent the",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.035147449002721945,
+            "bounds": {
+              "x": 0.1189405672438406,
+              "y": 0.8001851559549914,
+              "width": 0.5285523718098288,
+              "height": 0.03815091635639271
+            }
+          },
+          {
+            "text": "Cirele of Protection: Blue",
+            "confidence": 1.0,
+            "alternatives": [
+              "Cirele of Protection Blue",
+              "Crele of Protection: Blue"
+            ],
+            "glyphHeight": 0.03911072783332837,
+            "bounds": {
+              "x": 0.051817322013862764,
+              "y": 0.008636565292559517,
+              "width": 0.6258330849439424,
+              "height": 0.0722978925704956
+            }
+          }
+        ]
+      },
+      {
+        "imagePath": "/local/source-3-crop-1.jpg",
+        "width": 1551,
+        "height": 2172,
+        "rectified": false,
+        "warnings": [
+          "no_card_rectangle",
+          "partial_card",
+          "incomplete_card"
+        ],
+        "sharpness": 0.8491301986373446,
+        "sourceCorners": [
+          {
+            "x": 0.6070876090333116,
+            "y": 0.5624907835891231
+          },
+          {
+            "x": 0.8633202271100938,
+            "y": 0.5624907835891231
+          },
+          {
+            "x": 0.8633202271100938,
+            "y": 0.8316426933336423
+          },
+          {
+            "x": 0.6070876090333116,
+            "y": 0.8316426933336423
+          }
+        ],
+        "lines": [
+          {
+            "text": "Enchantment",
+            "confidence": 1.0,
+            "alternatives": [
+              "Enchantmen",
+              "Enchantent"
+            ],
+            "glyphHeight": 0.03064686295419048,
+            "bounds": {
+              "x": 0.03944533971457729,
+              "y": 0.45479065358349335,
+              "width": 0.40250970899444266,
+              "height": 0.08003454050306458
+            }
+          },
+          {
+            "text": "As Nevermore enters the ba",
+            "confidence": 1.0,
+            "alternatives": [
+              "As Nevermore enter the ba",
+              "As Nevermor enters the ba"
+            ],
+            "glyphHeight": 0.04243316254144622,
+            "bounds": {
+              "x": 0.030227083823444738,
+              "y": 0.5238859341656018,
+              "width": 0.9697729161765553,
+              "height": 0.14812139296839033
+            }
+          },
+          {
+            "text": "name a nonland card.",
+            "confidence": 1.0,
+            "alternatives": [
+              "name a noland card.",
+              "name a nonland card"
+            ],
+            "glyphHeight": 0.04527691098171432,
+            "bounds": {
+              "x": 0.022855003932775876,
+              "y": 0.5685769303503927,
+              "width": 0.7769091104723744,
+              "height": 0.12710383013028026
+            }
+          },
+          {
+            "text": "The named",
+            "confidence": 1.0,
+            "alternatives": [
+              "The name",
+              "Thenamed"
+            ],
+            "glyphHeight": 0.042354953721795055,
+            "bounds": {
+              "x": 0.019270194871790162,
+              "y": 0.6139879321906146,
+              "width": 0.4214775636024081,
+              "height": 0.09302420993755756
+            }
+          },
+          {
+            "text": "urd can t oe",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.036697773097533526,
+            "bounds": {
+              "x": 0.48900546559396846,
+              "y": 0.7,
+              "width": 0.4350243401281613,
+              "height": 0.05213684085879559
+            }
+          },
+          {
+            "text": "C",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.02283737007909047,
+            "bounds": {
+              "x": 0.9447674420839778,
+              "y": 0.7332179932591814,
+              "width": 0.034883720358622416,
+              "height": 0.022837369719897294
+            }
+          },
+          {
+            "text": "By the law of Avacyn, the fo",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.05603217707587982,
+            "bounds": {
+              "x": 0.05623503705530197,
+              "y": 0.7,
+              "width": 0.943764962944698,
+              "height": 0.1462961047351284
+            }
+          },
+          {
+            "text": "thoughts, words, and deeds ar",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.05789573931988114,
+            "bounds": {
+              "x": 0.0028119150218206064,
+              "y": 0.722582024427145,
+              "width": 0.9971880849781793,
+              "height": 0.1673878301140721
+            }
+          },
+          {
+            "text": "→ ava",
+            "confidence": 0.30000001192092896,
+            "alternatives": [],
+            "glyphHeight": 0.02856239068873251,
+            "bounds": {
+              "x": 0.4362835566435482,
+              "y": 0.76,
+              "width": 0.21371644335645182,
+              "height": 0.03304600815048788
+            }
+          },
+          {
+            "text": "henceforth",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.05268708005048975,
+            "bounds": {
+              "x": 0.0,
+              "y": 0.767811739192999,
+              "width": 0.3566240280793646,
+              "height": 0.08924280627020473
+            }
+          },
+          {
+            "text": "e disall",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.0364241585515334,
+            "bounds": {
+              "x": 0.3367514193122667,
+              "y": 0.8173611952625792,
+              "width": 0.2341806332427676,
+              "height": 0.05669348179608926
+            }
+          },
+          {
+            "text": "Jason A. Engle",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.036040547718546,
+            "bounds": {
+              "x": 0.07572167932868216,
+              "y": 0.8682811899590961,
+              "width": 0.3693927424969059,
+              "height": 0.08207108420887213
+            }
+          },
+          {
+            "text": "& C 1995-2011WzšŚ",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.027849983362584763,
+            "bounds": {
+              "x": 0.011470359375170958,
+              "y": 0.8984664443487208,
+              "width": 0.35380842152208397,
+              "height": 0.06825288969894934
+            }
+          },
+          {
+            "text": "Nevermore",
+            "confidence": 1.0,
+            "alternatives": [
+              "Nevermor",
+              "Nevemore"
+            ],
+            "glyphHeight": 0.02600326185649996,
+            "bounds": {
+              "x": 0.07834182240156591,
+              "y": 0.03425433404454359,
+              "width": 0.3250436881153854,
+              "height": 0.0576361340892558
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "imagePath": "/local/source-4.jpg",
+    "width": 6048,
+    "height": 8064,
+    "crops": [
+      {
+        "imagePath": "/local/source-4-crop-0.jpg",
+        "width": 3357,
+        "height": 4096,
+        "rectified": true,
+        "warnings": [
+          "incomplete_card",
+          "no_text"
+        ],
+        "sharpness": 0.18511978240865315,
+        "sourceCorners": [
+          {
+            "x": 0.2811765968799591,
+            "y": 0.5459280610084534
+          },
+          {
+            "x": 0.5997596979141235,
+            "y": 0.5804194211959839
+          },
+          {
+            "x": 0.6062580347061157,
+            "y": 0.874896302819252
+          },
+          {
+            "x": 0.050183285027742386,
+            "y": 0.8041986227035522
+          }
+        ],
+        "lines": []
+      }
+    ]
+  }
+]

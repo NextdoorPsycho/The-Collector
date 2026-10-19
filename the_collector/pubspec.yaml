@@ -1,88 +1,84 @@
 name: the_collector
 description: "The Collector of Everything."
-
+publish_to: none
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
-
+  sdk: ^3.13.0
+  flutter: '>=3.47.0'
 
 dependencies:
   flutter:
     sdk: flutter
+  collector_models:
+    path: ../collector_models
   magic_card:
-    git:
-      url: https://github.com/ArcaneArts/magic_card.git
-      ref: master
-  toxic: ^1.2.4
-  provider: ^6.1.2
-  build_runner: ^2.4.9
-  fast_log: ^1.0.7
-  image: ^4.1.7
-  url_launcher: ^6.2.6
-  flutter_launcher_icons: ^0.13.1
-  universal_io: ^2.2.2
-#  app_rename: ^0.0.1  # flutter pub run app_rename:main all="the_collector"
-  firebase_storage: ^11.6.0
-  firebase_core: ^2.24.2
-  firebase_ui_auth: ^1.13.0
-  firebase_auth: ^4.16.0
-  cloud_firestore: ^4.15.8
-  animated_text_kit: ^4.2.2
-  padded: ^1.0.1
-  flyout: ^1.0.2
-  throttled: ^1.0.1
-  scryfall_api: ^2.0.0
-  image_picker: ^1.0.8
-  restart_app: ^1.2.1
-  camera: ^0.10.0
-  google_mlkit_text_recognition: ^0.13.0
-  path_provider: ^2.1.3
-  path: ^1.9.0
-  google_mlkit_object_detection: ^0.13.0
-  async: ^2.11.0
-  xl: ^0.9.1
-  foil: ^0.9.0+1
-  sensors_plus: ^1.4.1
-  pandabar: ^0.1.2
-  uuid: ^4.4.0
-  fire_crud: ^1.1.8
-  collection_walker: ^1.1.1
-  dart_mappable: ^4.2.2
-  dialoger: ^1.0.0
-  shared_preferences: ^2.2.3
-
-
+    path: ../magic_card
+  arcane:
+    path: ../vendor/arcane
+  provider: ^6.1.5+1
+  firebase_core: ^4.15.0
+  firebase_auth: ^6.7.0
+  firebase_app_check: ^0.4.8
+  google_sign_in: ^7.2.0
+  cloud_firestore: ^6.10.0
+  cloud_functions: ^6.5.0
+  scryfall_api: ^2.6.0
+  shared_preferences: ^2.5.6
+  camera: ^0.12.1
+  image_picker: ^1.2.4
+  file_selector: ^1.1.0
+  flutter_svg: ^2.3.0
+  url_launcher: ^6.3.3
+  http: ^1.6.0
+  uuid: ^4.6.0
+  hive: ^2.2.3
+  crypto: ^3.0.7
 
 dev_dependencies:
-  flutter_lints: ^3.0.1
-  dependency_validator: ^3.2.3
-  dart_mappable_builder: ^4.2.3
+  camera_platform_interface: ^2.14.0
+  shared_preferences_platform_interface: ^2.4.2
+  image_picker_platform_interface: ^2.11.2
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  flutter_launcher_icons: ^0.14.4
+  flutter_lints: ^6.0.0
+  dependency_validator: ^5.1.0
+  fake_cloud_firestore: ^4.3.0
+
+dependency_overrides:
+  camera_avfoundation:
+    path: ../vendor/camera_avfoundation
 
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/icon.png"
+  image_path: "assets/images/ios/AppIcon~ios-marketing.png"
   remove_alpha_ios: true
-  min_sdk_android: 21 # android min sdk min:16, default 21
+  min_sdk_android: 24
   web:
     generate: true
-    image_path: "assets/images/icon.png"
+    image_path: "assets/images/ios/AppIcon~ios-marketing.png"
     background_color: "#000000"
     theme_color: "#ffffff"
   windows:
     generate: true
-    image_path: "assets/images/icon.png"
+    image_path: "assets/images/ios/AppIcon~ios-marketing.png"
     icon_size: 256 # min:48, max:256, default: 48
   macos:
     generate: true
-    image_path: "assets/images/icon.png"
+    image_path: "assets/images/ios/AppIcon~ios-marketing.png"
 
 flutter:
-  uses-material-design: true
   assets:
+    - assets/scanner_catalog/
     - assets/ding.mp3
+    - assets/images/Icon.svg
+    - assets/images/apple-sign-in-white.png
+    - assets/images/apple-sign-in-black.png
   fonts:
     - family: itc
       fonts:
@@ -93,11 +89,11 @@ flutter:
 
 scripts:
   deploy-web: cd .. && firebase deploy --only hosting
-  build-runner: flutter pub run build_runner build --delete-conflicting-outputs
+  build-runner: cd ../collector_models && dart run build_runner build
   measure_android_size: flutter build apk --analyze-size --target-platform android-arm64
   android_signatures:
     script: ./gradlew signingReport
     directory: android
   build_appbundle_release: flutter build appbundle --release
   build_apk_release: flutter build apk --release
-  validate_dependencies: flutter pub run dependency_validator
+  validate_dependencies: dart run dependency_validator

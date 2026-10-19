@@ -1,0 +1,430 @@
+[
+  {
+    "imagePath": "body_scene_0.jpg",
+    "width": 6048,
+    "height": 8064,
+    "crops": [
+      {
+        "imagePath": "body_scene_0_crop.jpg",
+        "width": 2902,
+        "height": 3368,
+        "rectified": true,
+        "warnings": [
+          "incomplete_card"
+        ],
+        "sharpness": 0.8605865349018257,
+        "sourceCorners": [
+          {
+            "x": 0.28913089632987976,
+            "y": 0.5579297840595245
+          },
+          {
+            "x": 0.5666922926902771,
+            "y": 0.5953330993652344
+          },
+          {
+            "x": 0.5600442290306091,
+            "y": 0.8406984210014343
+          },
+          {
+            "x": 0.1149887964129448,
+            "y": 0.7836729139089584
+          }
+        ],
+        "lines": [
+          {
+            "text": "Enchaniment",
+            "confidence": 1.0,
+            "alternatives": [
+              "Enchanment",
+              "Enchanrment"
+            ],
+            "glyphHeight": 0.030232445392109567,
+            "bounds": {
+              "x": 0.03152673732929024,
+              "y": 0.551929531619343,
+              "width": 0.3112525861071029,
+              "height": 0.035475284639843285
+            }
+          },
+          {
+            "text": "1; Prevent all damage against you",
+            "confidence": 1.0,
+            "alternatives": [
+              "1 ; Prevent all damage against you",
+              "1 Prevent all damage against you"
+            ],
+            "glyphHeight": 0.036251239169092606,
+            "bounds": {
+              "x": 0.1010172714942742,
+              "y": 0.6583747040193831,
+              "width": 0.7692873617602085,
+              "height": 0.03964143694155009
+            }
+          },
+          {
+            "text": "from one blue source. It a source",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.0357142851757909,
+            "bounds": {
+              "x": 0.09166666077724225,
+              "y": 0.7000000002560199,
+              "width": 0.7666666778837871,
+              "height": 0.0357142851757909
+            }
+          },
+          {
+            "text": "deals damage to you more than",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.04012351959590383,
+            "bounds": {
+              "x": 0.09447672356367912,
+              "y": 0.7311264828120485,
+              "width": 0.7194767852720108,
+              "height": 0.04012351733422565
+            }
+          },
+          {
+            "text": "once in a turn, you may",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.03697217574169177,
+            "bounds": {
+              "x": 0.09449593900090397,
+              "y": 0.7659362810513632,
+              "width": 0.5395201440584863,
+              "height": 0.041346218532986125
+            }
+          },
+          {
+            "text": "each time to prevent the",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.038672998332407366,
+            "bounds": {
+              "x": 0.09460665253527109,
+              "y": 0.8039499135768875,
+              "width": 0.5501718844397593,
+              "height": 0.041647655345775476
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "imagePath": "body_scene_1.jpg",
+    "width": 6048,
+    "height": 8064,
+    "crops": [
+      {
+        "imagePath": "body_scene_1_crop.jpg",
+        "width": 2903,
+        "height": 3352,
+        "rectified": true,
+        "warnings": [
+          "incomplete_card"
+        ],
+        "sharpness": 0.8343131857222268,
+        "sourceCorners": [
+          {
+            "x": 0.2892182469367981,
+            "y": 0.5578248798847198
+          },
+          {
+            "x": 0.5673897862434387,
+            "y": 0.5958941876888275
+          },
+          {
+            "x": 0.5595059990882874,
+            "y": 0.840711921453476
+          },
+          {
+            "x": 0.1152820885181427,
+            "y": 0.7836066335439682
+          }
+        ],
+        "lines": [
+          {
+            "text": "Enchanment",
+            "confidence": 1.0,
+            "alternatives": [
+              "Enchanent",
+              "Enchanument"
+            ],
+            "glyphHeight": 0.03197674307447629,
+            "bounds": {
+              "x": 0.028523486897910132,
+              "y": 0.5508720934336921,
+              "width": 0.31543624499612605,
+              "height": 0.03197674307447629
+            }
+          },
+          {
+            "text": "1; Prevent all damage against you",
+            "confidence": 1.0,
+            "alternatives": [
+              "1 ; Prevent all damage against you",
+              "1 Prevent all damage against you"
+            ],
+            "glyphHeight": 0.04166666818404818,
+            "bounds": {
+              "x": 0.09134614361152782,
+              "y": 0.6583333325457074,
+              "width": 0.77884617324703,
+              "height": 0.04166666818404818
+            }
+          },
+          {
+            "text": "from one blue source. It a source",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.03253011987887131,
+            "bounds": {
+              "x": 0.09166668319680876,
+              "y": 0.70000000028948,
+              "width": 0.7666666330384815,
+              "height": 0.03253011987887131
+            }
+          },
+          {
+            "text": "deals damage to you more than",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.04127236398503511,
+            "bounds": {
+              "x": 0.09235209427528246,
+              "y": 0.7300000004503882,
+              "width": 0.7200577160543646,
+              "height": 0.04127236626020246
+            }
+          },
+          {
+            "text": "once in a turn, you may pay -",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.036381709741550694,
+            "bounds": {
+              "x": 0.09166666650342045,
+              "y": 0.7721669984096164,
+              "width": 0.6875,
+              "height": 0.036381709741550694
+            }
+          },
+          {
+            "text": "in a nurn",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.022162354424336995,
+            "bounds": {
+              "x": 0.20784883943467009,
+              "y": 0.7771428569885405,
+              "width": 0.20595929743879934,
+              "height": 0.022162354424336995
+            }
+          },
+          {
+            "text": "\u203a you may",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.030144664471694955,
+            "bounds": {
+              "x": 0.417400076466937,
+              "y": 0.7739096707861759,
+              "width": 0.22232277272111275,
+              "height": 0.03121048049358813
+            }
+          },
+          {
+            "text": "each time to prevent the",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.03868765292472423,
+            "bounds": {
+              "x": 0.09460654301961935,
+              "y": 0.8039352425372672,
+              "width": 0.5501720105187369,
+              "height": 0.041662339430588946
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "imagePath": "body_scene_2.jpg",
+    "width": 6048,
+    "height": 8064,
+    "crops": [
+      {
+        "imagePath": "body_scene_2_crop.jpg",
+        "width": 3011,
+        "height": 3641,
+        "rectified": true,
+        "warnings": [
+          "incomplete_card",
+          "low_text_confidence"
+        ],
+        "sharpness": 0.4617858177511137,
+        "sourceCorners": [
+          {
+            "x": 0.2980152368545532,
+            "y": 0.5545816719532013
+          },
+          {
+            "x": 0.5697199106216431,
+            "y": 0.5919204950332642
+          },
+          {
+            "x": 0.5661780834197998,
+            "y": 0.8424239307641983
+          },
+          {
+            "x": 0.1090971827507019,
+            "y": 0.783049538731575
+          }
+        ],
+        "lines": [
+          {
+            "text": "Brior Hidasaaara",
+            "confidence": 0.30000001192092896,
+            "alternatives": [
+              "Brier Hidasaaara",
+              "Brior Hidasaaola"
+            ],
+            "glyphHeight": 0.030566070835764805,
+            "bounds": {
+              "x": 0.24583332903101857,
+              "y": 0.0,
+              "width": 0.42916667477226506,
+              "height": 0.030566068922055965
+            }
+          },
+          {
+            "text": "\u092e\u0939\u0939\u093e\u0932\u092f",
+            "confidence": 0.30000001192092896,
+            "alternatives": [
+              "\u092e\u0939\u0939\u093e\u0932\u0930",
+              "\u092e\u0939\u0939\u093e\u0932\u0917"
+            ],
+            "glyphHeight": 0.030566037340862006,
+            "bounds": {
+              "x": 0.04166667057478997,
+              "y": 1.5504075800976125e-10,
+              "width": 0.1958333252277349,
+              "height": 0.030566037340862006
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "imagePath": "body_scene_3.jpg",
+    "width": 6048,
+    "height": 8064,
+    "crops": []
+  },
+  {
+    "imagePath": "body_scene_4.jpg",
+    "width": 6048,
+    "height": 8064,
+    "crops": [
+      {
+        "imagePath": "body_scene_4_crop.jpg",
+        "width": 2582,
+        "height": 3438,
+        "rectified": true,
+        "warnings": [
+          "incomplete_card"
+        ],
+        "sharpness": 0.7242631520400857,
+        "sourceCorners": [
+          {
+            "x": 0.2751343548297882,
+            "y": 0.5454972684383392
+          },
+          {
+            "x": 0.8049138784408569,
+            "y": 0.6190696060657501
+          },
+          {
+            "x": 0.5931797623634338,
+            "y": 0.877633310854435
+          },
+          {
+            "x": 0.048496510833501816,
+            "y": 0.807216688990593
+          }
+        ],
+        "lines": [
+          {
+            "text": "\u0430\u043f\u0456\u0434 \u043d\u043e\u0432\u0433\u043e \u0442\u0430 16",
+            "confidence": 0.30000001192092896,
+            "alternatives": [
+              "\u0430\u043f\u0456\u0434 \u043d\u043e\u0432\u0433\u043e \u0442\u0430 10",
+              "\u0430\u043f\u0456\u0434 \u043d\u043e\u0432\u0433\u043e \u0442\u0430 1\u043e"
+            ],
+            "glyphHeight": 0.017431768447316757,
+            "bounds": {
+              "x": 0.9613152627976975,
+              "y": 0.14534883512596908,
+              "width": 0.02321086384177118,
+              "height": 0.25
+            }
+          },
+          {
+            "text": "TON",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.026198306702263755,
+            "bounds": {
+              "x": 0.3313953451568825,
+              "y": 0.9236363648389283,
+              "width": 0.03488372814553731,
+              "height": 0.07527272424032519
+            }
+          },
+          {
+            "text": "Enchantme",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.02034544679846222,
+            "bounds": {
+              "x": 0.6031643750226061,
+              "y": 0.8297050154981724,
+              "width": 0.032857646033877405,
+              "height": 0.16502651260782383
+            }
+          },
+          {
+            "text": "As Neve",
+            "confidence": 1.0,
+            "alternatives": [],
+            "glyphHeight": 0.023832171380629173,
+            "bounds": {
+              "x": 0.5341059080201241,
+              "y": 0.8582596490419967,
+              "width": 0.033613084724971244,
+              "height": 0.1412310658009231
+            }
+          },
+          {
+            "text": "Lne n",
+            "confidence": 0.5,
+            "alternatives": [],
+            "glyphHeight": 0.02275698200982259,
+            "bounds": {
+              "x": 0.4338426703099038,
+              "y": 0.8821341379184053,
+              "width": 0.04338107949211482,
+              "height": 0.11329026192210201
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

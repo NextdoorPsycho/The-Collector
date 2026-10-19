@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart' show Color, MaterialColor;
+import 'dart:ui' show Color;
 
 class MyColors {
   const MyColors._();
@@ -111,37 +111,8 @@ class MyColors {
   static Color darkButton = darkViewForeground.withAlpha(25);
 
   ///Border color
-  static Color border = dark5.withOpacity(0.18);
+  static Color border = dark5.withValues(alpha: 0.18);
 
   ///Button dark color
-  static Color darkBorder = dark5.withOpacity(0.75);
-
-  static MaterialColor _createMaterialColor(Color color) {
-    final strengths = <double>[.05];
-    final swatch = <int, Color>{};
-    final r = color.red;
-    final g = color.green;
-    final b = color.blue;
-
-    for (var i = 1; i < 10; i++) {
-      strengths.add(0.1 * i);
-    }
-    for (final strength in strengths) {
-      final ds = 0.5 - strength;
-      swatch[(strength * 1000).round()] = Color.fromRGBO(
-        r + ((ds < 0 ? r : (255 - r)) * ds).round(),
-        g + ((ds < 0 ? g : (255 - g)) * ds).round(),
-        b + ((ds < 0 ? b : (255 - b)) * ds).round(),
-        1,
-      );
-    }
-    return MaterialColor(color.value, swatch);
-  }
-
-  /// Default accent swatch color
-  static MaterialColor primarySwatchColor = _createMaterialColor(defaultAccent);
-
-  /// Adwaita grey swatch color
-
-  static MaterialColor warmGrey = _createMaterialColor(light4);
+  static Color darkBorder = dark5.withValues(alpha: 0.75);
 }

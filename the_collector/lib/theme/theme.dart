@@ -1,117 +1,53 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show SystemUiOverlayStyle;
+import 'package:arcane/arcane.dart';
 
 import 'color.dart';
 
 class MyThemeData {
   const MyThemeData._();
 
-  static final _baseColorScheme = ColorScheme.fromSwatch(
-    primarySwatch: MyColors.primarySwatchColor,
-    accentColor: MyColors.defaultAccent,
-    errorColor: MyColors.red5,
+  static ArcaneTheme themeData(ThemeMode mode) => ArcaneTheme(
+    themeMode: mode,
+    radius: 0,
+    surfaceOpacity: 1,
+    surfaceOpacityLight: 1,
+    surfaceEffect: const StaticSurfaceEffect(),
+    shadThemeBuilder: (ArcaneTheme theme, Brightness brightness) => ThemeData(
+      colorScheme: theme.scheme!.scheme(brightness),
+      radius: theme.radius,
+      typography: const Typography.geist(
+        sans: TextStyle(fontFamily: 'GeistSans', package: 'arcane'),
+        mono: TextStyle(fontFamily: 'GeistMono', package: 'arcane'),
+        h1: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+        h2: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+      ),
+    ),
+    scheme: ContrastedColorScheme(
+      light: ColorSchemes.lightDefaultColor.copyWith(
+        background: () => MyColors.backgroundColor,
+        card: () => MyColors.cardBackground,
+        primary: () => Colors.black,
+        primaryForeground: () => Colors.white,
+        destructive: () => MyColors.red5,
+        mutedForeground: () => const Color(0xff4a4a4a),
+        border: () => const Color(0xff737373),
+        ring: () => Colors.black,
+      ),
+      dark: ColorSchemes.darkDefaultColor.copyWith(
+        background: () => MyColors.darkBackgroundColor,
+        card: () => MyColors.darkCardBackground,
+        primary: () => Colors.white,
+        primaryForeground: () => Colors.black,
+        destructive: () => MyColors.red2,
+        border: () => const Color(0xff737373),
+        ring: () => Colors.white,
+      ),
+    ),
   );
 
-  static ThemeData themeData(Brightness brightness) {
-    bool isLight = brightness == Brightness.light;
-
-    var colorScheme = _baseColorScheme.copyWith(
-      brightness: brightness,
-      background:
-          isLight ? MyColors.backgroundColor : MyColors.darkBackgroundColor,
-      surface: isLight ? MyColors.cardBackground : MyColors.darkCardBackground,
-      onBackground: isLight ? Colors.black : Colors.white,
-      onSurface: isLight ? Colors.black : Colors.white,
-    );
-
-    return ThemeData(
-      brightness: brightness,
-      primaryColor: colorScheme.primary,
-      hintColor: colorScheme.secondary,
-      scaffoldBackgroundColor: colorScheme.background,
-      cardColor: colorScheme.surface,
-      dialogBackgroundColor: colorScheme.background,
-      appBarTheme: appBarTheme(isLight, colorScheme),
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: MyColors.defaultAccent,
-      ),
-      tabBarTheme: TabBarTheme(
-        labelColor: colorScheme.onSurface,
-        unselectedLabelColor: colorScheme.onBackground.withOpacity(0.5),
-      ),
-      textTheme: getTextTheme(colorScheme),
-      buttonTheme: ButtonThemeData(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-      ),
-      inputDecorationTheme: inputDecorationTheme(isLight),
-      switchTheme: switchThemeData(isLight),
-      checkboxTheme: checkboxThemeData(isLight),
-      radioTheme: radioThemeData(isLight), colorScheme: colorScheme.copyWith(background: colorScheme.background),
-    );
-  }
-
-  static AppBarTheme appBarTheme(bool isLight, ColorScheme colorScheme) =>
-      AppBarTheme(
-        elevation: 1,
-        backgroundColor: colorScheme.background,
-        foregroundColor: colorScheme.onBackground,
-        systemOverlayStyle:
-            isLight ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
-        titleTextStyle: getTextTheme(colorScheme).headlineSmall,
-        iconTheme: IconThemeData(color: colorScheme.onBackground),
-        actionsIconTheme: IconThemeData(color: colorScheme.onBackground),
-      );
-
-  static TextTheme getTextTheme(ColorScheme colorScheme) => TextTheme(
-        displayLarge: TextStyle(
-            fontSize: 26,
-            color: colorScheme.onBackground,
-            fontWeight: FontWeight.bold),
-        // Define other styles similarly
-      );
-
-  static InputDecorationTheme inputDecorationTheme(bool isLight) =>
-      InputDecorationTheme(
-        filled: true,
-        fillColor: isLight ? MyColors.button : MyColors.darkButton,
-        enabledBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-          borderSide: BorderSide(color: Colors.transparent),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-          borderSide: BorderSide(color: MyColors.defaultAccent),
-        ),
-      );
-
-  static SwitchThemeData switchThemeData(bool isLight) => SwitchThemeData(
-        thumbColor: MaterialStateProperty.resolveWith<Color>(
-            (Set<MaterialState> states) {
-          if (states.contains(MaterialState.disabled)) return Colors.grey;
-          return isLight ? MyColors.defaultAccent : Colors.white;
-        }),
-        trackColor: MaterialStateProperty.resolveWith<Color>(
-            (Set<MaterialState> states) {
-          if (states.contains(MaterialState.disabled)) {
-            return Colors.grey.shade300;
-          }
-          return isLight ? MyColors.defaultAccent : MyColors.dark2;
-        }),
-      );
-
-  static CheckboxThemeData checkboxThemeData(bool isLight) => CheckboxThemeData(
-        fillColor: MaterialStateProperty.resolveWith<Color>(
-            (Set<MaterialState> states) {
-          if (states.contains(MaterialState.disabled)) return Colors.grey;
-          return isLight ? MyColors.defaultAccent : Colors.white;
-        }),
-      );
-
-  static RadioThemeData radioThemeData(bool isLight) => RadioThemeData(
-        fillColor: MaterialStateProperty.resolveWith<Color>(
-            (Set<MaterialState> states) {
-          if (states.contains(MaterialState.disabled)) return Colors.grey;
-          return isLight ? MyColors.defaultAccent : Colors.white;
-        }),
-      );
+  static const TextFieldTheme inputTheme = TextFieldTheme(
+    filled: false,
+    border: Border.fromBorderSide(BorderSide(color: Color(0xff737373))),
+    borderRadius: BorderRadius.zero,
+    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+  );
 }

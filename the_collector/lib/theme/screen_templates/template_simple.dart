@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:arcane/arcane.dart';
 
 class SimpleScreen extends StatelessWidget {
   const SimpleScreen({
@@ -35,26 +35,23 @@ class SimpleScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (image != null) ...[
-              image!,
-              const SizedBox(height: 30),
-            ],
+            if (image != null) ...[image!, const SizedBox(height: 30)],
             Text(
               title,
-              style: Theme.of(context).textTheme.headlineLarge,
+              style: Theme.of(context).typography.h1,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 15),
             Text(
               description,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyLarge,
+              style: Theme.of(context).typography.base,
             ),
             if (secondDescription != null) ...[
               const SizedBox(height: 20),
               Text(
                 secondDescription!,
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: Theme.of(context).typography.h2,
                 textAlign: TextAlign.center,
               ),
             ],
